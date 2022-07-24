@@ -33,10 +33,11 @@ public class StudyBuddy implements ScribeListener {
         speaker = Speaker.getSpeaker(context);
         cb = new ChallengeBuilder();
         cm = new ChallengeManager();
+        scribe.startTranscribing();
     }
 
     public void enterUserInput(String userInput){
-
+        
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
