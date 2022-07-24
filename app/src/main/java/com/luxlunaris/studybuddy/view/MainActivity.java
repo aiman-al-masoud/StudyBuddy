@@ -25,8 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Permissions.isRecordAudioPermissionGranted(this);
-        Permissions.isStoragePermissionGranted(this);
+        Permissions.isPermissionGranted(this);
 
         studyBuddy = new StudyBuddy(this);
         studyBuddy.addChallengesFile("foo", "Who built the pyramids?\\nAliens\\n\\nWhat do cats eat?\\n\\nTuna.");
