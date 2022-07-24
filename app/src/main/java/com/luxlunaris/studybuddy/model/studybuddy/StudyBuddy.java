@@ -115,6 +115,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         mainHandler.post(()->{
             scribe.startTranscribing();
         });
+
     }
 
 
