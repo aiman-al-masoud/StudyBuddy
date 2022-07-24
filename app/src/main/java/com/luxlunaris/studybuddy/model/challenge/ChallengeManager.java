@@ -22,6 +22,10 @@ public class ChallengeManager {
         challenges.add(challenge);
     }
 
+    public void addAllChallenges(List<Challenge> challenges){
+        this.challenges.addAll(challenges);
+    }
+
     public Challenge getRandomChallenge(){
         int i = new Random().nextInt(challenges.size());
         return challenges.get(i);

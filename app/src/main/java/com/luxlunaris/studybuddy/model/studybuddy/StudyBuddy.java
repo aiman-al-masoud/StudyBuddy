@@ -1,7 +1,10 @@
 package com.luxlunaris.studybuddy.model.studybuddy;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.luxlunaris.studybuddy.model.challenge.Challenge;
 import com.luxlunaris.studybuddy.model.challenge.ChallengeBuilder;
@@ -34,6 +37,11 @@ public class StudyBuddy implements ScribeListener {
 
     public void enterUserInput(String userInput){
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void addChallengesFile(String title, String body){
+        cm.addAllChallenges(cb.fromText(body,title));
     }
 
     @Override
