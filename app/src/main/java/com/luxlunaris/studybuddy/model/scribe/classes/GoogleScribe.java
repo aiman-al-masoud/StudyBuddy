@@ -17,7 +17,6 @@ import java.util.List;
 public class GoogleScribe implements Scribe, RecognitionListener {
 
     private Context context;
-    private final int RECORD_AUDIO_PERMISSION_CODE = 1;
     private SpeechRecognizer speechRecognizer;
     private boolean isListening;
     private Intent speechRecognizerIntent;
