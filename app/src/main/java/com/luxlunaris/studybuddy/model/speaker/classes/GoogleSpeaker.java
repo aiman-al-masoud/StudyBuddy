@@ -6,22 +6,21 @@ import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 
 import com.luxlunaris.studybuddy.model.speaker.Speaker;
-
-import java.util.Locale;
+import com.luxlunaris.studybuddy.model.speaker.SpeakerListener;
 
 public class GoogleSpeaker extends UtteranceProgressListener implements Speaker {
 
     private TextToSpeech tts;
-    private volatile boolean isSpeaking;
+    private SpeakerListener speakerListener;
 
 
-    public GoogleSpeaker(Context context){
+    public GoogleSpeaker(Context context, SpeakerListener speakerListener){
         tts = new TextToSpeech(context, e->{
             //on init
         });
 
         tts.setOnUtteranceProgressListener(this);
-        isSpeaking  = false;
+        this.speakerListener  =speakerListener;
 
         //TODO: check locale
 //        tts.setLanguage(Locale.US);
@@ -34,26 +33,20 @@ public class GoogleSpeaker extends UtteranceProgressListener implements Speaker 
     }
 
     @Override
-    public boolean isSpeaking() {
-        Log.d("GoogleSpeaker", "isSpeaking: "+tts.isSpeaking());
-        return isSpeaking;
-    }
-
-    @Override
     public void onStart(String s) {
         Log.d("GoogleSpeaker", "onStart: "+s);
-        isSpeaking = true;
-
+        speakerListener.startedSpeaking(s);
     }
 
     @Override
     public void onDone(String s) {
         Log.d("GoogleSpeaker", "onDone: "+s);
-        isSpeaking = false;
+        speakerListener.stoppedSpeaking(s);
     }
 
     @Override
     public void onError(String s) {
         Log.d("GoogleSpeaker", "onError: "+s);
     }
+
 }

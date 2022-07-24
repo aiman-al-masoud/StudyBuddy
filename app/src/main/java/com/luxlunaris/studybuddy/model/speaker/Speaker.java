@@ -7,9 +7,9 @@ import com.luxlunaris.studybuddy.model.speaker.classes.GoogleSpeaker;
 public interface Speaker {
 
     void speak(String speech);
-    boolean isSpeaking();
+//    boolean isSpeaking();
 
-    static Speaker getSpeaker(Context context){
-        return new GoogleSpeaker(context);
+    static Speaker getSpeaker(Context context, SpeakerListener speakerListener){
+        return new GoogleSpeaker(context, speakerListener);
     }
 }
