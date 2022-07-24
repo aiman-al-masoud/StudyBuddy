@@ -40,17 +40,20 @@ public class Examiner {
 
         Log.d("Examiner.getVerdict():", "percentageKeywords: "+percentageKeywords);
 
-        String mk = missedKeywords.stream().reduce((k1, k2) -> k1+", "+k2).get();
 
         if(percentageKeywords >= EXCELLENT_ANSWER){
             return "True! You guessed it!";
         }
 
         if(percentageKeywords >= GOOD_ANSWER){
+            String mk = missedKeywords.stream().reduce((k1, k2) -> k1+", "+k2).get();
+
             return "Fair enough, but do any of these keywords tell you anything? "+mk;
         }
 
         if(percentageKeywords >= MEDIOCRE_ANSWER){
+            String mk = missedKeywords.stream().reduce((k1, k2) -> k1+", "+k2).get();
+
             return  "You got close, but you missed a lot of information. Try recalling these keywords: "+mk;
         }
 
