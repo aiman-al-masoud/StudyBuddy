@@ -28,7 +28,16 @@ public class ChallengeBuilder {
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public List<Challenge> fromText(String text, String fileName) {
-        String[] pars = text.split("(\\n|\\s){2,}");
+
+        System.out.println("this is the text "+text);
+
+//        String[] pars = text.split("(\\n|\\s){2,}");
+        String[] pars = text.split("(\\n){2,}");
+
+
+        System.out.println("these are the pars "+Arrays.asList(pars));
+
+
         return Arrays.stream(pars).map(c -> buildChallenge(c, fileName)).collect(Collectors.toList());
     }
 
@@ -60,23 +69,25 @@ public class ChallengeBuilder {
      * @param answerText
      * @return
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private List<String> isAnswerMutli(String answerText) {
 
-        String[] lines = answerText.split("\\n");
+        List<String> lines = Arrays.stream(answerText.split("\\n")).filter(l->l.length()>1).collect(Collectors.toList());
+//        String[] lines = answerText.split("\\n");
 
-        if (lines.length == 1) {
+        if (lines.size() == 1) {
             return null;
         }
 
-        String one = lines[0].replaceAll("\\s+", "");
-        String two = lines[1].replaceAll("\\s+", "");
+        String one = lines.get(0).replaceAll("\\s+", "");
+        String two = lines.get(1).replaceAll("\\s+", "");
 
         if (one.charAt(0) == '1' && two.charAt(0) == '2') {
-            return Arrays.asList(lines);
+            return lines;
         }
 
         if (one.charAt(0) == '0' && two.charAt(0) == '1') {
-            return Arrays.asList(lines);
+            return lines;
         }
 
         return null;

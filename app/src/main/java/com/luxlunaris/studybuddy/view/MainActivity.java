@@ -38,7 +38,10 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void init(){
         studyBuddy = new StudyBuddy(this);
-        studyBuddy.addChallengesFile("foo", "Who built the pyramids?\\nAliens\\n\\nWhat do cats eat?\\n\\nTuna.");
+        String testBody = "Who built the pyramids?\nAliens\n\nWhat do cats eat?\nTuna.";
+//        Log.d("MainActivity.init()", testBody);
+
+        studyBuddy.addChallengesFile("foo", testBody);
         studyBuddy.start();
     }
 

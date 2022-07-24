@@ -49,28 +49,26 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     public void enterUserInput(String userInput){
 
         Log.d("StudyBuddy", "enterUserInput: "+userInput);
+//        speaker.speak("You said: "+userInput);
 
-        speaker.speak("You said: "+userInput);
 
         //TODO: employ parser for full command parsing logic
 
         switch (currentMode){
             case AWAIT_ANSWER:
 
-////                Async.setTimeout(()->{
-//                    String verdict = examiner.getVerdict(currentChallenge, userInput);
-//                    speaker.speak(verdict);
-//                    currentMode = StudyBuddyModes.AWAIT_COMMAND;
-////                }, 2000);
+                String verdict = examiner.getVerdict(currentChallenge, userInput);
+                speaker.speak(verdict);
+                currentMode = StudyBuddyModes.AWAIT_COMMAND;
 
                 break;
             case AWAIT_COMMAND:
 
-//                Async.setTimeout(()->{
-//                    currentChallenge = cm.getRandomChallenge();
-//                    speaker.speak(currentChallenge.question());
-//                    currentMode = StudyBuddyModes.AWAIT_ANSWER;
-////                }, 2000);
+                if(userInput.contains("random")){
+                    currentChallenge = cm.getRandomChallenge();
+                    speaker.speak(currentChallenge.question());
+                    currentMode = StudyBuddyModes.AWAIT_ANSWER;
+                }
 
                 break;
         }
@@ -85,13 +83,6 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     @Override
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void onTranscription(String transcription) {
-
-
-//        // to prevent buddy from acting on its own speech
-//        if(speaker.isSpeaking()){
-//            Log.d("StudyBuddy", "onTranscription: speaking"+speaker.isSpeaking());
-//            return;
-//        }
 
         Log.d("StudyBuddy", "onTranscription: "+transcription);
         enterUserInput(transcription);
