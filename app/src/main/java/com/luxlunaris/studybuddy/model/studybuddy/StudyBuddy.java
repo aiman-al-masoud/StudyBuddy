@@ -13,6 +13,7 @@ import com.luxlunaris.studybuddy.model.examiner.Examiner;
 import com.luxlunaris.studybuddy.model.scribe.Scribe;
 import com.luxlunaris.studybuddy.model.scribe.ScribeListener;
 import com.luxlunaris.studybuddy.model.speaker.Speaker;
+import com.luxlunaris.studybuddy.model.utils.Async;
 
 public class StudyBuddy implements ScribeListener {
 
@@ -29,10 +30,14 @@ public class StudyBuddy implements ScribeListener {
         this.context = context;
         currentMode = StudyBuddyModes.AWAIT_COMMAND;
         examiner = new Examiner();
-        scribe = Scribe.getScribe(context);
+        scribe = Scribe.getScribe(context, this);
         speaker = Speaker.getSpeaker(context);
         cb = new ChallengeBuilder();
         cm = new ChallengeManager();
+    }
+
+    public void start(){
+        Async.setTimeout(()->{speaker.speak("Hello!");}, 1000);
         scribe.startTranscribing();
     }
 
@@ -67,6 +72,7 @@ public class StudyBuddy implements ScribeListener {
     @Override
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void onTranscription(String transcription) {
+        Log.d("StudyBuddy", "onTranscription: "+transcription);
         enterUserInput(transcription);
     }
 

@@ -20,14 +20,14 @@ public class GoogleScribe implements Scribe, RecognitionListener {
     private SpeechRecognizer speechRecognizer;
     private boolean isListening;
     private Intent speechRecognizerIntent;
+    private ScribeListener scribeListener;
 
 
-    /**
-     * The param context should also implement ScribeListener.
-     * @param context
-     */
-    public GoogleScribe(Context context){
+
+    public GoogleScribe(Context context, ScribeListener scribeListener){
         this.context = context;
+        this.scribeListener  = scribeListener;
+
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(context);
 
         speechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -40,18 +40,20 @@ public class GoogleScribe implements Scribe, RecognitionListener {
             speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true);
         }
 
+        speechRecognizer.setRecognitionListener(this);
+
     }
 
     @Override
     public void startTranscribing() {
 
         // mute beep-bop mic de/activation noises
-        AudioManager aManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
-        aManager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true);
-        aManager.setStreamMute(AudioManager.STREAM_ALARM, true);
-        aManager.setStreamMute(AudioManager.STREAM_MUSIC, true);
-        aManager.setStreamMute(AudioManager.STREAM_RING, true);
-        aManager.setStreamMute(AudioManager.STREAM_SYSTEM, true);
+//        AudioManager aManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+//        aManager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true);
+//        aManager.setStreamMute(AudioManager.STREAM_ALARM, true);
+//        aManager.setStreamMute(AudioManager.STREAM_MUSIC, true);
+//        aManager.setStreamMute(AudioManager.STREAM_RING, true);
+//        aManager.setStreamMute(AudioManager.STREAM_SYSTEM, true);
 
         speechRecognizer.startListening(speechRecognizerIntent);
         isListening = true;
@@ -124,13 +126,13 @@ public class GoogleScribe implements Scribe, RecognitionListener {
 
     @Override
     public void onError(int i) {
-        ((ScribeListener)context).onError(i);
+        scribeListener.onError(i);
     }
 
     @Override
     public void onResults(Bundle bundle) {
         List<String> data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        ((ScribeListener)context).onTranscription(data.toString());
+        scribeListener.onTranscription(data.toString());
         startTranscribing();
     }
 

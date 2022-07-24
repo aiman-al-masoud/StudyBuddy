@@ -15,8 +15,8 @@ public interface Scribe {
      * @param context
      * @return
      */
-    static Scribe getScribe(Context context){
-        return new GoogleScribe(context);
+    static Scribe getScribe(Context context, ScribeListener scribeListener){
+        return new GoogleScribe(context, scribeListener);
     };
 
 
