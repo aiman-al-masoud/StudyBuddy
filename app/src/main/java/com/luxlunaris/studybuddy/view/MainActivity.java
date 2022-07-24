@@ -37,10 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void init(){
+        FileManager.createRootDir();
         studyBuddy = new StudyBuddy(this);
         String testBody = "Who built the pyramids?\nAliens\n\nWhat do cats eat?\nTuna.";
-//        Log.d("MainActivity.init()", testBody);
-
         studyBuddy.addChallengesFile("foo", testBody);
         studyBuddy.start();
     }
@@ -50,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Log.d("onRequestPermissionsRes", "onRequestPermissionsResult: "+requestCode+" "+ Arrays.asList(permissions) +" "+ Arrays.asList(grantResults));
-        FileManager.createRootDir();
 
         if(Arrays.stream(grantResults).allMatch(p-> p == PackageManager.PERMISSION_GRANTED)){
             init();
