@@ -37,7 +37,7 @@ public class StudyBuddy implements ScribeListener {
     }
 
     public void start(){
-        Async.setTimeout(()->{speaker.speak("Hello!");}, 1000);
+//        Async.setTimeout(()->{speaker.speak("Hello!");}, 1000);
         scribe.startTranscribing();
     }
 
@@ -57,6 +57,7 @@ public class StudyBuddy implements ScribeListener {
             case AWAIT_COMMAND:
 
                 currentChallenge = cm.getRandomChallenge();
+                speaker.speak(currentChallenge.question());
                 currentMode = StudyBuddyModes.AWAIT_ANSWER;
 
                 break;

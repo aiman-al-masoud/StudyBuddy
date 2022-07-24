@@ -33,22 +33,27 @@ public class Examiner {
 
         String mk = missedKeywords.stream().reduce((k1, k2) -> k1+", "+k2).get();
 
-        switch (percentageKeywords){
-            case EXCELLENT_ANSWER:
-                return "True! You guessed it!";
-            case GOOD_ANSWER:
-                return "Fair enough, but do any of these keywords tell you anything? "+mk;
-            case MEDIOCRE_ANSWER:
-                return  "You got close, but you missed a lot of information. Try recalling these keywords: "+mk;
-            case BAD_ANSWER:
-                String s = "You're totally off track! The correct answer is: ";
-                try{
-                    s+=((SingleAnswerChallenge)challenge).answer;
-                }catch (ClassCastException e){
-                    s+=((MultiAnswerChallenge)challenge).getAnswersList().stream().reduce((a1,a2)->a1+".\n"+a2).get();
-                }
-                return s;
+        if(percentageKeywords >= EXCELLENT_ANSWER){
+            return "True! You guessed it!";
         }
+
+        if(percentageKeywords >= GOOD_ANSWER){
+            return "Fair enough, but do any of these keywords tell you anything? "+mk;
+        }
+
+        if(percentageKeywords >= MEDIOCRE_ANSWER){
+            return  "You got close, but you missed a lot of information. Try recalling these keywords: "+mk;
+        }
+
+        if(percentageKeywords <=  BAD_ANSWER){
+            String s = "You're totally off track! The correct answer is: ";
+            try{
+                s+=((SingleAnswerChallenge)challenge).answer;
+            }catch (ClassCastException e){
+                s+=((MultiAnswerChallenge)challenge).getAnswersList().stream().reduce((a1,a2)->a1+".\n"+a2).get();
+            }
+        }
+
 
         return "An error occurred in Examiner.getVerdict()!";
     }
