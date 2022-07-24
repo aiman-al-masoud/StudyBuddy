@@ -1,8 +1,19 @@
 package com.luxlunaris.studybuddy.model.studybuddy;
 
+import android.content.Context;
+
 import com.luxlunaris.studybuddy.model.scribe.ScribeListener;
 
 public class StudyBuddy implements ScribeListener {
+
+    Context context;
+
+
+    public StudyBuddy(Context context){
+        this.context = context;
+
+
+    }
 
 
 
@@ -11,6 +22,10 @@ public class StudyBuddy implements ScribeListener {
 
     }
 
+    @Override
+    public void onError(int error) {
+
+    }
 
 
 }
