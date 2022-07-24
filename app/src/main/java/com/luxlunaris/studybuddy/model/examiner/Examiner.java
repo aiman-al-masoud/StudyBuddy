@@ -29,7 +29,7 @@ public class Examiner {
         List<String> missedKeywords = correctKeywords.stream().filter(k->!userKeywords.contains(k)).collect(Collectors.toList());
 
         int rememberedKeywords = correctKeywords.size() - missedKeywords.size();
-        int percentageKeywords = (int)(rememberedKeywords/(double)correctKeywords.size());
+        int percentageKeywords = (int)(100*rememberedKeywords/(double)correctKeywords.size());
 
         String mk = missedKeywords.stream().reduce((k1, k2) -> k1+", "+k2).get();
 
