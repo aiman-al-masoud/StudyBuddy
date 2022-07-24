@@ -13,7 +13,8 @@ public class SingleAnswerChallenge extends AbstractChallenge {
     public SingleAnswerChallenge(String question, String answer, String fileName) {
         super(ChallengeTypes.SINGLE_ANSWER, question, fileName);
         this.answer = answer;
-        this.answerKeywords.addAll(Keywords.extractKeywords(answer));
+        answerKeywords.addAll(Keywords.extractKeywords(answer));
+        allKeywords.addAll(answerKeywords);
     }
 
     public String getAnswer(){

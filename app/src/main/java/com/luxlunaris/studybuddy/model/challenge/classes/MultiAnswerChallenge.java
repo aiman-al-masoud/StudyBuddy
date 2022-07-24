@@ -19,7 +19,8 @@ public class MultiAnswerChallenge extends AbstractChallenge {
         super(ChallengeTypes.MULTI_ANSWER, question, fileName);
         this.answersList = answersList;
         String s = answersList.stream().reduce((s1, s2)-> s1+" "+s2).get();
-        this.answerKeywords.addAll(Keywords.extractKeywords(s));
+        answerKeywords.addAll(Keywords.extractKeywords(s));
+        allKeywords.addAll(answerKeywords);
     }
 
     public List<String> getAnswersList() {

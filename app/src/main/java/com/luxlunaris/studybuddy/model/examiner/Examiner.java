@@ -4,10 +4,12 @@ import com.luxlunaris.studybuddy.model.challenge.Challenge;
 
 public class Examiner {
 
-    public String getReply(Challenge challenge, String userInput){
+    public String getVerdict(Challenge challenge, String userInput){
 //        return null;
         throw new ArithmeticException();
     }
+
+
 
 
 

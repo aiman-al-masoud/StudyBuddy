@@ -3,8 +3,6 @@ package com.luxlunaris.studybuddy.model.challenge;
 import com.luxlunaris.studybuddy.model.utils.Keywords;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 public abstract class AbstractChallenge implements Challenge{
@@ -21,9 +19,10 @@ public abstract class AbstractChallenge implements Challenge{
         this.type = type;
         this.question = question;
         this.fileName = fileName;
-        questionKeywords = Keywords.extractKeywords(question);
         answerKeywords = new ArrayList<String>();
         allKeywords = new ArrayList<String>();
+        questionKeywords = Keywords.extractKeywords(question);
+        allKeywords.addAll(questionKeywords);
     }
 
     @Override
