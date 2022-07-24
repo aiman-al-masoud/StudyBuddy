@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi;
 
 import com.luxlunaris.studybuddy.model.challenge.AbstractChallenge;
 import com.luxlunaris.studybuddy.model.challenge.ChallengeTypes;
+import com.luxlunaris.studybuddy.model.utils.Keywords;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class MultiAnswerChallenge extends AbstractChallenge {
         super(ChallengeTypes.MULTI_ANSWER, question, fileName);
         this.answersList = answersList;
         String s = answersList.stream().reduce((s1, s2)-> s1+" "+s2).get();
-        this.answerKeywords.addAll(extractKeywords(s));
+        this.answerKeywords.addAll(Keywords.extractKeywords(s));
     }
 
     public List<String> getAnswersList() {

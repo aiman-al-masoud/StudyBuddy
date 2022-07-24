@@ -1,5 +1,7 @@
 package com.luxlunaris.studybuddy.model.challenge;
 
+import com.luxlunaris.studybuddy.model.utils.Keywords;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -19,7 +21,7 @@ public abstract class AbstractChallenge implements Challenge{
         this.type = type;
         this.question = question;
         this.fileName = fileName;
-        questionKeywords = extractKeywords(question);
+        questionKeywords = Keywords.extractKeywords(question);
         answerKeywords = new ArrayList<String>();
         allKeywords = new ArrayList<String>();
     }
@@ -55,12 +57,7 @@ public abstract class AbstractChallenge implements Challenge{
         return answerKeywords;
     }
 
-    public static List<String> extractKeywords(String text) {
-        List<String> stopWords = Arrays.asList("the", "a");
-        HashSet<String> set = new HashSet<String>(Arrays.asList(text.split("\\s+")));
-        set.removeAll(stopWords);
-        return new ArrayList<String>(set);
-    }
+
 
 
 }
