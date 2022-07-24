@@ -36,8 +36,27 @@ public class StudyBuddy implements ScribeListener {
         scribe.startTranscribing();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void enterUserInput(String userInput){
-        
+
+        //TODO: employ parser for full command parsing logic
+
+        switch (currentMode){
+            case AWAIT_ANSWER:
+
+                String verdict = examiner.getVerdict(currentChallenge, userInput);
+                speaker.speak(verdict);
+                currentMode = StudyBuddyModes.AWAIT_COMMAND;
+
+                break;
+            case AWAIT_COMMAND:
+
+                currentChallenge = cm.getRandomChallenge();
+                currentMode = StudyBuddyModes.AWAIT_ANSWER;
+
+                break;
+        }
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -46,6 +65,7 @@ public class StudyBuddy implements ScribeListener {
     }
 
     @Override
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void onTranscription(String transcription) {
         enterUserInput(transcription);
     }
