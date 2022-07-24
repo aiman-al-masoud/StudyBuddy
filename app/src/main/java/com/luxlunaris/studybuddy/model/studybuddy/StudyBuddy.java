@@ -2,6 +2,7 @@ package com.luxlunaris.studybuddy.model.studybuddy;
 
 import android.content.Context;
 
+import com.luxlunaris.studybuddy.model.scribe.Scribe;
 import com.luxlunaris.studybuddy.model.scribe.ScribeListener;
 
 public class StudyBuddy implements ScribeListener {
@@ -11,7 +12,6 @@ public class StudyBuddy implements ScribeListener {
 
     public StudyBuddy(Context context){
         this.context = context;
-
 
     }
 
