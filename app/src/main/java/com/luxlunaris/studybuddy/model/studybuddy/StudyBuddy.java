@@ -3,6 +3,7 @@ package com.luxlunaris.studybuddy.model.studybuddy;
 import android.content.Context;
 import android.util.Log;
 
+import com.luxlunaris.studybuddy.model.challenge.Challenge;
 import com.luxlunaris.studybuddy.model.challenge.ChallengeBuilder;
 import com.luxlunaris.studybuddy.model.challenge.ChallengeManager;
 import com.luxlunaris.studybuddy.model.examiner.Examiner;
@@ -18,10 +19,12 @@ public class StudyBuddy implements ScribeListener {
     private Speaker speaker;
     private ChallengeBuilder cb;
     private ChallengeManager cm;
-
+    private Challenge currentChallenge;
+    private StudyBuddyModes currentMode;
 
     public StudyBuddy(Context context){
         this.context = context;
+        currentMode = StudyBuddyModes.AWAIT_COMMAND;
         examiner = new Examiner();
         scribe = Scribe.getScribe(context);
         speaker = Speaker.getSpeaker(context);
