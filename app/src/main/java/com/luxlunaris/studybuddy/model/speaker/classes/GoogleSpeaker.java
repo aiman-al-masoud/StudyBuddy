@@ -12,7 +12,7 @@ import java.util.Locale;
 public class GoogleSpeaker extends UtteranceProgressListener implements Speaker {
 
     private TextToSpeech tts;
-    private boolean isSpeaking;
+    private volatile boolean isSpeaking;
 
 
     public GoogleSpeaker(Context context){

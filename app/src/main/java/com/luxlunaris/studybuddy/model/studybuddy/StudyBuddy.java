@@ -44,25 +44,27 @@ public class StudyBuddy implements ScribeListener {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void enterUserInput(String userInput){
 
+        Log.d("StudyBuddy", "enterUserInput: "+userInput);
+
         //TODO: employ parser for full command parsing logic
 
         switch (currentMode){
             case AWAIT_ANSWER:
 
-//                Async.setTimeout(()->{
-                    String verdict = examiner.getVerdict(currentChallenge, userInput);
-                    speaker.speak(verdict);
-                    currentMode = StudyBuddyModes.AWAIT_COMMAND;
-//                }, 2000);
+////                Async.setTimeout(()->{
+//                    String verdict = examiner.getVerdict(currentChallenge, userInput);
+//                    speaker.speak(verdict);
+//                    currentMode = StudyBuddyModes.AWAIT_COMMAND;
+////                }, 2000);
 
                 break;
             case AWAIT_COMMAND:
 
 //                Async.setTimeout(()->{
-                    currentChallenge = cm.getRandomChallenge();
-                    speaker.speak(currentChallenge.question());
-                    currentMode = StudyBuddyModes.AWAIT_ANSWER;
-//                }, 2000);
+//                    currentChallenge = cm.getRandomChallenge();
+//                    speaker.speak(currentChallenge.question());
+//                    currentMode = StudyBuddyModes.AWAIT_ANSWER;
+////                }, 2000);
 
                 break;
         }
@@ -78,10 +80,12 @@ public class StudyBuddy implements ScribeListener {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void onTranscription(String transcription) {
 
-        // to prevent buddy from acting on its own speech
-        if(speaker.isSpeaking()){
-            return;
-        }
+
+//        // to prevent buddy from acting on its own speech
+//        if(speaker.isSpeaking()){
+//            Log.d("StudyBuddy", "onTranscription: speaking"+speaker.isSpeaking());
+//            return;
+//        }
 
         Log.d("StudyBuddy", "onTranscription: "+transcription);
         enterUserInput(transcription);

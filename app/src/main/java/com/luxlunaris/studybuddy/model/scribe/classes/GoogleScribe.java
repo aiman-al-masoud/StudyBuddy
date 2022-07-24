@@ -133,7 +133,7 @@ public class GoogleScribe implements Scribe, RecognitionListener {
     public void onResults(Bundle bundle) {
         List<String> data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
         scribeListener.onTranscription(data.toString());
-        startTranscribing();
+//        startTranscribing();
     }
 
     @Override
