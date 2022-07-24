@@ -16,6 +16,7 @@ public class GoogleSpeaker implements Speaker {
             //on init
         });
 
+        //TODO: check locale
         tts.setLanguage(Locale.US);
     }
 
