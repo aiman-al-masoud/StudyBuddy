@@ -1,6 +1,7 @@
 package com.luxlunaris.studybuddy.model.studybuddy;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.luxlunaris.studybuddy.model.challenge.ChallengeBuilder;
 import com.luxlunaris.studybuddy.model.challenge.ChallengeManager;
@@ -17,23 +18,29 @@ public class StudyBuddy implements ScribeListener {
     private Speaker speaker;
     private ChallengeBuilder cb;
     private ChallengeManager cm;
-    
+
 
     public StudyBuddy(Context context){
         this.context = context;
+        examiner = new Examiner();
+        scribe = Scribe.getScribe(context);
+        speaker = Speaker.getSpeaker(context);
+        cb = new ChallengeBuilder();
+        cm = new ChallengeManager();
+    }
+
+    public void enterUserInput(String userInput){
 
     }
 
-
-
     @Override
     public void onTranscription(String transcription) {
-
+        enterUserInput(transcription);
     }
 
     @Override
     public void onError(int error) {
-
+        Log.d("StudyBuddy.onError()", error+"");
     }
 
 
