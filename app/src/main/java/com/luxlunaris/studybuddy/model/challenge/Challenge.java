@@ -4,9 +4,11 @@ import java.util.List;
 
 public interface Challenge {
 
-    String getQuestion();
-    List<String> getKeywords();
-    ChallengeTypes getType();
-    String getFileName();
+    String question();
+    List<String> allKeywords();
+    List<String> questionKeywords();
+    List<String> answerKeywords();
+    ChallengeTypes type();
+    String fileName();
 
 }

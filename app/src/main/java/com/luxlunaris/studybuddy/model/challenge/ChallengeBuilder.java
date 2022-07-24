@@ -23,6 +23,7 @@ public class ChallengeBuilder {
      * by at least one line intermediate whitespace.
      *
      * @param text
+     * @param fileName
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -33,23 +34,23 @@ public class ChallengeBuilder {
 
     /**
      * Builds a Challenge from a paragraph with a question and an answer.
-     *
      * @param challengeParagraph
+     * @param fileName
      * @return
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private Challenge buildChallenge(String challengeParagraph, String fileName) {
         String[] parts = challengeParagraph.split("\\?");
         String question = parts[0];
         String answer = parts[1];
 
-        List<String> keywords = extractKeywords(question + " " + answer);
         List<String> answerList = isAnswerMutli(answer);
 
         if (answerList != null) {
-            return new MultiAnswerChallenge(question, keywords, answerList, fileName);
+            return new MultiAnswerChallenge(question, answerList, fileName);
         }
 
-        return new SingleAnswerChallenge(question, keywords, answer, fileName);
+        return new SingleAnswerChallenge(question, answer, fileName);
     }
 
     /**
@@ -81,12 +82,6 @@ public class ChallengeBuilder {
         return null;
     }
 
-    private List<String> extractKeywords(String text) {
-        List<String> stopWords = Arrays.asList("the", "a");
-        HashSet<String> set = new HashSet<String>(Arrays.asList(text.split("\\s+")));
-        set.removeAll(stopWords);
-        return new ArrayList<String>(set);
-    }
 
 
 }

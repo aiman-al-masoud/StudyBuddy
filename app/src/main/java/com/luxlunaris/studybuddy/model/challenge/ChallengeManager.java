@@ -40,7 +40,7 @@ public class ChallengeManager {
        return challenges.stream().map(c->{
 
            // calculate relevance metric for each Challenge
-            int i = keywords.stream().mapToInt(k -> c.getKeywords().contains(k) ? 1 : 0).sum();
+            int i = keywords.stream().mapToInt(k -> c.allKeywords().contains(k) ? 1 : 0).sum();
             int percentageMatch = (int)(i/(double)keywords.size());
             return Arrays.asList(c, percentageMatch);
         }).filter(e->{
@@ -61,7 +61,7 @@ public class ChallengeManager {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Challenge getChallengeByKeyword(List<String> keywords){
+    public Challenge getChallengeByKeywords(List<String> keywords){
         return getChallengesListByKeywords(keywords).get(0);
     }
 
