@@ -1,6 +1,8 @@
 package com.luxlunaris.studybuddy.model.challenge;
 
 import android.os.Build;
+import android.util.Log;
+
 import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +30,8 @@ public class ChallengeManager {
 
     public Challenge getRandomChallenge(){
         int i = new Random().nextInt(challenges.size());
+        Log.d("ChallengeManager", "getRandomChallenge: "+challenges.size());
+
         return challenges.get(i);
     }
 
