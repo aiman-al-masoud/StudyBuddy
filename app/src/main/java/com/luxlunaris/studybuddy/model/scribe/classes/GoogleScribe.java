@@ -1,4 +1,16 @@
 package com.luxlunaris.studybuddy.model.scribe.classes;
 
-public class GoogleScribe {
+import com.luxlunaris.studybuddy.model.scribe.Scribe;
+
+public class GoogleScribe implements Scribe {
+
+    @Override
+    public void startTranscribing() {
+
+    }
+
+    @Override
+    public void stopTranscribing() {
+
+    }
 }
