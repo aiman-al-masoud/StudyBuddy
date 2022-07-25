@@ -22,7 +22,7 @@ public class Examiner {
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public String getVerdict(Challenge challenge, String userInput) {
+    public Verdict getVerdict(Challenge challenge, String userInput) {
 
         try{
             return evaluateMultiAnswerChallenge(userInput, (MultiAnswerChallenge)challenge);
@@ -34,7 +34,9 @@ public class Examiner {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private String evaluateSingleAnswerChallenge(String userInput, SingleAnswerChallenge sac) {
+    private Verdict evaluateSingleAnswerChallenge(String userInput, SingleAnswerChallenge sac) {
+
+        Verdict v;
 
         List<String> userKeywords = Keywords.extractKeywords(userInput);
         List<String> correctKeywords = sac.answerKeywords();
@@ -44,26 +46,32 @@ public class Examiner {
         int percentageKeywords = (int) (100 * rememberedKeywords / (double) correctKeywords.size());
 
         if (percentageKeywords <= BAD_ANSWER) {
-            String s = "You're totally off track! The correct answer is: ";
+            String s = "The correct answer is: ";
             s += sac.answer;
-            return s;
+            v = new Verdict(true, s);
+//            return s;
+            return v;
         }
 
         if (percentageKeywords <= MEDIOCRE_ANSWER) {
             String mk = missedKeywords.stream().reduce((k1, k2) -> k1 + ", " + k2).get();
-            return "You got close, but you missed a lot of information. Try recalling these keywords: " + mk;
+            String s = "You got close, but you missed a lot of information. Try recalling these keywords: " + mk;
+            v = new Verdict(true, s);
+            return v;
         }
 
         if (percentageKeywords <= GOOD_ANSWER) {
             String mk = missedKeywords.stream().reduce((k1, k2) -> k1 + ", " + k2).get();
-            return "Fair enough, but do any of these keywords tell you anything? " + mk;
+            String s = "Fair enough, but you missed these keywords:" + mk;
+            v = new Verdict(false, s);
+            return v;
         }
 
-        return "True! You guessed it!";
+        return new Verdict(false, "True! You guessed it!");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private String evaluateMultiAnswerChallenge(String userInput, MultiAnswerChallenge mac) {
+    private Verdict evaluateMultiAnswerChallenge(String userInput, MultiAnswerChallenge mac) {
 
         List<String> missedPoints = mac.getAnswersList().stream().map(a -> {
             return Arrays.asList(a, Keywords.extractKeywords(a));
@@ -76,17 +84,17 @@ public class Examiner {
         }).collect(Collectors.toList());
 
         if(missedPoints.size()==0){
-            return "Perfect!";
+            return new Verdict(false, "Flawless!");
         }
 
         StringBuilder sb = new StringBuilder();
-        sb.append("You forgot to mention the following points:\n");
+        sb.append("You forgot the following points:\n");
         missedPoints.forEach(e->{
             sb.append(e);
             sb.append(".\n");
         });
 
-        return sb.toString();
+        return new Verdict(true, sb.toString());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

@@ -13,6 +13,7 @@ import com.luxlunaris.studybuddy.model.challenge.ChallengeManager;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchFileException;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchKeywordsException;
 import com.luxlunaris.studybuddy.model.examiner.Examiner;
+import com.luxlunaris.studybuddy.model.examiner.Verdict;
 import com.luxlunaris.studybuddy.model.scribe.Scribe;
 import com.luxlunaris.studybuddy.model.scribe.ScribeListener;
 import com.luxlunaris.studybuddy.model.speaker.Speaker;
@@ -45,6 +46,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     private Parser parser;
     private Command previousCommand;
     private Command currentCommand;
+    Verdict currentVerdict;
 
     public StudyBuddy(Context context){
         this.context = context;
@@ -75,14 +77,33 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
         switch (currentMode){
 
+            case AWAIT_CONFIRM_TRY_AGAIN:
+
+                if(userInput.contains("yes") || userInput.contains("try again")){
+                    speaker.speak(currentChallenge.question());
+                    currentMode = StudyBuddyModes.AWAIT_ANSWER;
+                }else{
+                    speaker.speak(currentVerdict.text);
+                    currentMode = StudyBuddyModes.AWAIT_COMMAND;
+                }
+
+                break;
+
             case AWAIT_ANSWER:
 
                 if(cmd.getType()== CommandTypes.COME_AGAIN){
                     ComeAgainCommand comeAgainCmd = (ComeAgainCommand)cmd;
                     speaker.speak(currentChallenge.question(), comeAgainCmd.slowly? Speaker.SLOW : Speaker.NORMAL );
+                    return;
+                }
+
+                currentVerdict = examiner.getVerdict(currentChallenge, userInput);
+
+                if(currentVerdict.isFail){
+                    currentMode = StudyBuddyModes.AWAIT_CONFIRM_TRY_AGAIN;
+                    speaker.speak("Your answer is wrong, wish to try again?");
                 }else{
-                    String verdict = examiner.getVerdict(currentChallenge, userInput);
-                    speaker.speak(verdict);
+                    speaker.speak(currentVerdict.text);
                     currentMode = StudyBuddyModes.AWAIT_COMMAND;
                 }
 
