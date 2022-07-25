@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Parser {
 
-    public static final List<String> TELL_ME_KWS = Arrays.asList("tell", "me", "about");
+    public static final List<String> TELL_ME_KWS = Arrays.asList("tell", "me");
     public static final List<String> ASK_ME_KWS = Arrays.asList("ask", "me");
     public static final List<String> COME_AGAIN_KWS_1 = Arrays.asList("come", "again");
     public static final List<String> COME_AGAIN_KWS_2 = Arrays.asList("repeat");
