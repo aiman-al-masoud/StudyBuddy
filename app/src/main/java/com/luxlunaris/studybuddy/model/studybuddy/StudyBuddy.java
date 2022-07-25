@@ -19,6 +19,7 @@ import com.luxlunaris.studybuddy.model.speaker.Speaker;
 import com.luxlunaris.studybuddy.model.speaker.SpeakerListener;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.Command;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
+import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AnotherCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AskMeCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.TellMeCommand;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
@@ -28,6 +29,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
     public static final String NO_SUCH_FILE = "The file you specified doesn't exist!";
     public static final String NO_SUCH_KEYWORDS = "The file you specified doesn't exist!";
+    public static final String NO_PREVIOUS_CMD = "No previous command to re-run!";
 
 
     private Context context;
@@ -40,6 +42,8 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     private StudyBuddyModes currentMode;
     private Handler mainHandler;
     private Parser parser;
+    private Command previousCommand;
+    private Command currentCommand;
 
     public StudyBuddy(Context context){
         this.context = context;
@@ -128,7 +132,14 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
                         speaker.speak("Help is coming....");
                         return;
                     case ANOTHER:
-                        // a bit more complicated
+
+                        if(  previousCommand!=null  &&  ! (previousCommand instanceof AnotherCommand)   ){
+                            runCommand(previousCommand, userInput);
+                        }
+
+                        speaker.speak(NO_PREVIOUS_CMD);
+
+
                         return;
 
                     default: // command not found
@@ -141,8 +152,9 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void enterUserInput(String userInput){
-        Command cmd = parser.parse(userInput);
-        runCommand(cmd, userInput);
+        previousCommand = currentCommand;
+        currentCommand = parser.parse(userInput);
+        runCommand(currentCommand, userInput);
     }
 
     @Override
