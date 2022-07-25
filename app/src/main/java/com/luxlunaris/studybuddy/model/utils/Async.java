@@ -13,4 +13,11 @@ public class Async {
             }
         }).start();
     }
+
+
+    public static void runTask(Runnable runnable){
+        setTimeout(runnable, 0);
+    }
+
+
 }

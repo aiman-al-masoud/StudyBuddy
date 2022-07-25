@@ -43,24 +43,27 @@ public class MainActivity extends AppCompatActivity {
 
         studyBuddy = new StudyBuddy(this);
 
-        String testBody = "Who built the pyramids?\nAliens\n\nWhat do cats eat?\nTuna.";
-        studyBuddy.addChallengesFile("foo", testBody);
+//        String testBody = "Who built the pyramids?\nAliens\n\nWhat do cats eat?\nTuna.";
+//        studyBuddy.addChallengesFile("foo", testBody);
 
 
-        // load from files
-        try {
-            FileManager.lsRootDir().stream().map(n->n.split("\\.")[0]).forEach(n->{
-                try {
-                    String b = FileManager.readTextFileFromRootDir(n);
-                    studyBuddy.addChallengesFile(n, b);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+        // async load from text files in root dir
+        Async.runTask(()->{
 
-        }catch (IOException e){
+            try {
+                FileManager.lsRootDir().stream().map(n->n.split("\\.")[0]).forEach(n->{
+                    try {
+                        String b = FileManager.readTextFileFromRootDir(n);
+                        studyBuddy.addChallengesFile(n, b);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
 
-        }
+            }catch (IOException e){
+
+            }
+        });
 
         // start study buddy
         studyBuddy.start();
