@@ -1,14 +1,15 @@
 package com.luxlunaris.studybuddy.model.studybuddy;
 
-// repeat
-// repeat slowly
-// ask me random
-// tell me about
-// ask me about
-// 
-//
-//
+import com.luxlunaris.studybuddy.model.studybuddy.commands.Command;
+
 public class Parser {
 
-    
+
+    public Command parse(String userInput){
+        return null;
+    }
+
+
+
+
 }
