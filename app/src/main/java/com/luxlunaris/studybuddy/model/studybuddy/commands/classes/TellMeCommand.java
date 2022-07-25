@@ -13,4 +13,11 @@ public class TellMeCommand extends AbstractCommand {
         super(CommandTypes.TELL_ME);
         this.keywords = keywords;
     }
+
+    @Override
+    public String toString() {
+        return "TellMeCommand{" +
+                "keywords=" + keywords +
+                '}';
+    }
 }

@@ -12,5 +12,10 @@ public class ComeAgainCommand extends AbstractCommand {
         this.slowly = slowly;
     }
 
-
+    @Override
+    public String toString() {
+        return "ComeAgainCommand{" +
+                "slowly=" + slowly +
+                '}';
+    }
 }

@@ -28,5 +28,14 @@ public class AskMeCommand extends AbstractCommand {
 
     }
 
+    @Override
+    public String toString() {
+        return "AskMeCommand{" +
+                "keywords=" + keywords +
+                ", fromFile='" + fromFile + '\'' +
+                ", random=" + random +
+                '}';
+    }
+
 
 }
