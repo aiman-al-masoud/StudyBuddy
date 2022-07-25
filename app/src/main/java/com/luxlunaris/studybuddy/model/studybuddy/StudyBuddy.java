@@ -10,7 +10,8 @@ import androidx.annotation.RequiresApi;
 import com.luxlunaris.studybuddy.model.challenge.Challenge;
 import com.luxlunaris.studybuddy.model.challenge.ChallengeBuilder;
 import com.luxlunaris.studybuddy.model.challenge.ChallengeManager;
-import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchChallengeException;
+import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchFileException;
+import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchKeywordsException;
 import com.luxlunaris.studybuddy.model.examiner.Examiner;
 import com.luxlunaris.studybuddy.model.scribe.Scribe;
 import com.luxlunaris.studybuddy.model.scribe.ScribeListener;
@@ -20,9 +21,13 @@ import com.luxlunaris.studybuddy.model.studybuddy.commands.Command;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AskMeCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.TellMeCommand;
-import com.luxlunaris.studybuddy.model.utils.Async;
 
 public class StudyBuddy implements ScribeListener, SpeakerListener {
+
+
+    public static final String NO_SUCH_FILE = "The file you specified doesn't exist!";
+    public static final String NO_SUCH_KEYWORDS = "The file you specified doesn't exist!";
+
 
     private Context context;
     private Examiner examiner;
@@ -78,28 +83,37 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
                 switch (cmd.getType()){
                     case ASK_ME:
 
-                        if(((AskMeCommand)cmd).random){
-                            currentChallenge = cm.getRandomChallenge();
-                        }else {
+                        AskMeCommand askMeCmd =  ((AskMeCommand)cmd);
 
-                            try{
-                                currentChallenge = cm.getChallengeByKeywords(((AskMeCommand)cmd).keywords, ((AskMeCommand)cmd).fromFile );
-                            }catch (NoSuchChallengeException e){
-                                speaker.speak("Your query didn't match any question or answer!");
-                                return;
+                        try{
+
+                            if(askMeCmd.random){
+                                currentChallenge = cm.getRandomChallenge(askMeCmd.fromFile);
+                            }else {
+                                currentChallenge = cm.getChallengeByKeywords(askMeCmd.keywords, askMeCmd.fromFile);
                             }
+
+                            speaker.speak(currentChallenge.question());
+                            currentMode = StudyBuddyModes.AWAIT_ANSWER;
+
+                        }catch (NoSuchFileException e){
+                            speaker.speak(NO_SUCH_FILE);
+                        }catch (NoSuchKeywordsException e){
+                            speaker.speak(NO_SUCH_KEYWORDS);
                         }
 
-                        speaker.speak(currentChallenge.question());
-                        currentMode = StudyBuddyModes.AWAIT_ANSWER;
                         return;
                     case TELL_ME:
 
+                        TellMeCommand tellMeCmd = (TellMeCommand) cmd;
+
                         try {
-                            Challenge c = cm.getChallengeByKeywords(((TellMeCommand)cmd).keywords);
+                            Challenge c = cm.getChallengeByKeywords(tellMeCmd.keywords);
                             speaker.speak(c.question()+".\n"+c.answer());
-                        }catch (NoSuchChallengeException e){
-                            speaker.speak("Your query didn't match any question or answer!");
+                        }catch (NoSuchFileException e){
+                            speaker.speak(NO_SUCH_FILE);
+                        }catch (NoSuchKeywordsException e){
+                            speaker.speak(NO_SUCH_KEYWORDS);
                         }
 
                         return;

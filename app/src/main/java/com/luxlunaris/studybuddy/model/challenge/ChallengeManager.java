@@ -1,12 +1,9 @@
 package com.luxlunaris.studybuddy.model.challenge;
 
 import android.os.Build;
-import android.util.Log;
-
 import androidx.annotation.RequiresApi;
-
-import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchChallengeException;
-
+import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchKeywordsException;
+import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,12 +37,16 @@ public class ChallengeManager {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<Challenge> getChallengesByFileName(String fileName) {
+    public List<Challenge> getChallengesByFileName(String fileName) throws NoSuchFileException{
 
         List<Challenge> challenges = this.challenges;
 
         if (!fileName.equals(ALL_FILES)) {
             challenges = challenges.stream().filter(c -> c.fileName().equals(fileName)).collect(Collectors.toList());
+        }
+
+        if(challenges.size()==0){
+            throw new NoSuchFileException(fileName);
         }
 
         return challenges;
@@ -58,11 +59,15 @@ public class ChallengeManager {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Challenge getRandomChallenge(String fileName) {
+    public Challenge getRandomChallenge(String fileName) throws NoSuchFileException {
 
-        List<Challenge> challenges = getChallengesByFileName(fileName);
-        int i = new Random().nextInt(challenges.size());
-        return challenges.get(i);
+        try {
+            List<Challenge> challenges = getChallengesByFileName(fileName);
+            int i = new Random().nextInt(challenges.size());
+            return challenges.get(i);
+        }catch (IndexOutOfBoundsException e){
+            throw new NoSuchFileException(fileName);
+        }
     }
 
     /**
@@ -71,7 +76,7 @@ public class ChallengeManager {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Challenge getRandomChallenge() {
+    public Challenge getRandomChallenge() throws NoSuchFileException {
         return getRandomChallenge(ALL_FILES);
     }
 
@@ -84,11 +89,11 @@ public class ChallengeManager {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<Challenge> getChallengesListByKeywords(List<String> keywords, String fileName) {
+    public List<Challenge> getChallengesListByKeywords(final List<String> keywords, final  String fileName) throws NoSuchFileException, NoSuchKeywordsException{
 
         List<Challenge> challenges = getChallengesByFileName(fileName);
 
-        return challenges.stream().map(c -> {
+        challenges = challenges.stream().map(c -> {
 
             // calculate relevance metric for each Challenge
             int i = keywords.stream().mapToInt(k -> c.allKeywords().contains(k) ? 1 : 0).sum();
@@ -109,25 +114,30 @@ public class ChallengeManager {
 
         }).collect(Collectors.toList());
 
+        if(challenges.size()==0){
+            throw new NoSuchKeywordsException(keywords+"");
+        }
+
+        return challenges;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<Challenge> getChallengesListByKeywords(List<String> keywords) {
+    public List<Challenge> getChallengesListByKeywords(List<String> keywords) throws NoSuchKeywordsException, NoSuchFileException {
         return getChallengesListByKeywords(keywords, ALL_FILES);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Challenge getChallengeByKeywords(List<String> keywords, String fileName) throws NoSuchChallengeException {
+    public Challenge getChallengeByKeywords(List<String> keywords, String fileName) throws NoSuchKeywordsException, NoSuchFileException {
 
         try {
             return getChallengesListByKeywords(keywords, fileName).get(0);
         } catch (IndexOutOfBoundsException e) {
-            throw new NoSuchChallengeException(keywords + "");
+            throw new NoSuchKeywordsException(keywords + "");
         }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Challenge getChallengeByKeywords(List<String> keywords) throws NoSuchChallengeException {
+    public Challenge getChallengeByKeywords(List<String> keywords) throws NoSuchFileException, NoSuchKeywordsException {
         return getChallengeByKeywords(keywords, ALL_FILES);
     }
 
