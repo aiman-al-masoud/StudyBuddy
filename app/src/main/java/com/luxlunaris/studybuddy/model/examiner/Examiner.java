@@ -20,35 +20,32 @@ public class Examiner {
     public final int MEDIOCRE_ANSWER = 50;
     public final int BAD_ANSWER = 40;
 
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     public String getVerdict(Challenge challenge, String userInput) {
 
         try{
             return evaluateMultiAnswerChallenge(userInput, (MultiAnswerChallenge)challenge);
         }catch (ClassCastException e){
-
+            /* Do nothing*/
         }
 
-        // TODO: differentiate between subclasses of challenge
-        List<String> userKeywords = Keywords.extractKeywords(userInput);
-        List<String> correctKeywords = challenge.answerKeywords();
+        return evaluateSingleAnswerChallenge(userInput, (SingleAnswerChallenge) challenge);
+    }
 
-        Log.d("Examiner.getVerdict():", "userKeywords: " + userKeywords);
-        Log.d("Examiner.getVerdict():", "correctKeywords: " + correctKeywords);
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private String evaluateSingleAnswerChallenge(String userInput, SingleAnswerChallenge sac) {
+
+        List<String> userKeywords = Keywords.extractKeywords(userInput);
+        List<String> correctKeywords = sac.answerKeywords();
 
         List<String> missedKeywords = correctKeywords.stream().filter(k -> !userKeywords.contains(k)).collect(Collectors.toList());
         int rememberedKeywords = correctKeywords.size() - missedKeywords.size();
         int percentageKeywords = (int) (100 * rememberedKeywords / (double) correctKeywords.size());
 
-        Log.d("Examiner.getVerdict():", "percentageKeywords: " + percentageKeywords);
-
         if (percentageKeywords <= BAD_ANSWER) {
             String s = "You're totally off track! The correct answer is: ";
-            try {
-                s += ((SingleAnswerChallenge) challenge).answer;
-            } catch (ClassCastException e) {
-                s += ((MultiAnswerChallenge) challenge).getAnswersList().stream().reduce((a1, a2) -> a1 + ".\n" + a2).get();
-            }
+            s += sac.answer;
             return s;
         }
 
@@ -65,11 +62,6 @@ public class Examiner {
         return "True! You guessed it!";
     }
 
-
-    private String evaluateSingleAnswerChallenge(String userInput, SingleAnswerChallenge sac) {
-        return null;
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     private String evaluateMultiAnswerChallenge(String userInput, MultiAnswerChallenge mac) {
 
@@ -82,7 +74,6 @@ public class Examiner {
             String a = (String) t.get(0);
             return a;
         }).collect(Collectors.toList());
-
 
         if(missedPoints.size()==0){
             return "Perfect!";
