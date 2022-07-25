@@ -68,9 +68,13 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
                     currentChallenge = cm.getRandomChallenge();
                     speaker.speak(currentChallenge.question());
                     currentMode = StudyBuddyModes.AWAIT_ANSWER;
+                    return;
                 }
 
+                // command not found
+                speaker.speak("I didn't get what you said.");
                 break;
+
         }
 
     }
