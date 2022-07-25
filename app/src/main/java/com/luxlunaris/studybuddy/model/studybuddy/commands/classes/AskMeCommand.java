@@ -1,5 +1,6 @@
 package com.luxlunaris.studybuddy.model.studybuddy.commands.classes;
 
+import com.luxlunaris.studybuddy.model.challenge.ChallengeManager;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.AbstractCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
 
@@ -7,7 +8,7 @@ import java.util.List;
 
 public class AskMeCommand extends AbstractCommand {
 
-    public static final String ANY_FILE = "*";
+    public static final String ANY_FILE = ChallengeManager.ALL_FILES;
     public static final List<String> RANDOM = null;
 
     public final List<String> keywords;

@@ -83,7 +83,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
                         }else {
 
                             try{
-                                currentChallenge = cm.getChallengeByKeywords(((AskMeCommand)cmd).keywords);
+                                currentChallenge = cm.getChallengeByKeywords(((AskMeCommand)cmd).keywords, ((AskMeCommand)cmd).fromFile );
                             }catch (NoSuchChallengeException e){
                                 speaker.speak("Your query didn't match any question or answer!");
                                 return;
