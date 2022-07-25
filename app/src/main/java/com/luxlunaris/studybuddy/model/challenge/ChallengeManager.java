@@ -18,62 +18,94 @@ public class ChallengeManager {
     public static final String ALL_FILES = "*";
 
     public final int MATCHING_KEYWORDS_THRESHOLD = 10; // percent
-    private List<Challenge> challenges;
+    private final List<Challenge> challenges;
 
-    public ChallengeManager(){
+    public ChallengeManager() {
         challenges = new ArrayList<Challenge>();
     }
 
-    public void addAllChallenges(List<Challenge> challenges){
+    /**
+     * Adds a list of challenges to the manager.
+     *
+     * @param challenges
+     */
+    public void addAllChallenges(List<Challenge> challenges) {
         this.challenges.addAll(challenges);
     }
 
-    public Challenge getRandomChallenge(){
+    /**
+     * Returns a list of challenges filtered by file name.
+     *
+     * @param fileName
+     * @return
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public List<Challenge> getChallengesByFileName(String fileName) {
+
+        List<Challenge> challenges = this.challenges;
+
+        if (!fileName.equals(ALL_FILES)) {
+            challenges = challenges.stream().filter(c -> c.fileName().equals(fileName)).collect(Collectors.toList());
+        }
+
+        return challenges;
+    }
+
+    /**
+     * Get a random challenge from a specific file.
+     *
+     * @param fileName
+     * @return
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public Challenge getRandomChallenge(String fileName) {
+
+        List<Challenge> challenges = getChallengesByFileName(fileName);
         int i = new Random().nextInt(challenges.size());
         return challenges.get(i);
     }
 
     /**
-     * Returns a list of Challenges that pertain to the keywords
+     * Get a random challenge from any file.
+     *
+     * @return
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public Challenge getRandomChallenge() {
+        return getRandomChallenge(ALL_FILES);
+    }
+
+
+    /**
+     * Returns a list of challenges that pertain to the keywords
      * sorted by their relevance.
      *
      * @param keywords
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<Challenge> getChallengesListByKeywords(List<String> keywords, String fileName){
+    public List<Challenge> getChallengesListByKeywords(List<String> keywords, String fileName) {
 
-        List<Challenge> challenges  = this.challenges;
+        List<Challenge> challenges = getChallengesByFileName(fileName);
 
-        if(!fileName.equals(ALL_FILES)){
-            challenges = challenges.stream().filter(c->c.fileName().equals(fileName)).collect(Collectors.toList());
-        }
+        return challenges.stream().map(c -> {
 
-        Log.d("ChallengeManager", "getChallengesListByKeywords: "+keywords);
-
-       return challenges.stream().map(c->{
-
-           Log.d("ChallengeManager", "getChallengesListByKeywords: "+c.question()+" "+c.allKeywords());
-
-           // calculate relevance metric for each Challenge
+            // calculate relevance metric for each Challenge
             int i = keywords.stream().mapToInt(k -> c.allKeywords().contains(k) ? 1 : 0).sum();
+            int percentageMatch = (int) (100 * i / (double) keywords.size());
 
-           int percentageMatch = (int)(100*i/(double)keywords.size());
-           Log.d("ChallengeManager", "getChallengesListByKeywords: percentageMatch"+percentageMatch);
-
-
-           return Arrays.asList(c, percentageMatch);
-        }).filter(e->{
+            return Arrays.asList(c, percentageMatch);
+        }).filter(e -> {
             // filter out irrelevant Challenges
-            return (int)e.get(1)  >= MATCHING_KEYWORDS_THRESHOLD;
-        }).sorted((e1, e2)->{
+            return (int) e.get(1) >= MATCHING_KEYWORDS_THRESHOLD;
+        }).sorted((e1, e2) -> {
 
             // sort relevant Challenges by relevance
-            return (int)e1.get(1) - (int)e2.get(1);
-        }).map(e->{
+            return (int) e1.get(1) - (int) e2.get(1);
+        }).map(e -> {
 
             // remove relevance metric
-            return (Challenge)e.get(0);
+            return (Challenge) e.get(0);
 
         }).collect(Collectors.toList());
 
@@ -84,13 +116,13 @@ public class ChallengeManager {
         return getChallengesListByKeywords(keywords, ALL_FILES);
     }
 
-        @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public Challenge getChallengeByKeywords(List<String> keywords, String fileName) throws NoSuchChallengeException {
 
-        try{
+        try {
             return getChallengesListByKeywords(keywords, fileName).get(0);
-        }catch (IndexOutOfBoundsException e){
-            throw new NoSuchChallengeException(keywords+"");
+        } catch (IndexOutOfBoundsException e) {
+            throw new NoSuchChallengeException(keywords + "");
         }
     }
 
@@ -100,10 +132,4 @@ public class ChallengeManager {
     }
 
 
-
-
-
-
-
-
-    }
+}
