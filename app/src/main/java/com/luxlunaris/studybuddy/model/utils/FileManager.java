@@ -99,6 +99,13 @@ public class FileManager {
         }
     }
 
+    /**
+     * Get the closest matching text file name that exists in
+     * root dir, if no match is found throw a NoSuchFileException.
+     * @param maybeFileName
+     * @return
+     * @throws NoSuchFileException
+     */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static String getClosestMatchingFileName(String maybeFileName) throws NoSuchFileException {
 
