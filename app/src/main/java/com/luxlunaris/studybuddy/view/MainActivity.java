@@ -18,6 +18,7 @@ import com.luxlunaris.studybuddy.model.utils.Async;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
 import com.luxlunaris.studybuddy.model.utils.Permissions;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -39,19 +40,29 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void init(){
         FileManager.createRootDir();
+
         studyBuddy = new StudyBuddy(this);
+
         String testBody = "Who built the pyramids?\nAliens\n\nWhat do cats eat?\nTuna.";
         studyBuddy.addChallengesFile("foo", testBody);
 
+
+        // load from files
         try {
-            String s = FileManager.readTextFileFromRootDir("hello");
-            Log.d("MainActivity.init():", s);
-            studyBuddy.addChallengesFile("hello", s);
-        } catch (IOException e) {
-            e.printStackTrace();
+            FileManager.lsRootDir().stream().map(n->n.split("\\.")[0]).forEach(n->{
+                try {
+                    String b = FileManager.readTextFileFromRootDir(n);
+                    studyBuddy.addChallengesFile(n, b);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+        }catch (IOException e){
+
         }
 
-
+        // start study buddy
         studyBuddy.start();
     }
 

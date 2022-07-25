@@ -2,7 +2,10 @@ package com.luxlunaris.studybuddy.model.utils;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+
+import androidx.annotation.RequiresApi;
 
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
@@ -11,6 +14,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class FileManager {
 
@@ -73,6 +79,16 @@ public class FileManager {
         }
 
         throw  new IOException();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static List<String> lsRootDir() throws IOException{
+
+        try {
+            return Arrays.stream(new File(getRootDirPath()).listFiles()).map(File::getName).collect(Collectors.toList());
+        }catch (NullPointerException e){
+            throw new IOException();
+        }
     }
 
 
