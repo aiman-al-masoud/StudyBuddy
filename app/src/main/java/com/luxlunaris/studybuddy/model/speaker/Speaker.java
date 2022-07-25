@@ -6,9 +6,9 @@ import com.luxlunaris.studybuddy.model.speaker.classes.GoogleSpeaker;
 
 public interface Speaker {
 
-    public static float FAST = 2.0f;
-    public static float NORMAL = 1.0f;
-    public static float SLOW = 0.5f;
+    float FAST = 2.0f;
+    float NORMAL = 1.0f;
+    float SLOW = 0.5f;
 
     void speak(String speech);
     void speak(String speech, float speechRate);
