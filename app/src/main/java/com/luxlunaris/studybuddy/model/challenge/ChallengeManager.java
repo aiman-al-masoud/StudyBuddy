@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
 public class ChallengeManager {
 
     public final int MATCHING_KEYWORDS_THRESHOLD = 10; // percent
+    public final String ALL_FILES = "*";
+
     private List<Challenge> challenges;
 
 
@@ -23,9 +25,9 @@ public class ChallengeManager {
         challenges = new ArrayList<Challenge>();
     }
 
-    public void addChallenge(Challenge challenge){
-        challenges.add(challenge);
-    }
+//    public void addChallenge(Challenge challenge){
+//        challenges.add(challenge);
+//    }
 
     public void addAllChallenges(List<Challenge> challenges){
         this.challenges.addAll(challenges);
@@ -44,7 +46,13 @@ public class ChallengeManager {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<Challenge> getChallengesListByKeywords(List<String> keywords){
+    public List<Challenge> getChallengesListByKeywords(List<String> keywords, String fileName){
+
+        List<Challenge> challenges  = this.challenges;
+
+        if(fileName.equals(ALL_FILES)){
+            challenges = challenges.stream().filter(c->c.fileName().equals(fileName)).collect(Collectors.toList());
+        }
 
         Log.d("ChallengeManager", "getChallengesListByKeywords: "+keywords);
 
@@ -77,6 +85,11 @@ public class ChallengeManager {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
+    public List<Challenge> getChallengesListByKeywords(List<String> keywords) {
+        return getChallengesListByKeywords(keywords, ALL_FILES);
+    }
+
+        @RequiresApi(api = Build.VERSION_CODES.N)
     public Challenge getChallengeByKeywords(List<String> keywords) throws NoSuchChallengeException {
 
         try{
@@ -85,6 +98,9 @@ public class ChallengeManager {
             throw new NoSuchChallengeException(keywords+"");
         }
     }
+
+
+
 
 
 
