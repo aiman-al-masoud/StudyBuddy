@@ -30,8 +30,6 @@ public class GoogleSpeaker extends UtteranceProgressListener implements Speaker 
 
     @Override
     public void speak(String speech) {
-//        Log.d("GoogleSpeaker.speak()", "speech: "+speech);
-//        tts.speak(speech, TextToSpeech.QUEUE_FLUSH, null, "1");
         speak(speech, NORMAL);
     }
 
