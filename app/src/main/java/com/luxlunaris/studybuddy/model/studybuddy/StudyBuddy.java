@@ -17,6 +17,7 @@ import com.luxlunaris.studybuddy.model.speaker.Speaker;
 import com.luxlunaris.studybuddy.model.speaker.SpeakerListener;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.Command;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
+import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AskMeCommand;
 import com.luxlunaris.studybuddy.model.utils.Async;
 
 public class StudyBuddy implements ScribeListener, SpeakerListener {
@@ -55,9 +56,9 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         Log.d("StudyBuddy", "enterUserInput: "+userInput);
         Log.d("StudyBuddy", "enterUserInput: "+cmd);
 
-        //TODO: employ parser for full command parsing logic
 
         switch (currentMode){
+
             case AWAIT_ANSWER:
 
                 if(cmd.getType()== CommandTypes.COME_AGAIN){
@@ -69,19 +70,26 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
                 }
 
                 break;
+
             case AWAIT_COMMAND:
 
-                if(userInput.contains("random")){
-                    currentChallenge = cm.getRandomChallenge();
-                    speaker.speak(currentChallenge.question());
-                    currentMode = StudyBuddyModes.AWAIT_ANSWER;
-                    return;
+                switch (cmd.getType()){
+                    case ASK_ME:
+                        
+                        if(((AskMeCommand)cmd).random){
+                            currentChallenge = cm.getRandomChallenge();
+                        }else {
+                            currentChallenge = cm.getChallengeByKeywords(((AskMeCommand)cmd).keywords);
+                        }
+
+                        speaker.speak(currentChallenge.question());
+                        currentMode = StudyBuddyModes.AWAIT_ANSWER;
+                        return;
+
+                    default: // command not found
+                        speaker.speak("I didn't get what you said.");
+                        return;
                 }
-
-                // command not found
-                speaker.speak("I didn't get what you said.");
-                break;
-
         }
 
     }
