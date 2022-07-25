@@ -24,7 +24,7 @@ public class Examiner {
     public String getVerdict(Challenge challenge, String userInput) {
 
         try{
-            evaluateMultiAnswerChallenge(userInput, (MultiAnswerChallenge)challenge);
+            return evaluateMultiAnswerChallenge(userInput, (MultiAnswerChallenge)challenge);
         }catch (ClassCastException e){
 
         }
@@ -89,7 +89,7 @@ public class Examiner {
         }
 
         StringBuilder sb = new StringBuilder();
-        String s = "You forgot to mention the following points:\n";
+        sb.append("You forgot to mention the following points:\n");
         missedPoints.forEach(e->{
             sb.append(e);
             sb.append(".\n");
