@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class Examiner {
 
-    public final int EXCELLENT_ANSWER = 90;
+//    public final int EXCELLENT_ANSWER = 90;
     public final int GOOD_ANSWER = 70;
     public final int MEDIOCRE_ANSWER = 50;
     public final int BAD_ANSWER = 40;
