@@ -41,7 +41,6 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     }
 
     public void start(){
-//        Async.setTimeout(()->{speaker.speak("Hello!");}, 1000);
         scribe.startTranscribing();
     }
 
@@ -49,8 +48,6 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     public void enterUserInput(String userInput){
 
         Log.d("StudyBuddy", "enterUserInput: "+userInput);
-//        speaker.speak("You said: "+userInput);
-
 
         //TODO: employ parser for full command parsing logic
 
@@ -87,7 +84,6 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     @Override
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void onTranscription(String transcription) {
-
         Log.d("StudyBuddy", "onTranscription: "+transcription);
         enterUserInput(transcription);
     }
@@ -105,7 +101,6 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
     @Override
     public void stoppedSpeaking(String speechId) {
-//        scribe.startTranscribing();
 
         mainHandler.post(()->{
             scribe.startTranscribing();
