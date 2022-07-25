@@ -19,7 +19,7 @@ public class Parser {
     public static final List<String> ASK_ME_KWS = Arrays.asList("ask", "me");
     public static final List<String> COME_AGAIN_KWS_1 = Arrays.asList("come", "again");
     public static final List<String> COME_AGAIN_KWS_2 = Arrays.asList("repeat");
-    public static final List<String> ANOTHER_KWS_1 = Arrays.asList("another");
+    public static final List<String> ANOTHER_KWS_1 = Arrays.asList("another", "time");
     public static final List<String> ANOTHER_KWS_2 = Arrays.asList("one", "more");
     public static final List<String> EXIT_KWS_1 = Arrays.asList("exit");
     public static final List<String> HELP_KWS_1 = Arrays.asList("help");
