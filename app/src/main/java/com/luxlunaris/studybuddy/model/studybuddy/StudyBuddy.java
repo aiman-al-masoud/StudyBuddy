@@ -15,6 +15,7 @@ import com.luxlunaris.studybuddy.model.scribe.Scribe;
 import com.luxlunaris.studybuddy.model.scribe.ScribeListener;
 import com.luxlunaris.studybuddy.model.speaker.Speaker;
 import com.luxlunaris.studybuddy.model.speaker.SpeakerListener;
+import com.luxlunaris.studybuddy.model.studybuddy.commands.Command;
 import com.luxlunaris.studybuddy.model.utils.Async;
 
 public class StudyBuddy implements ScribeListener, SpeakerListener {
@@ -28,6 +29,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     private Challenge currentChallenge;
     private StudyBuddyModes currentMode;
     private Handler mainHandler;
+    private Parser parser;
 
     public StudyBuddy(Context context){
         this.context = context;
@@ -38,6 +40,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         cb = new ChallengeBuilder();
         cm = new ChallengeManager();
         mainHandler = new Handler();
+        parser = new Parser();
     }
 
     public void start(){
@@ -48,6 +51,9 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     public void enterUserInput(String userInput){
 
         Log.d("StudyBuddy", "enterUserInput: "+userInput);
+
+        Command c = parser.parse(userInput);
+        Log.d("StudyBuddy", "enterUserInput: "+c);
 
         //TODO: employ parser for full command parsing logic
 
