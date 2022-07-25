@@ -103,6 +103,15 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
                         }
 
                         return;
+                    case EXIT:
+                        System.exit(0);
+                        return;
+                    case HELP:
+                        speaker.speak("Help is coming....");
+                        return;
+                    case ANOTHER:
+                        // a bit more complicated
+                        return;
 
                     default: // command not found
                         speaker.speak("I didn't get what you said.");
