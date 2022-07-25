@@ -10,5 +10,6 @@ public interface Challenge {
     List<String> answerKeywords();
     ChallengeTypes type();
     String fileName();
+    String answer();
 
 }

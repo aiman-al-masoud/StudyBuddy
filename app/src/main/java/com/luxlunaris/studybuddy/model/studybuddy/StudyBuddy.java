@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi;
 import com.luxlunaris.studybuddy.model.challenge.Challenge;
 import com.luxlunaris.studybuddy.model.challenge.ChallengeBuilder;
 import com.luxlunaris.studybuddy.model.challenge.ChallengeManager;
+import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchChallengeException;
 import com.luxlunaris.studybuddy.model.examiner.Examiner;
 import com.luxlunaris.studybuddy.model.scribe.Scribe;
 import com.luxlunaris.studybuddy.model.scribe.ScribeListener;
@@ -18,6 +19,7 @@ import com.luxlunaris.studybuddy.model.speaker.SpeakerListener;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.Command;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AskMeCommand;
+import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.TellMeCommand;
 import com.luxlunaris.studybuddy.model.utils.Async;
 
 public class StudyBuddy implements ScribeListener, SpeakerListener {
@@ -75,15 +77,31 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
                 switch (cmd.getType()){
                     case ASK_ME:
-                        
+
                         if(((AskMeCommand)cmd).random){
                             currentChallenge = cm.getRandomChallenge();
                         }else {
-                            currentChallenge = cm.getChallengeByKeywords(((AskMeCommand)cmd).keywords);
+
+                            try{
+                                currentChallenge = cm.getChallengeByKeywords(((AskMeCommand)cmd).keywords);
+                            }catch (NoSuchChallengeException e){
+                                speaker.speak("Your query didn't match any question or answer!");
+                                return;
+                            }
                         }
 
                         speaker.speak(currentChallenge.question());
                         currentMode = StudyBuddyModes.AWAIT_ANSWER;
+                        return;
+                    case TELL_ME:
+
+                        try {
+                            Challenge c = cm.getChallengeByKeywords(((TellMeCommand)cmd).keywords);
+                            speaker.speak(c.question()+".\n"+c.answer());
+                        }catch (NoSuchChallengeException e){
+                            speaker.speak("Your query didn't match any question or answer!");
+                        }
+
                         return;
 
                     default: // command not found

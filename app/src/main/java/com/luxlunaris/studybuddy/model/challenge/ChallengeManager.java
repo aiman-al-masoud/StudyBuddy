@@ -4,6 +4,9 @@ import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
+
+import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchChallengeException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class ChallengeManager {
 
-    public final int MATCHING_KEYWORDS_THRESHOLD = 70; // percent
+    public final int MATCHING_KEYWORDS_THRESHOLD = 10; // percent
     private List<Challenge> challenges;
 
 
@@ -30,8 +33,6 @@ public class ChallengeManager {
 
     public Challenge getRandomChallenge(){
         int i = new Random().nextInt(challenges.size());
-        Log.d("ChallengeManager", "getRandomChallenge: "+challenges.size());
-
         return challenges.get(i);
     }
 
@@ -45,14 +46,21 @@ public class ChallengeManager {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public List<Challenge> getChallengesListByKeywords(List<String> keywords){
 
+        Log.d("ChallengeManager", "getChallengesListByKeywords: "+keywords);
+
        return challenges.stream().map(c->{
+
+           Log.d("ChallengeManager", "getChallengesListByKeywords: "+c.question()+" "+c.allKeywords());
 
            // calculate relevance metric for each Challenge
             int i = keywords.stream().mapToInt(k -> c.allKeywords().contains(k) ? 1 : 0).sum();
-            int percentageMatch = (int)(i/(double)keywords.size());
-            return Arrays.asList(c, percentageMatch);
-        }).filter(e->{
 
+           int percentageMatch = (int)(100*i/(double)keywords.size());
+           Log.d("ChallengeManager", "getChallengesListByKeywords: percentageMatch"+percentageMatch);
+
+
+           return Arrays.asList(c, percentageMatch);
+        }).filter(e->{
             // filter out irrelevant Challenges
             return (int)e.get(1)  >= MATCHING_KEYWORDS_THRESHOLD;
         }).sorted((e1, e2)->{
@@ -69,8 +77,13 @@ public class ChallengeManager {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Challenge getChallengeByKeywords(List<String> keywords){
-        return getChallengesListByKeywords(keywords).get(0);
+    public Challenge getChallengeByKeywords(List<String> keywords) throws NoSuchChallengeException {
+
+        try{
+            return getChallengesListByKeywords(keywords).get(0);
+        }catch (IndexOutOfBoundsException e){
+            throw new NoSuchChallengeException(keywords+"");
+        }
     }
 
 

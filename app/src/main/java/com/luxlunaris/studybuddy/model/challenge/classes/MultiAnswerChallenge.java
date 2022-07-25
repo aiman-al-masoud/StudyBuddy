@@ -16,7 +16,7 @@ public class MultiAnswerChallenge extends AbstractChallenge {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public MultiAnswerChallenge(String question, List<String> answersList, String fileName) {
-        super(ChallengeTypes.MULTI_ANSWER, question, fileName);
+        super(ChallengeTypes.MULTI_ANSWER, question, fileName, answersList.stream().reduce((s1, s2)->s1+"\n"+s2).get());
         this.answersList = answersList;
         String s = answersList.stream().reduce((s1, s2)-> s1+" "+s2).get();
         answerKeywords.addAll(Keywords.extractKeywords(s));

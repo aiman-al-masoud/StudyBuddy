@@ -13,12 +13,14 @@ public abstract class AbstractChallenge implements Challenge{
     public final List<String> allKeywords;
     public final List<String> questionKeywords;
     public final List<String> answerKeywords;
+    public final String answer;
 
 
-    public AbstractChallenge(ChallengeTypes type, String question, String fileName){
+    public AbstractChallenge(ChallengeTypes type, String question, String fileName, String answer){
         this.type = type;
         this.question = question;
         this.fileName = fileName;
+        this.answer = answer;
         answerKeywords = new ArrayList<String>();
         allKeywords = new ArrayList<String>();
         questionKeywords = Keywords.extractKeywords(question);
@@ -57,6 +59,9 @@ public abstract class AbstractChallenge implements Challenge{
     }
 
 
+    public String answer(){
+        return answer;
+    }
 
 
 }
