@@ -135,10 +135,9 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
                         if(  previousCommand!=null  &&  ! (previousCommand instanceof AnotherCommand)   ){
                             runCommand(previousCommand, userInput);
+                        }else{
+                            speaker.speak(NO_PREVIOUS_CMD);
                         }
-
-                        speaker.speak(NO_PREVIOUS_CMD);
-
 
                         return;
 
@@ -152,7 +151,12 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void enterUserInput(String userInput){
-        previousCommand = currentCommand;
+
+        // AnotherCommand type should never become the previous command
+        if( ! (currentCommand instanceof AnotherCommand) ){
+            previousCommand = currentCommand;
+        }
+
         currentCommand = parser.parse(userInput);
         runCommand(currentCommand, userInput);
     }
