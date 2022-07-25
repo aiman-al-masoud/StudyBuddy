@@ -53,17 +53,20 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         parser = new Parser();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void addChallengesFile(String title, String body){
+        cm.addAllChallenges(cb.fromText(body,title));
+    }
+
     public void start(){
         scribe.startTranscribing();
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void enterUserInput(String userInput){
+    private void runCommand(Command cmd, String userInput){
 
-        Command cmd = parser.parse(userInput);
-        Log.d("StudyBuddy", "enterUserInput: "+userInput);
-        Log.d("StudyBuddy", "enterUserInput: "+cmd);
-
+        Log.d("StudyBuddy", "runCommand: "+cmd);
 
         switch (currentMode){
 
@@ -137,8 +140,9 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void addChallengesFile(String title, String body){
-        cm.addAllChallenges(cb.fromText(body,title));
+    public void enterUserInput(String userInput){
+        Command cmd = parser.parse(userInput);
+        runCommand(cmd, userInput);
     }
 
     @Override
