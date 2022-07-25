@@ -7,6 +7,8 @@ import android.os.Environment;
 
 import androidx.annotation.RequiresApi;
 
+import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchFileException;
+
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -16,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class FileManager {
@@ -89,6 +92,35 @@ public class FileManager {
         }catch (NullPointerException e){
             throw new IOException();
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static String getClosestMatchingFileName(String maybeFileName) throws NoSuchFileException {
+
+        List<String> kws =  Keywords.extractKeywords(maybeFileName);
+
+        try{
+            Optional<String> s = lsRootDir().stream().map(n->{
+                int matches = kws.stream().mapToInt(k->n.contains(k)?1:0).sum();
+                return Arrays.asList(n, matches);
+            }).filter(l->{
+                return (Integer)l.get(1) >= 1;
+            }).sorted((l1, l2)->{
+                return (Integer) l1.get(1) - (Integer)l2.get(1);
+            }).map(l->(String)l.get(0)).findFirst();
+
+
+            if(s.isPresent()){
+                return s.get();
+            }else{
+                throw new NoSuchFileException(maybeFileName);
+            }
+
+        }catch (IOException e){
+            e.printStackTrace();
+            throw new NoSuchFileException(maybeFileName);
+        }
+
     }
 
 

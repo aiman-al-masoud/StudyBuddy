@@ -21,6 +21,7 @@ import com.luxlunaris.studybuddy.model.studybuddy.commands.Command;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AskMeCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.TellMeCommand;
+import com.luxlunaris.studybuddy.model.utils.FileManager;
 
 public class StudyBuddy implements ScribeListener, SpeakerListener {
 

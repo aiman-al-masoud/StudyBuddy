@@ -4,6 +4,8 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchKeywordsException;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchFileException;
+import com.luxlunaris.studybuddy.model.utils.FileManager;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,12 +39,13 @@ public class ChallengeManager {
      * @return
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<Challenge> getChallengesByFileName(String fileName) throws NoSuchFileException{
+    public List<Challenge> getChallengesByFileName(final String fileName) throws NoSuchFileException{
 
         List<Challenge> challenges = this.challenges;
 
         if (!fileName.equals(ALL_FILES)) {
-            challenges = challenges.stream().filter(c -> c.fileName().equals(fileName)).collect(Collectors.toList());
+            String closestFileName = FileManager.getClosestMatchingFileName(fileName);
+            challenges = challenges.stream().filter(c -> c.fileName().equals(  closestFileName )).collect(Collectors.toList());
         }
 
         if(challenges.size()==0){
