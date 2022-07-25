@@ -21,6 +21,7 @@ import com.luxlunaris.studybuddy.model.studybuddy.commands.Command;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AnotherCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AskMeCommand;
+import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.ComeAgainCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.TellMeCommand;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
 
@@ -77,7 +78,8 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
             case AWAIT_ANSWER:
 
                 if(cmd.getType()== CommandTypes.COME_AGAIN){
-                    speaker.speak(currentChallenge.question());
+                    ComeAgainCommand comeAgainCmd = (ComeAgainCommand)cmd;
+                    speaker.speak(currentChallenge.question(), comeAgainCmd.slowly? Speaker.SLOW : Speaker.NORMAL );
                 }else{
                     String verdict = examiner.getVerdict(currentChallenge, userInput);
                     speaker.speak(verdict);

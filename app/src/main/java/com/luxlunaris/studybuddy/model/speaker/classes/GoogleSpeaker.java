@@ -8,6 +8,8 @@ import android.util.Log;
 import com.luxlunaris.studybuddy.model.speaker.Speaker;
 import com.luxlunaris.studybuddy.model.speaker.SpeakerListener;
 
+import org.w3c.dom.Text;
+
 public class GoogleSpeaker extends UtteranceProgressListener implements Speaker {
 
     private TextToSpeech tts;
@@ -28,7 +30,14 @@ public class GoogleSpeaker extends UtteranceProgressListener implements Speaker 
 
     @Override
     public void speak(String speech) {
-        Log.d("GoogleSpeaker.speak()", "speech: "+speech);
+//        Log.d("GoogleSpeaker.speak()", "speech: "+speech);
+//        tts.speak(speech, TextToSpeech.QUEUE_FLUSH, null, "1");
+        speak(speech, NORMAL);
+    }
+
+    @Override
+    public void speak(String speech, float speechRate) {
+        tts.setSpeechRate(speechRate);
         tts.speak(speech, TextToSpeech.QUEUE_FLUSH, null, "1");
     }
 
