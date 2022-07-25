@@ -1,6 +1,8 @@
 package com.luxlunaris.studybuddy.model.challenge;
 
 import android.os.Build;
+import android.util.Log;
+
 import androidx.annotation.RequiresApi;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchKeywordsException;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchFileException;
@@ -45,6 +47,8 @@ public class ChallengeManager {
 
         if (!fileName.equals(ALL_FILES)) {
             String closestFileName = FileManager.getClosestMatchingFileName(fileName);
+            Log.d("ChallengeManager", "getChallengesByFileName: "+closestFileName);
+
             challenges = challenges.stream().filter(c -> c.fileName().equals(  closestFileName )).collect(Collectors.toList());
         }
 

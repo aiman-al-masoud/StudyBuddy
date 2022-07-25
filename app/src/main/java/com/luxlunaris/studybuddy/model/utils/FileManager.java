@@ -84,6 +84,11 @@ public class FileManager {
         throw  new IOException();
     }
 
+    /**
+     * Lists filenames in the root directory, including their extension.
+     * @return
+     * @throws IOException
+     */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static List<String> lsRootDir() throws IOException{
 
@@ -111,7 +116,7 @@ public class FileManager {
 
 
             if(s.isPresent()){
-                return s.get();
+                return s.get().replace(".txt", "");
             }else{
                 throw new NoSuchFileException(maybeFileName);
             }
