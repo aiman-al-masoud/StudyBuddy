@@ -9,6 +9,7 @@ import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.ComeAgainComm
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.ExitCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.HelpCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.TellMeCommand;
+import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.UndefinedCommand;
 import com.luxlunaris.studybuddy.model.utils.Keywords;
 
 import java.util.Arrays;
@@ -76,9 +77,10 @@ public class Parser {
                 boolean yes = userInput.contains(BINARY_1.get(0));
                 return new BinaryCommand(yes);
 
+            default:
+                return new UndefinedCommand();
         }
 
-        return new HelpCommand();
     }
 
 
@@ -126,11 +128,12 @@ public class Parser {
 
 
         // 6. help
-//        b = kws.containsAll(HELP_KWS_1);
-//        if(b){
+        b = kws.containsAll(HELP_KWS_1);
+        if(b){
             return CommandTypes.HELP;
-//        }
+        }
 
+        return CommandTypes.UNDEFINED;
     }
 
 

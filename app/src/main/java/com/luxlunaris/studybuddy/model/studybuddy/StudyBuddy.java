@@ -146,9 +146,11 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
                 return;
             case EXIT:
+
                 System.exit(0);
                 return;
             case HELP:
+
                 output("Help is coming....");
                 return;
             case ANOTHER_TIME:
@@ -161,9 +163,9 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
                 return;
 
-            default: // command not found
+            case UNDEFINED: // command not found
+            default:
                 output("I didn't get what you said.");
-                return;
         }
 
     }
