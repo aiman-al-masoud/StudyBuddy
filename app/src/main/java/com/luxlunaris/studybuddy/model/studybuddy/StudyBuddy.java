@@ -70,85 +70,90 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         scribe.startTranscribing();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void enterUserInput(final String userInput){
+
+        // AnotherCommand type should never become the previous command
+        previousCommand = (currentCommand instanceof AnotherCommand)? previousCommand : currentCommand;
+
+        currentCommand = parser.parse(userInput);
+
+        switch (currentMode){
+            case AWAIT_CONFIRM_TRY_AGAIN:
+                onConfirmTryAgain(currentCommand);
+                break;
+            case AWAIT_ANSWER:
+                onAnswer(currentCommand, userInput);
+                break;
+            case AWAIT_COMMAND:
+                runCommand(currentCommand);
+                break;
+        }
+
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void runCommand(final Command cmd, final String userInput){
+    private void runCommand(final Command cmd){
 
         Log.d("StudyBuddy", "runCommand: "+cmd);
 
-        switch (currentMode){
+        switch (cmd.getType()){
+            case ASK_ME:
 
-            case AWAIT_CONFIRM_TRY_AGAIN:
+                AskMeCommand askMeCmd =  ((AskMeCommand)cmd);
 
-                onConfirmTryAgain(cmd);
+                try{
 
-                break;
+                    if(askMeCmd.random){
+                        currentChallenge = cm.getRandomChallenge(askMeCmd.fromFile);
+                    }else {
+                        currentChallenge = cm.getChallengeByKeywords(askMeCmd.keywords, askMeCmd.fromFile);
+                    }
 
-            case AWAIT_ANSWER:
+                    speaker.speak(currentChallenge.question());
+                    currentMode = StudyBuddyModes.AWAIT_ANSWER;
 
-                onAnswer(cmd, userInput);
-
-                break;
-
-            case AWAIT_COMMAND:
-
-                switch (cmd.getType()){
-                    case ASK_ME:
-
-                        AskMeCommand askMeCmd =  ((AskMeCommand)cmd);
-
-                        try{
-
-                            if(askMeCmd.random){
-                                currentChallenge = cm.getRandomChallenge(askMeCmd.fromFile);
-                            }else {
-                                currentChallenge = cm.getChallengeByKeywords(askMeCmd.keywords, askMeCmd.fromFile);
-                            }
-
-                            speaker.speak(currentChallenge.question());
-                            currentMode = StudyBuddyModes.AWAIT_ANSWER;
-
-                        }catch (NoSuchFileException e){
-                            speaker.speak(NO_SUCH_FILE);
-                        }catch (NoSuchKeywordsException e){
-                            speaker.speak(NO_SUCH_KEYWORDS);
-                        }
-
-                        return;
-                    case TELL_ME:
-
-                        TellMeCommand tellMeCmd = (TellMeCommand) cmd;
-
-                        try {
-                            Challenge c = cm.getChallengeByKeywords(tellMeCmd.keywords);
-                            speaker.speak(c.question()+".\n"+c.answer());
-                        }catch (NoSuchFileException e){
-                            speaker.speak(NO_SUCH_FILE);
-                        }catch (NoSuchKeywordsException e){
-                            speaker.speak(NO_SUCH_KEYWORDS);
-                        }
-
-                        return;
-                    case EXIT:
-                        System.exit(0);
-                        return;
-                    case HELP:
-                        speaker.speak("Help is coming....");
-                        return;
-                    case ANOTHER:
-
-                        if(  previousCommand!=null  &&  ! (previousCommand instanceof AnotherCommand)   ){
-                            runCommand(previousCommand, userInput);
-                        }else{
-                            speaker.speak(NO_PREVIOUS_CMD);
-                        }
-
-                        return;
-
-                    default: // command not found
-                        speaker.speak("I didn't get what you said.");
-                        return;
+                }catch (NoSuchFileException e){
+                    speaker.speak(NO_SUCH_FILE);
+                }catch (NoSuchKeywordsException e){
+                    speaker.speak(NO_SUCH_KEYWORDS);
                 }
+
+                return;
+            case TELL_ME:
+
+                TellMeCommand tellMeCmd = (TellMeCommand) cmd;
+
+                try {
+                    Challenge c = cm.getChallengeByKeywords(tellMeCmd.keywords);
+                    speaker.speak(c.question()+".\n"+c.answer());
+                }catch (NoSuchFileException e){
+                    speaker.speak(NO_SUCH_FILE);
+                }catch (NoSuchKeywordsException e){
+                    speaker.speak(NO_SUCH_KEYWORDS);
+                }
+
+                return;
+            case EXIT:
+                System.exit(0);
+                return;
+            case HELP:
+                speaker.speak("Help is coming....");
+                return;
+            case ANOTHER:
+
+                if(  previousCommand!=null  &&  ! (previousCommand instanceof AnotherCommand)   ){
+                    runCommand(previousCommand);
+                }else{
+                    speaker.speak(NO_PREVIOUS_CMD);
+                }
+
+                return;
+
+            default: // command not found
+                speaker.speak("I didn't get what you said.");
+                return;
         }
 
     }
@@ -196,19 +201,6 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     }
 
 
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void enterUserInput(String userInput){
-
-        // AnotherCommand type should never become the previous command
-        if( ! (currentCommand instanceof AnotherCommand) ){
-            previousCommand = currentCommand;
-        }
-
-        currentCommand = parser.parse(userInput);
-        runCommand(currentCommand, userInput);
-    }
-
     @Override
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void onTranscription(String transcription) {
@@ -220,7 +212,6 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     public void onError(int error) {
         Log.d("StudyBuddy.onError()", error+"");
     }
-
 
     @Override
     public void startedSpeaking(String speechId) {
