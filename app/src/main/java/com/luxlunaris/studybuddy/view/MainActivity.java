@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -41,7 +42,17 @@ public class MainActivity extends AppCompatActivity {
 
         micButton.setOnClickListener(e->{
             studyBuddy.stopTranscribing();
-            studyBuddy.enterUserInput(inputText.getText().toString());
+        });
+
+        inputText.setOnEditorActionListener((v, actionId, event)->{
+
+            if( actionId == EditorInfo.IME_ACTION_SEND){
+                studyBuddy.enterUserInput(v.getText().toString());
+                v.setText("");
+                return true;
+            }
+
+            return false;
         });
 
 

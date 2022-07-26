@@ -14,6 +14,7 @@ import com.luxlunaris.studybuddy.model.utils.Keywords;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class Parser {
 
@@ -52,7 +53,7 @@ public class Parser {
                     fromFile = userInput.substring(c+"from".length());
                 }
 
-                if(userInput.contains("random") ){
+                if(userInput.toLowerCase().contains("random") ){
                     keywords = AskMeCommand.RANDOM;
                 }
 
