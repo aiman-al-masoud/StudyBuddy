@@ -1,11 +1,9 @@
 package com.luxlunaris.studybuddy.model.studybuddy;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
 
 import com.luxlunaris.studybuddy.model.challenge.Challenge;
 import com.luxlunaris.studybuddy.model.challenge.ChallengeBuilder;
@@ -60,7 +58,6 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         parser = new Parser();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public void addChallengesFile(String title, String body){
         cm.addAllChallenges(cb.fromText(body,title));
     }
@@ -69,7 +66,6 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         scribe.startTranscribing();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public void enterUserInput(final String userInput){
 
         // AnotherCommand type should never become the previous command
@@ -92,7 +88,6 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void runCommand(final Command cmd){
 
         Log.d("StudyBuddy", "runCommand: "+cmd);
@@ -158,7 +153,6 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void onAnswer(Command cmd, String userInput){
 
         if(cmd.getType()== CommandTypes.COME_AGAIN){
@@ -201,7 +195,6 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
 
     @Override
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public void onTranscription(String transcription) {
         Log.d("StudyBuddy", "onTranscription: "+transcription);
         enterUserInput(transcription);

@@ -2,14 +2,10 @@ package com.luxlunaris.studybuddy.model.utils;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 
-import androidx.annotation.RequiresApi;
 
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchFileException;
-
-import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileReader;
@@ -89,7 +85,6 @@ public class FileManager {
      * @return
      * @throws IOException
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public static List<String> lsRootDir() throws IOException{
 
         try {
@@ -106,7 +101,6 @@ public class FileManager {
      * @return
      * @throws NoSuchFileException
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public static String getClosestMatchingFileName(String maybeFileName) throws NoSuchFileException {
 
         List<String> kws =  Keywords.extractKeywords(maybeFileName);

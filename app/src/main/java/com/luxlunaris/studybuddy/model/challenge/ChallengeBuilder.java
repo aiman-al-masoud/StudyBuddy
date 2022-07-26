@@ -2,17 +2,12 @@ package com.luxlunaris.studybuddy.model.challenge;
 
 import android.os.Build;
 
-import androidx.annotation.RequiresApi;
 
 import com.luxlunaris.studybuddy.model.challenge.classes.MultiAnswerChallenge;
 import com.luxlunaris.studybuddy.model.challenge.classes.SingleAnswerChallenge;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ChallengeBuilder {
@@ -26,12 +21,10 @@ public class ChallengeBuilder {
      * @param fileName
      * @return
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public List<Challenge> fromText(String text, String fileName) {
 
         System.out.println("this is the text "+text);
 
-//        String[] pars = text.split("(\\n|\\s){2,}");
         String[] pars = text.split("(\\n){2,}");
 
 
@@ -47,7 +40,6 @@ public class ChallengeBuilder {
      * @param fileName
      * @return
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private Challenge buildChallenge(String challengeParagraph, String fileName) {
         String[] parts = challengeParagraph.split("\\?");
         String question = parts[0];
@@ -69,11 +61,9 @@ public class ChallengeBuilder {
      * @param answerText
      * @return
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private List<String> isAnswerMutli(String answerText) {
 
         List<String> lines = Arrays.stream(answerText.split("\\n")).filter(l->l.length()>1).collect(Collectors.toList());
-//        String[] lines = answerText.split("\\n");
 
         if (lines.size() == 1) {
             return null;

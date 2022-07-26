@@ -3,7 +3,6 @@ package com.luxlunaris.studybuddy.model.challenge;
 import android.os.Build;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchKeywordsException;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchFileException;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
@@ -40,7 +39,6 @@ public class ChallengeManager {
      * @param fileName
      * @return
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public List<Challenge> getChallengesByFileName(final String fileName) throws NoSuchFileException{
 
         List<Challenge> challenges = this.challenges;
@@ -65,7 +63,6 @@ public class ChallengeManager {
      * @param fileName
      * @return
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public Challenge getRandomChallenge(String fileName) throws NoSuchFileException {
 
         try {
@@ -82,7 +79,6 @@ public class ChallengeManager {
      *
      * @return
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public Challenge getRandomChallenge() throws NoSuchFileException {
         return getRandomChallenge(ALL_FILES);
     }
@@ -95,7 +91,6 @@ public class ChallengeManager {
      * @param keywords
      * @return
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public List<Challenge> getChallengesListByKeywords(final List<String> keywords, final  String fileName) throws NoSuchFileException, NoSuchKeywordsException{
 
         List<Challenge> challenges = getChallengesByFileName(fileName);
@@ -128,12 +123,10 @@ public class ChallengeManager {
         return challenges;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public List<Challenge> getChallengesListByKeywords(List<String> keywords) throws NoSuchKeywordsException, NoSuchFileException {
         return getChallengesListByKeywords(keywords, ALL_FILES);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public Challenge getChallengeByKeywords(List<String> keywords, String fileName) throws NoSuchKeywordsException, NoSuchFileException {
 
         try {
@@ -143,7 +136,6 @@ public class ChallengeManager {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public Challenge getChallengeByKeywords(List<String> keywords) throws NoSuchFileException, NoSuchKeywordsException {
         return getChallengeByKeywords(keywords, ALL_FILES);
     }

@@ -1,9 +1,7 @@
 package com.luxlunaris.studybuddy.view;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.PermissionChecker;
 
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -26,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
     private StudyBuddy studyBuddy;
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void init(){
         FileManager.createRootDir();
         studyBuddy = new StudyBuddy(this);
@@ -49,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Async loads challenges from text files in root dir
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void loadChallengesFromDisk(){
         Async.runTask(()->{
 
@@ -70,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Log.d("onRequestPermissionsRes", "onRequestPermissionsResult: "+requestCode+" "+ Arrays.asList(permissions) +" "+ Arrays.asList(grantResults));

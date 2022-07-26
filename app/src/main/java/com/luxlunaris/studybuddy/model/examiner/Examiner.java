@@ -1,10 +1,6 @@
 package com.luxlunaris.studybuddy.model.examiner;
 
 import android.os.Build;
-import android.util.Log;
-
-import androidx.annotation.RequiresApi;
-
 import com.luxlunaris.studybuddy.model.challenge.Challenge;
 import com.luxlunaris.studybuddy.model.challenge.classes.MultiAnswerChallenge;
 import com.luxlunaris.studybuddy.model.challenge.classes.SingleAnswerChallenge;
@@ -21,7 +17,6 @@ public class Examiner {
     public final int BAD_ANSWER = 40;
 
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public Verdict getVerdict(Challenge challenge, String userInput) {
 
         try{
@@ -33,7 +28,6 @@ public class Examiner {
         return evaluateSingleAnswerChallenge(userInput, (SingleAnswerChallenge) challenge);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private Verdict evaluateSingleAnswerChallenge(String userInput, SingleAnswerChallenge sac) {
 
         Verdict v;
@@ -69,7 +63,6 @@ public class Examiner {
         return new Verdict(false, "True! You guessed it!");
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private Verdict evaluateMultiAnswerChallenge(String userInput, MultiAnswerChallenge mac) {
 
         List<String> missedPoints = mac.getAnswersList().stream().map(a -> {
@@ -96,7 +89,6 @@ public class Examiner {
         return new Verdict(true, sb.toString());
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private static List<String> getMissedKeywords(String userInput, List<String> correctKeywords) {
         List<String> userKeywords = Keywords.extractKeywords(userInput);
         List<String> missedKeywords = correctKeywords.stream().filter(k -> !userKeywords.contains(k)).collect(Collectors.toList());
