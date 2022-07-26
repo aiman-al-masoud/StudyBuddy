@@ -4,34 +4,48 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.webkit.PermissionRequest;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.studybuddy.StudyBuddy;
 import com.luxlunaris.studybuddy.model.utils.Async;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
 import com.luxlunaris.studybuddy.model.utils.Permissions;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
     private StudyBuddy studyBuddy;
+    private EditText inputText;
+    private FloatingActionButton micButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(Permissions.isPermissionGranted(this)){
+        if(Permissions.checkPermissions(this)){
             init();
         }
+
+
+        inputText = (EditText) findViewById(R.id.inputText);
+        micButton = (FloatingActionButton) findViewById(R.id.micButton);
+
+
+        micButton.setOnClickListener(e->{
+            studyBuddy.stop();
+            studyBuddy.enterUserInput(inputText.getText().toString());
+        });
+
+
     }
 
     private void init(){

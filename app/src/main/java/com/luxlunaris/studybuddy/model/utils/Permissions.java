@@ -13,7 +13,7 @@ public class Permissions {
 
     public static final int BASIC_PERMISSIONS = 1;
 
-    public static boolean isPermissionGranted(Context context){
+    public static boolean checkPermissions(Context context){
 
         if (
         (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED)  &&

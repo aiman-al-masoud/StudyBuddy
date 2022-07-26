@@ -32,19 +32,20 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     public static final String NO_PREVIOUS_CMD = "No previous command to re-run!";
 
 
-    private Context context;
-    private Examiner examiner;
-    private Scribe scribe;
-    private Speaker speaker;
-    private ChallengeBuilder cb;
-    private ChallengeManager cm;
+    private final Context context;
+    private final Examiner examiner;
+    private final Scribe scribe;
+    private final Speaker speaker;
+    private final ChallengeBuilder cb;
+    private final ChallengeManager cm;
+    private final Handler mainHandler;
+    private final Parser parser;
     private Challenge currentChallenge;
     private StudyBuddyModes currentMode;
-    private Handler mainHandler;
-    private Parser parser;
     private Command previousCommand;
     private Command currentCommand;
-    Verdict currentVerdict;
+    private Verdict currentVerdict;
+    private boolean silentMode;
 
     public StudyBuddy(Context context){
         this.context = context;
@@ -56,6 +57,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         cm = new ChallengeManager();
         mainHandler = new Handler();
         parser = new Parser();
+        silentMode = false;
     }
 
     public void addChallengesFile(String title, String body){
@@ -63,10 +65,12 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     }
 
     public void start(){
+        silentMode = false;
         scribe.startTranscribing();
     }
 
     public void stop(){
+        silentMode = true;
         scribe.stopTranscribing();
     }
 
@@ -219,6 +223,10 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
     @Override
     public void stoppedSpeaking(String speechId) {
+
+        if(silentMode){
+            return;
+        }
 
         mainHandler.post(()->{
             scribe.startTranscribing();
