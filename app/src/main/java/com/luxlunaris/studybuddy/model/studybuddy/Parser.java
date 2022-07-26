@@ -4,6 +4,7 @@ import com.luxlunaris.studybuddy.model.studybuddy.commands.Command;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AnotherCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AskMeCommand;
+import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.BinaryCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.ComeAgainCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.ExitCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.HelpCommand;
@@ -23,7 +24,8 @@ public class Parser {
     public static final List<String> ANOTHER_KWS_2 = Arrays.asList("one", "more");
     public static final List<String> EXIT_KWS_1 = Arrays.asList("exit");
     public static final List<String> HELP_KWS_1 = Arrays.asList("help");
-
+    public static final List<String> BINARY_1 = Arrays.asList("yes");
+    public static final List<String> BINARY_2 = Arrays.asList("no");//
 
     public Command parse(final String userInput){
 
@@ -69,6 +71,11 @@ public class Parser {
             case EXIT:
 
                 return new ExitCommand();
+            case BINARY:
+
+                boolean yes = userInput.contains(BINARY_1.get(0));
+                return new BinaryCommand(yes);
+
         }
 
         return new HelpCommand();
@@ -110,6 +117,13 @@ public class Parser {
         if(b){
             return CommandTypes.EXIT;
         }
+
+        // binary
+        b = kws.containsAll(BINARY_1) || kws.containsAll(BINARY_2);
+        if(b){
+            return CommandTypes.BINARY;
+        }
+
 
         // 6. help
 //        b = kws.containsAll(HELP_KWS_1);

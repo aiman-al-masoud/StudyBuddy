@@ -22,6 +22,7 @@ import com.luxlunaris.studybuddy.model.studybuddy.commands.Command;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AnotherCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AskMeCommand;
+import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.BinaryCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.ComeAgainCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.TellMeCommand;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
@@ -79,12 +80,20 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
             case AWAIT_CONFIRM_TRY_AGAIN:
 
-                if(userInput.contains("yes") || userInput.contains("try again")){
-                    speaker.speak(currentChallenge.question());
-                    currentMode = StudyBuddyModes.AWAIT_ANSWER;
-                }else{
-                    speaker.speak(currentVerdict.text);
-                    currentMode = StudyBuddyModes.AWAIT_COMMAND;
+                try{
+
+                    BinaryCommand binaryCmd = (BinaryCommand)cmd;
+
+                    if(binaryCmd.yes){
+                        speaker.speak(currentChallenge.question());
+                        currentMode = StudyBuddyModes.AWAIT_ANSWER;
+                    }else{
+                        speaker.speak(currentVerdict.text);
+                        currentMode = StudyBuddyModes.AWAIT_COMMAND;
+                    }
+
+                }catch (ClassCastException e){
+                    speaker.speak("I didn't get what you said. Do you want to try again, yes or no?");
                 }
 
                 break;
@@ -101,7 +110,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
                 if(currentVerdict.isFail){
                     currentMode = StudyBuddyModes.AWAIT_CONFIRM_TRY_AGAIN;
-                    speaker.speak("Your answer is wrong, wish to try again?");
+                    speaker.speak("Your answer is wrong, wish to try again? Yes or no?");
                 }else{
                     speaker.speak(currentVerdict.text);
                     currentMode = StudyBuddyModes.AWAIT_COMMAND;
