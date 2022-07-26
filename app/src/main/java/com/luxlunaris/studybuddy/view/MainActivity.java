@@ -43,10 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         studyBuddy = new StudyBuddy(this);
 
-//        String testBody = "Who built the pyramids?\nAliens\n\nWhat do cats eat?\nTuna.";
-//        studyBuddy.addChallengesFile("foo", testBody);
-
-
+        
         // async load from text files in root dir
         Async.runTask(()->{
 
