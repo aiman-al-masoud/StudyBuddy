@@ -72,7 +72,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void runCommand(Command cmd, String userInput){
+    private void runCommand(final Command cmd, final String userInput){
 
         Log.d("StudyBuddy", "runCommand: "+cmd);
 
@@ -80,41 +80,13 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
             case AWAIT_CONFIRM_TRY_AGAIN:
 
-                try{
-
-                    BinaryCommand binaryCmd = (BinaryCommand)cmd;
-
-                    if(binaryCmd.yes){
-                        speaker.speak(currentChallenge.question());
-                        currentMode = StudyBuddyModes.AWAIT_ANSWER;
-                    }else{
-                        speaker.speak(currentVerdict.text);
-                        currentMode = StudyBuddyModes.AWAIT_COMMAND;
-                    }
-
-                }catch (ClassCastException e){
-                    speaker.speak("I didn't get what you said. Do you want to try again, yes or no?");
-                }
+                onConfirmTryAgain(cmd);
 
                 break;
 
             case AWAIT_ANSWER:
 
-                if(cmd.getType()== CommandTypes.COME_AGAIN){
-                    ComeAgainCommand comeAgainCmd = (ComeAgainCommand)cmd;
-                    speaker.speak(currentChallenge.question(), comeAgainCmd.slowly? Speaker.SLOW : Speaker.NORMAL );
-                    return;
-                }
-
-                currentVerdict = examiner.getVerdict(currentChallenge, userInput);
-
-                if(currentVerdict.isFail){
-                    currentMode = StudyBuddyModes.AWAIT_CONFIRM_TRY_AGAIN;
-                    speaker.speak("Your answer is wrong, wish to try again? Yes or no?");
-                }else{
-                    speaker.speak(currentVerdict.text);
-                    currentMode = StudyBuddyModes.AWAIT_COMMAND;
-                }
+                onAnswer(cmd, userInput);
 
                 break;
 
@@ -180,6 +152,50 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         }
 
     }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void onAnswer(Command cmd, String userInput){
+
+        if(cmd.getType()== CommandTypes.COME_AGAIN){
+            ComeAgainCommand comeAgainCmd = (ComeAgainCommand)cmd;
+            speaker.speak(currentChallenge.question(), comeAgainCmd.slowly? Speaker.SLOW : Speaker.NORMAL );
+            return;
+        }
+
+        currentVerdict = examiner.getVerdict(currentChallenge, userInput);
+
+        if(currentVerdict.isFail){
+            currentMode = StudyBuddyModes.AWAIT_CONFIRM_TRY_AGAIN;
+            speaker.speak("Your answer is wrong, wish to try again? Yes or no?");
+        }else{
+            speaker.speak(currentVerdict.text);
+            currentMode = StudyBuddyModes.AWAIT_COMMAND;
+        }
+
+    }
+
+    private void onConfirmTryAgain(Command cmd){
+
+        try{
+
+            BinaryCommand binaryCmd = (BinaryCommand)cmd;
+
+            if(binaryCmd.yes){
+                speaker.speak(currentChallenge.question());
+                currentMode = StudyBuddyModes.AWAIT_ANSWER;
+            }else{
+                speaker.speak(currentVerdict.text);
+                currentMode = StudyBuddyModes.AWAIT_COMMAND;
+            }
+
+        }catch (ClassCastException e){
+            speaker.speak("I didn't get what you said. Do you want to try again, yes or no?");
+        }
+
+    }
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void enterUserInput(String userInput){
