@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         if(Arrays.stream(grantResults).allMatch(p-> p == PackageManager.PERMISSION_GRANTED)){
             init();
         }else{
-            Toast.makeText(this, "Sorry, you must grant all of the permissions to use the app.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Sorry, you must grant all of the permissions or the app won't work.", Toast.LENGTH_LONG).show();
             Async.setTimeout(()->System.exit(0), 3000);
         }
     }
