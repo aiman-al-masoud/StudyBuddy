@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         micButton.setOnClickListener(e->{
-            studyBuddy.stop();
+            studyBuddy.stopTranscribing();
             studyBuddy.enterUserInput(inputText.getText().toString());
         });
 
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         FileManager.createRootDir();
         studyBuddy = new StudyBuddy(this);
         loadChallengesFromDisk();
-        studyBuddy.start();
+        studyBuddy.startTranscribing();
     }
 
 

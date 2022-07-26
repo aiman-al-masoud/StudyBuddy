@@ -45,7 +45,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     private Command previousCommand;
     private Command currentCommand;
     private Verdict currentVerdict;
-    private boolean silentMode;
+    private boolean keyboardMode;
 
     public StudyBuddy(Context context){
         this.context = context;
@@ -57,20 +57,20 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         cm = new ChallengeManager();
         mainHandler = new Handler();
         parser = new Parser();
-        silentMode = false;
+        keyboardMode = false;
     }
 
     public void addChallengesFile(String title, String body){
         cm.addAllChallenges(cb.fromText(body,title));
     }
 
-    public void start(){
-        silentMode = false;
+    public void startTranscribing(){
+        keyboardMode = false;
         scribe.startTranscribing();
     }
 
-    public void stop(){
-        silentMode = true;
+    public void stopTranscribing(){
+        keyboardMode = true;
         scribe.stopTranscribing();
     }
 
@@ -224,7 +224,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     @Override
     public void stoppedSpeaking(String speechId) {
 
-        if(silentMode){
+        if(keyboardMode){
             return;
         }
 
