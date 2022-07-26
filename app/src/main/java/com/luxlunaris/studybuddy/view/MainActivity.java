@@ -40,11 +40,17 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void init(){
         FileManager.createRootDir();
-
         studyBuddy = new StudyBuddy(this);
+        loadChallengesFromDisk();
+        studyBuddy.start();
+    }
 
 
-        // async load from text files in root dir
+    /**
+     * Async loads challenges from text files in root dir
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void loadChallengesFromDisk(){
         Async.runTask(()->{
 
             try {
@@ -61,9 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        // start study buddy
-        studyBuddy.start();
     }
 
     @Override
