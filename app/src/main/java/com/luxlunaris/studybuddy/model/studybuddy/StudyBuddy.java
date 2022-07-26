@@ -74,6 +74,10 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         scribe.stopTranscribing();
     }
 
+    public boolean isKeyboardMode(){
+        return keyboardMode;
+    }
+
     private void output(String finalOutput){
         output(finalOutput, Speaker.NORMAL);
     }

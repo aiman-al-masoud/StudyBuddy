@@ -41,7 +41,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         micButton.setOnClickListener(e->{
-            studyBuddy.stopTranscribing();
+            if(!studyBuddy.isKeyboardMode()){
+                studyBuddy.stopTranscribing();
+                micButton.setImageDrawable(getDrawable(android.R.drawable.stat_notify_call_mute));
+            }else{
+                studyBuddy.startTranscribing();
+                micButton.setImageDrawable(getDrawable(android.R.drawable.ic_btn_speak_now));
+            }
+
         });
 
         inputText.setOnEditorActionListener((v, actionId, event)->{
