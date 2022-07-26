@@ -49,7 +49,6 @@ public class Examiner {
             String s = "The correct answer is: ";
             s += sac.answer;
             v = new Verdict(true, s);
-//            return s;
             return v;
         }
 
