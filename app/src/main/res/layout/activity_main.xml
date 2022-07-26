@@ -24,10 +24,10 @@
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/inputText"
-        android:layout_width="222dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginBottom="36dp"
+        android:layout_width="244dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="32dp"
         android:imeOptions="actionSend"
         android:singleLine="true"
 
