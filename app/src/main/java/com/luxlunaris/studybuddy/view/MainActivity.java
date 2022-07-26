@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         studyBuddy = new StudyBuddy(this);
 
-        
+
         // async load from text files in root dir
         Async.runTask(()->{
 
