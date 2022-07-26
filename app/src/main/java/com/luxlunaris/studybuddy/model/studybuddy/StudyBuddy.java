@@ -20,12 +20,11 @@ import com.luxlunaris.studybuddy.model.speaker.Speaker;
 import com.luxlunaris.studybuddy.model.speaker.SpeakerListener;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.Command;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
-import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AnotherCommand;
+import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AnotherTimeCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AskMeCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.BinaryCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.ComeAgainCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.TellMeCommand;
-import com.luxlunaris.studybuddy.model.utils.FileManager;
 
 public class StudyBuddy implements ScribeListener, SpeakerListener {
 
@@ -74,7 +73,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     public void enterUserInput(final String userInput){
 
         // AnotherCommand type should never become the previous command
-        previousCommand = (currentCommand instanceof AnotherCommand)? previousCommand : currentCommand;
+        previousCommand = (currentCommand instanceof AnotherTimeCommand)? previousCommand : currentCommand;
 
         currentCommand = parser.parse(userInput);
 
@@ -141,9 +140,9 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
             case HELP:
                 speaker.speak("Help is coming....");
                 return;
-            case ANOTHER:
+            case ANOTHER_TIME:
 
-                if(  previousCommand!=null  &&  ! (previousCommand instanceof AnotherCommand)   ){
+                if(  previousCommand!=null  &&  ! (previousCommand instanceof AnotherTimeCommand)   ){
                     runCommand(previousCommand);
                 }else{
                     speaker.speak(NO_PREVIOUS_CMD);

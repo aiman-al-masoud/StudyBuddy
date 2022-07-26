@@ -2,7 +2,7 @@ package com.luxlunaris.studybuddy.model.studybuddy;
 
 import com.luxlunaris.studybuddy.model.studybuddy.commands.Command;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
-import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AnotherCommand;
+import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AnotherTimeCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.AskMeCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.BinaryCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.ComeAgainCommand;
@@ -61,9 +61,9 @@ public class Parser {
 
                 return new ComeAgainCommand(userInput.contains("slowly")|userInput.contains("slow")|userInput.contains("slower"));
 
-            case ANOTHER:
+            case ANOTHER_TIME:
 
-                return new AnotherCommand();
+                return new AnotherTimeCommand();
 
             case HELP:
 
@@ -107,7 +107,7 @@ public class Parser {
         // 4. another
         b = kws.containsAll(ANOTHER_KWS_1) | kws.containsAll(ANOTHER_KWS_2);
         if(b){
-            return CommandTypes.ANOTHER;
+            return CommandTypes.ANOTHER_TIME;
         }
 
 

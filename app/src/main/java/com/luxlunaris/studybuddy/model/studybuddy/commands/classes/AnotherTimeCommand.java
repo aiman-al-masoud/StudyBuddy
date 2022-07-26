@@ -3,9 +3,9 @@ package com.luxlunaris.studybuddy.model.studybuddy.commands.classes;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.AbstractCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
 
-public class AnotherCommand extends AbstractCommand {
+public class AnotherTimeCommand extends AbstractCommand {
 
-    public AnotherCommand() {
-        super(CommandTypes.ANOTHER);
+    public AnotherTimeCommand() {
+        super(CommandTypes.ANOTHER_TIME);
     }
 }
