@@ -31,7 +31,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
 
     public static final String NO_SUCH_FILE = "The file you specified doesn't exist!";
-    public static final String NO_SUCH_KEYWORDS = "The file you specified doesn't exist!";
+    public static final String NO_SUCH_KEYWORDS = "No match found for that topic!";
     public static final String NO_PREVIOUS_CMD = "No previous command to re-run!";
 
 
