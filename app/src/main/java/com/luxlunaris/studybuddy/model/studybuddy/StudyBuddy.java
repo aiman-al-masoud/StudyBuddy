@@ -74,8 +74,13 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         scribe.stopTranscribing();
     }
 
-
-
+    private void output(String finalOutput){
+        output(finalOutput, Speaker.NORMAL);
+    }
+    private void output(String finalOutput, float speechRate){
+        speaker.speak(finalOutput, speechRate);
+        //call onOutput() on StudyBuddyListener
+    }
 
     public void enterUserInput(final String userInput){
 
@@ -116,13 +121,13 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
                         currentChallenge = cm.getChallengeByKeywords(askMeCmd.keywords, askMeCmd.fromFile);
                     }
 
-                    speaker.speak(currentChallenge.question());
+                    output(currentChallenge.question());
                     currentMode = StudyBuddyModes.AWAIT_ANSWER;
 
                 }catch (NoSuchFileException e){
-                    speaker.speak(NO_SUCH_FILE);
+                    output(NO_SUCH_FILE);
                 }catch (NoSuchKeywordsException e){
-                    speaker.speak(NO_SUCH_KEYWORDS);
+                    output(NO_SUCH_KEYWORDS);
                 }
 
                 return;
@@ -132,11 +137,11 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
                 try {
                     Challenge c = cm.getChallengeByKeywords(tellMeCmd.keywords);
-                    speaker.speak(c.question()+".\n"+c.answer());
+                    output(c.question()+".\n"+c.answer());
                 }catch (NoSuchFileException e){
-                    speaker.speak(NO_SUCH_FILE);
+                    output(NO_SUCH_FILE);
                 }catch (NoSuchKeywordsException e){
-                    speaker.speak(NO_SUCH_KEYWORDS);
+                    output(NO_SUCH_KEYWORDS);
                 }
 
                 return;
@@ -144,20 +149,20 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
                 System.exit(0);
                 return;
             case HELP:
-                speaker.speak("Help is coming....");
+                output("Help is coming....");
                 return;
             case ANOTHER_TIME:
 
                 if(  previousCommand!=null  &&  ! (previousCommand instanceof AnotherTimeCommand)   ){
                     runCommand(previousCommand);
                 }else{
-                    speaker.speak(NO_PREVIOUS_CMD);
+                    output(NO_PREVIOUS_CMD);
                 }
 
                 return;
 
             default: // command not found
-                speaker.speak("I didn't get what you said.");
+                output("I didn't get what you said.");
                 return;
         }
 
@@ -168,7 +173,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
         if(cmd.getType()== CommandTypes.COME_AGAIN){
             ComeAgainCommand comeAgainCmd = (ComeAgainCommand)cmd;
-            speaker.speak(currentChallenge.question(), comeAgainCmd.slowly? Speaker.SLOW : Speaker.NORMAL );
+            output(currentChallenge.question(), comeAgainCmd.slowly? Speaker.SLOW : Speaker.NORMAL);
             return;
         }
 
@@ -176,9 +181,9 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
         if(currentVerdict.isFail){
             currentMode = StudyBuddyModes.AWAIT_CONFIRM_TRY_AGAIN;
-            speaker.speak("Your answer is wrong, wish to try again? Yes or no?");
+            output("Your answer is wrong, wish to try again? Yes or no?");
         }else{
-            speaker.speak(currentVerdict.text);
+            output(currentVerdict.text);
             currentMode = StudyBuddyModes.AWAIT_COMMAND;
         }
 
@@ -191,15 +196,15 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
             BinaryCommand binaryCmd = (BinaryCommand)cmd;
 
             if(binaryCmd.yes){
-                speaker.speak(currentChallenge.question());
+                output(currentChallenge.question());
                 currentMode = StudyBuddyModes.AWAIT_ANSWER;
             }else{
-                speaker.speak(currentVerdict.text);
+                output(currentVerdict.text);
                 currentMode = StudyBuddyModes.AWAIT_COMMAND;
             }
 
         }catch (ClassCastException e){
-            speaker.speak("I didn't get what you said. Do you want to try again, yes or no?");
+            output("I didn't get what you said. Do you want to try again, yes or no?");
         }
 
     }
