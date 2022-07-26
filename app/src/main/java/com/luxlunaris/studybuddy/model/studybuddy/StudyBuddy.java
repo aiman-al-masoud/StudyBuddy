@@ -66,6 +66,13 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         scribe.startTranscribing();
     }
 
+    public void stop(){
+        scribe.stopTranscribing();
+    }
+
+
+
+
     public void enterUserInput(final String userInput){
 
         // AnotherCommand type should never become the previous command
