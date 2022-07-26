@@ -6,15 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
-    <EditText
+<!--    <com.google.android.material.textfield.TextInputEditText-->
+
+<!--        android:id="@+id/inputText"-->
+<!--        android:layout_width="246dp"-->
+<!--        android:layout_height="53dp"-->
+<!--        android:layout_marginStart="24dp"-->
+<!--        android:layout_marginBottom="28dp"-->
+<!--        android:ems="10"-->
+<!--        android:gravity="start|top"-->
+<!--        android:inputType="textMultiLine"-->
+<!--        android:imeOptions="actionSend"-->
+<!--        android:singleLine="true"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/inputText"
-        android:layout_width="246dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="28dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
+        android:layout_width="222dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="36dp"
+        android:imeOptions="actionSend"
+        android:inputType="textCapCharacters"
+        android:maxLength="9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
