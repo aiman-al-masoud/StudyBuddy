@@ -45,6 +45,7 @@ public class RowAdapter extends RecyclerView.Adapter<RowHolder> {
         return items.size();
     }
 
+
     public void addRow(String text){
 //        items.add(0, text);
 //        notifyItemInserted(0);
