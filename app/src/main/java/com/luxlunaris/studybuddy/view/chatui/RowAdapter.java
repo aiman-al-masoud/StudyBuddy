@@ -30,7 +30,7 @@ public class RowAdapter extends RecyclerView.Adapter<RowHolder> {
     @NonNull
     @Override
     public RowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View row = inflater.inflate(R.layout.row, parent, false);
+        View row = inflater.inflate(R.layout.row_incoming_bubble, parent, false);
         return new RowHolder(row);
     }
 

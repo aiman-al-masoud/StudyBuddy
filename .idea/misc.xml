@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/outgoing_speech_bubble.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="app/src/main/res/layout/row.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/row_outgoing_bubble.xml" value="0.16041666666666668" />
       </map>
     </option>
   </component>
