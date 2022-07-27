@@ -60,9 +60,8 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         inputText.setZ(10000);
 
 
-//        setSupportActionBar(myToolbar);
+        myToolbar.setOnMenuItemClickListener(new ToolbarMenuClickListener(this));
 
-        myToolbar.inflateMenu(R.menu.toolbar_menu);
 
 
         micButton.setOnClickListener(e->{
