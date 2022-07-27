@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     private StudyBuddy studyBuddy;
     private EditText inputText;
     private FloatingActionButton micButton;
+    private FloatingActionButton speakerButton;
     private RowAdapter rowAdapter;
     RecyclerView recyclerView;
 
@@ -44,6 +45,11 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
 
         inputText = (EditText) findViewById(R.id.inputText);
         micButton = (FloatingActionButton) findViewById(R.id.micButton);
+        speakerButton = (FloatingActionButton) findViewById(R.id.speakerButton);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        rowAdapter = new RowAdapter(this);
+        recyclerView.setAdapter(rowAdapter);
 
 
         micButton.setOnClickListener(e->{
@@ -73,13 +79,16 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
             return false;
         });
 
+        speakerButton.setOnClickListener(e->{
+            if(studyBuddy.isLoudspeakerMode()){
+                studyBuddy.setLoudspeakerMode(false);
+                speakerButton.setImageDrawable(getDrawable(android.R.drawable.ic_lock_silent_mode));
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        rowAdapter = new RowAdapter(this);
-        recyclerView.setAdapter(rowAdapter);
-
+            }else{
+                studyBuddy.setLoudspeakerMode(true);
+                speakerButton.setImageDrawable(getDrawable(android.R.drawable.ic_lock_silent_mode_off));
+            }
+        });
 
 
     }

@@ -46,6 +46,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     private Command currentCommand;
     private Verdict currentVerdict;
     private boolean keyboardMode;
+    private boolean loudspeakerMode;
     private StudyBuddyListener listener;
 
     public StudyBuddy(Context context, StudyBuddyListener listener){
@@ -60,6 +61,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         parser = new Parser();
         keyboardMode = false;
         this.listener = listener;
+        loudspeakerMode = true;
     }
 
     public void addChallengesFile(String title, String body){
@@ -80,12 +82,24 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         return keyboardMode;
     }
 
+    public boolean isLoudspeakerMode() {
+        return loudspeakerMode;
+    }
+
+    public void setLoudspeakerMode(boolean loudspeakerMode){
+        this.loudspeakerMode = loudspeakerMode;
+    }
+
     private void output(String finalOutput){
         output(finalOutput, Speaker.NORMAL);
     }
 
     private void output(String finalOutput, float speechRate){
-        speaker.speak(finalOutput, speechRate);
+
+        if(loudspeakerMode){
+            speaker.speak(finalOutput, speechRate);
+        }
+
         listener.onOutput(finalOutput);
     }
 

@@ -6,27 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
-<!--    <com.google.android.material.textfield.TextInputEditText-->
+    <!--    <com.google.android.material.textfield.TextInputEditText-->
 
-<!--        android:id="@+id/inputText"-->
-<!--        android:layout_width="246dp"-->
-<!--        android:layout_height="53dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginBottom="28dp"-->
-<!--        android:ems="10"-->
-<!--        android:gravity="start|top"-->
-<!--        android:inputType="textMultiLine"-->
-<!--        android:imeOptions="actionSend"-->
-<!--        android:singleLine="true"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+    <!--        android:id="@+id/inputText"-->
+    <!--        android:layout_width="246dp"-->
+    <!--        android:layout_height="53dp"-->
+    <!--        android:layout_marginStart="24dp"-->
+    <!--        android:layout_marginBottom="28dp"-->
+    <!--        android:ems="10"-->
+    <!--        android:gravity="start|top"-->
+    <!--        android:inputType="textMultiLine"-->
+    <!--        android:imeOptions="actionSend"-->
+    <!--        android:singleLine="true"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/inputText"
-        android:layout_width="244dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="212dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="32dp"
         android:imeOptions="actionSend"
         android:singleLine="true"
@@ -46,11 +46,22 @@
         android:id="@+id/micButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="28dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/inputText"
         app:srcCompat="@android:drawable/ic_btn_speak_now" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/speakerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="28dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/micButton"
+        app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
