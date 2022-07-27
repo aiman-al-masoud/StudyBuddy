@@ -230,6 +230,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     @Override
     public void onError(int error) {
         Log.d("StudyBuddy.onError()", error+"");
+        this.keyboardMode = true;
         listener.onError(error+"");
     }
 

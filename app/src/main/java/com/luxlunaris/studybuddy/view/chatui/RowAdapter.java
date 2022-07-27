@@ -39,8 +39,6 @@ public class RowAdapter extends RecyclerView.Adapter<RowHolder> {
     @Override
     public void onBindViewHolder(@NonNull RowHolder holder, int position) {
         // Bind the data to be displayed to the new row.
-        //
-        //
         holder.rowText.setText(items.get(position));
     }
 
@@ -50,8 +48,8 @@ public class RowAdapter extends RecyclerView.Adapter<RowHolder> {
     }
 
     public void addRow(String text){
+        items.add(0, text);
         notifyItemInserted(getItemCount());
-        items.add(text);
     }
 
 

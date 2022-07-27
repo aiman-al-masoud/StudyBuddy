@@ -137,6 +137,9 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     @Override
     public void onError(String error) {
         Log.d("MainActivity", "onError: "+error);
+
+        micButton.setImageDrawable(getDrawable(android.R.drawable.stat_notify_call_mute));
+
     }
 
 }
