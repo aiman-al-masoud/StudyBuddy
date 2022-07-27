@@ -18,7 +18,7 @@ public class RowAdapter extends RecyclerView.Adapter<RowHolder> {
 
     private final Context context;
     private final LayoutInflater inflater;
-    List<String> items;
+    private final List<String> items;
 
     public RowAdapter(Context context){
         this.context =  context;
@@ -46,7 +46,7 @@ public class RowAdapter extends RecyclerView.Adapter<RowHolder> {
     }
 
 
-    public void addRow(String text){
+    public void addIncomingBubbleRow(String text){
         items.add(text);
         notifyItemInserted(getItemCount()-1);
     }

@@ -140,14 +140,14 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     @Override
     public void onOutput(String output) {
         Log.d("MainActivity", "onOutput: "+output);
-        rowAdapter.addRow(output);
+        rowAdapter.addIncomingBubbleRow(output);
         recyclerView.scrollToPosition(rowAdapter.getItemCount()-1);
     }
 
     @Override
     public void onUserInput(String voiceInput) {
         Log.d("MainActivity", "onUserVoiceInput: "+voiceInput);
-        rowAdapter.addRow(voiceInput);
+        rowAdapter.addIncomingBubbleRow(voiceInput);
         recyclerView.scrollToPosition(rowAdapter.getItemCount()-1);
 
     }
