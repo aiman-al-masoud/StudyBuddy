@@ -242,6 +242,13 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         Log.d("StudyBuddy", "onTranscription: "+transcription);
 
         enterUserInput(transcription);
+
+
+        // User wants to talk and hear NO reply
+        if(!keyboardMode  && !loudspeakerMode){
+            mainHandler.post(scribe::startTranscribing);
+        }
+
     }
 
     @Override
