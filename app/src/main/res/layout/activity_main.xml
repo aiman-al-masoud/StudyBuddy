@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/myToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:menu="@menu/toolbar_menu"
+
+        />
+
+
     <!--    <com.google.android.material.textfield.TextInputEditText-->
 
     <!--        android:id="@+id/inputText"-->
@@ -22,24 +39,24 @@
     <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 
-<!--    com.google.android.material.textfield.TextInputEditText-->
+    <!--    com.google.android.material.textfield.TextInputEditText-->
     <EditText
         android:id="@+id/inputText"
         android:layout_width="212dp"
         android:layout_height="51dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/rounded_corners"
+        android:hint=" Command or 'help' ..."
         android:imeOptions="actionSend"
         android:singleLine="true"
+        android:textColor="@color/black"
+        android:textColorHint="#D3D3D3"
+
+
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/rounded_corners"
-        android:textColor="@color/black"
-
-
-        android:hint=" Command or 'help' ..."
-        android:textColorHint="#D3D3D3"
-        android:textSize="16sp"
 
 
         />
@@ -48,9 +65,8 @@
         android:id="@+id/recyclerView"
         android:layout_width="410dp"
         android:layout_height="463dp"
-        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/myToolbar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/micButton"

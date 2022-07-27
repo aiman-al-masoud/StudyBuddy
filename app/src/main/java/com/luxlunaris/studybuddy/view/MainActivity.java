@@ -2,6 +2,7 @@ package com.luxlunaris.studybuddy.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.Toast;
+
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.luxlunaris.studybuddy.R;
@@ -31,7 +33,8 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     private FloatingActionButton micButton;
     private FloatingActionButton speakerButton;
     private RowAdapter rowAdapter;
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private Toolbar myToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +50,19 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         micButton = (FloatingActionButton) findViewById(R.id.micButton);
         speakerButton = (FloatingActionButton) findViewById(R.id.speakerButton);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        myToolbar = (Toolbar) findViewById(R.id.myToolbar);
+
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         rowAdapter = new RowAdapter(this);
         recyclerView.setAdapter(rowAdapter);
 
         inputText.setZ(10000);
+
+
+//        setSupportActionBar(myToolbar);
+
+        myToolbar.inflateMenu(R.menu.toolbar_menu);
 
 
         micButton.setOnClickListener(e->{
