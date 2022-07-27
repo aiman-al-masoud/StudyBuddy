@@ -11,6 +11,8 @@
         android:id="@+id/rowText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/incoming_speech_bubble"
+        android:textColor="@color/black"
         android:layout_margin="15dp"
         android:text="this is  a sample text ..."
         app:layout_constraintEnd_toEndOf="parent"
