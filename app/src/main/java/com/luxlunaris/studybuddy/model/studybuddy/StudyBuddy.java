@@ -91,7 +91,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
     public void enterUserInput(final String userInput){
 
-        listener.onUserInput(userInput);
+        listener.onUserInput(userInput.replaceAll("\\[|\\]", "").split("\\,")[0]);
 
 
         // AnotherCommand type should never become the previous command
@@ -227,7 +227,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     public void onTranscription(String transcription) {
         Log.d("StudyBuddy", "onTranscription: "+transcription);
 
-        enterUserInput(transcription.replaceAll("\\[|\\]", "").split("\\,")[0]);
+        enterUserInput(transcription);
     }
 
     @Override
