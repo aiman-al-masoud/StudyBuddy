@@ -189,6 +189,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
             return;
         }
 
+
         currentVerdict = examiner.getVerdict(currentChallenge, userInput);
 
         if(currentVerdict.isFail){
