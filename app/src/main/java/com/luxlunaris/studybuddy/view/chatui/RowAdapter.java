@@ -18,13 +18,11 @@ public class RowAdapter extends RecyclerView.Adapter<RowHolder> {
 
     private final Context context;
     private final LayoutInflater inflater;
-//    private int itemCount;
     List<String> items;
 
     public RowAdapter(Context context){
         this.context =  context;
         inflater = LayoutInflater.from(context);
-//        itemCount = 0;
         items = new ArrayList<String>();
     }
 
