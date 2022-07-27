@@ -33,12 +33,13 @@
         android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/cardview_light_background"
+        android:background="@drawable/rounded_corners"
         android:textColor="@color/black"
 
         android:hint="Type in a command, or 'help' ..."
         android:textColorHint="#D3D3D3"
         android:textSize="12sp"
+
 
         />
 
