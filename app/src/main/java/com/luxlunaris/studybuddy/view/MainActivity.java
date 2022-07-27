@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     private EditText inputText;
     private FloatingActionButton micButton;
     private RowAdapter rowAdapter;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         });
 
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         rowAdapter = new RowAdapter(this);
@@ -131,12 +132,15 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     public void onOutput(String output) {
         Log.d("MainActivity", "onOutput: "+output);
         rowAdapter.addRow(output);
+        recyclerView.scrollToPosition(rowAdapter.getItemCount()-1);
     }
 
     @Override
     public void onUserInput(String voiceInput) {
         Log.d("MainActivity", "onUserVoiceInput: "+voiceInput);
         rowAdapter.addRow(voiceInput);
+        recyclerView.scrollToPosition(rowAdapter.getItemCount()-1);
+
     }
 
     @Override
