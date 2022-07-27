@@ -31,7 +31,11 @@
         android:imeOptions="actionSend"
         android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/cardview_light_background"
+        android:textColor="@color/black"
+        android:hint="Type in a command, or 'help' ..."
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
