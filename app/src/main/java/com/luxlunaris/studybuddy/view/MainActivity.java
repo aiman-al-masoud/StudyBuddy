@@ -2,6 +2,8 @@ package com.luxlunaris.studybuddy.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import com.luxlunaris.studybuddy.model.studybuddy.StudyBuddyListener;
 import com.luxlunaris.studybuddy.model.utils.Async;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
 import com.luxlunaris.studybuddy.model.utils.Permissions;
+import com.luxlunaris.studybuddy.view.chatui.RowAdapter;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     private StudyBuddy studyBuddy;
     private EditText inputText;
     private FloatingActionButton micButton;
+    private RowAdapter rowAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,16 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
 
             return false;
         });
+
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        rowAdapter = new RowAdapter(this);
+        recyclerView.setAdapter(rowAdapter);
+
+        rowAdapter.notifyItemInserted(0);
+        rowAdapter.notifyItemInserted(0);
 
 
     }
