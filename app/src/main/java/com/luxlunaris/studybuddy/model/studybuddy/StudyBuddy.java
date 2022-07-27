@@ -46,8 +46,9 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     private Command currentCommand;
     private Verdict currentVerdict;
     private boolean keyboardMode;
+    private StudyBuddyListener listener;
 
-    public StudyBuddy(Context context){
+    public StudyBuddy(Context context, StudyBuddyListener listener){
         this.context = context;
         currentMode = StudyBuddyModes.AWAIT_COMMAND;
         examiner = new Examiner();
@@ -58,6 +59,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         mainHandler = new Handler();
         parser = new Parser();
         keyboardMode = false;
+        this.listener = listener;
     }
 
     public void addChallengesFile(String title, String body){
@@ -81,9 +83,10 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     private void output(String finalOutput){
         output(finalOutput, Speaker.NORMAL);
     }
+
     private void output(String finalOutput, float speechRate){
         speaker.speak(finalOutput, speechRate);
-        //call onOutput() on StudyBuddyListener
+        listener.onOutput(finalOutput);
     }
 
     public void enterUserInput(final String userInput){
@@ -219,12 +222,15 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     @Override
     public void onTranscription(String transcription) {
         Log.d("StudyBuddy", "onTranscription: "+transcription);
+
         enterUserInput(transcription);
+        listener.onUserVoiceInput(transcription);
     }
 
     @Override
     public void onError(int error) {
         Log.d("StudyBuddy.onError()", error+"");
+        listener.onError(error+"");
     }
 
     @Override

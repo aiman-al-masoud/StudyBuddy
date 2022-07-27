@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.studybuddy.StudyBuddy;
+import com.luxlunaris.studybuddy.model.studybuddy.StudyBuddyListener;
 import com.luxlunaris.studybuddy.model.utils.Async;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
 import com.luxlunaris.studybuddy.model.utils.Permissions;
@@ -20,7 +21,7 @@ import com.luxlunaris.studybuddy.model.utils.Permissions;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements StudyBuddyListener {
 
     private StudyBuddy studyBuddy;
     private EditText inputText;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void init(){
         FileManager.createRootDir();
-        studyBuddy = new StudyBuddy(this);
+        studyBuddy = new StudyBuddy(this, this);
         loadChallengesFromDisk();
         studyBuddy.startTranscribing();
     }
@@ -108,5 +109,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    public void onOutput(String output) {
+        Log.d("MainActivity", "onOutput: "+output);
+    }
+
+    @Override
+    public void onUserVoiceInput(String voiceInput) {
+        Log.d("MainActivity", "onUserVoiceInput: "+voiceInput);
+
+    }
+
+    @Override
+    public void onError(String error) {
+        Log.d("MainActivity", "onError: "+error);
+    }
 
 }
