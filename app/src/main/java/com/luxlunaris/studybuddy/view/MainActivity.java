@@ -74,8 +74,6 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         rowAdapter = new RowAdapter(this);
         recyclerView.setAdapter(rowAdapter);
 
-        rowAdapter.notifyItemInserted(0);
-        rowAdapter.notifyItemInserted(0);
 
 
     }
@@ -127,12 +125,13 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     @Override
     public void onOutput(String output) {
         Log.d("MainActivity", "onOutput: "+output);
+        rowAdapter.addRow(output);
     }
 
     @Override
     public void onUserVoiceInput(String voiceInput) {
         Log.d("MainActivity", "onUserVoiceInput: "+voiceInput);
-
+        rowAdapter.addRow(voiceInput);
     }
 
     @Override
