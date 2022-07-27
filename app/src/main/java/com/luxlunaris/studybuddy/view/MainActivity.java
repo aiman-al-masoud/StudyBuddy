@@ -56,6 +56,11 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
 
         });
 
+        micButton.setOnLongClickListener(e->{
+            Toast.makeText(this, "Click to toggle microphone.", Toast.LENGTH_SHORT).show();
+            return true;
+        });
+
         inputText.setOnEditorActionListener((v, actionId, event)->{
 
             if( actionId == EditorInfo.IME_ACTION_SEND){
