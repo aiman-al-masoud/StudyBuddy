@@ -22,7 +22,8 @@
     <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 
-    <com.google.android.material.textfield.TextInputEditText
+<!--    com.google.android.material.textfield.TextInputEditText-->
+    <EditText
         android:id="@+id/inputText"
         android:layout_width="212dp"
         android:layout_height="51dp"
@@ -34,7 +35,11 @@
         app:layout_constraintStart_toStartOf="parent"
         android:background="@color/cardview_light_background"
         android:textColor="@color/black"
+
         android:hint="Type in a command, or 'help' ..."
+        android:textColorHint="#D3D3D3"
+
+
         />
 
     <androidx.recyclerview.widget.RecyclerView
