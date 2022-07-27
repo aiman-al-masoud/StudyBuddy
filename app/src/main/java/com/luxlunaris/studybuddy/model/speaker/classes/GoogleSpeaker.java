@@ -40,6 +40,11 @@ public class GoogleSpeaker extends UtteranceProgressListener implements Speaker 
     }
 
     @Override
+    public void stop() {
+        this.tts.stop();
+    }
+
+    @Override
     public void onStart(String s) {
         Log.d("GoogleSpeaker", "onStart: "+s);
         speakerListener.startedSpeaking(s);

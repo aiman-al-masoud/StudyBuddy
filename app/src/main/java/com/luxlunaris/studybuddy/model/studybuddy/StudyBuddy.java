@@ -88,6 +88,10 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
     public void setLoudspeakerMode(boolean loudspeakerMode){
         this.loudspeakerMode = loudspeakerMode;
+
+        if(!loudspeakerMode){
+            speaker.stop();
+        }
     }
 
     private void output(String finalOutput){

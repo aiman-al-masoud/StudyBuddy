@@ -12,6 +12,7 @@ public interface Speaker {
 
     void speak(String speech);
     void speak(String speech, float speechRate);
+    void stop();
 
     static Speaker getSpeaker(Context context, SpeakerListener speakerListener){
         return new GoogleSpeaker(context, speakerListener);
