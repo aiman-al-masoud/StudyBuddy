@@ -226,7 +226,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     public void onTranscription(String transcription) {
         Log.d("StudyBuddy", "onTranscription: "+transcription);
 
-        enterUserInput(transcription);
+        enterUserInput(transcription.replaceAll("\\[|\\]", "").split("\\,")[0]);
     }
 
     @Override
