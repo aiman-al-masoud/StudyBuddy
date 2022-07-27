@@ -30,7 +30,6 @@ public class RowAdapter extends RecyclerView.Adapter<RowHolder> {
         items = new ArrayList<String>();
     }
 
-
     @NonNull
     @Override
     public RowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -57,16 +56,10 @@ public class RowAdapter extends RecyclerView.Adapter<RowHolder> {
         return items.size();
     }
 
-
     public void addRow(String text) {
         items.add(text);
         notifyItemInserted(getItemCount() - 1);
     }
-
-//    public void addOutgoingBubbleRow(String text) {
-//        items.add(text);
-//        notifyItemInserted(getItemCount() - 1);
-//    }
 
     /**
      * Assumptions:
@@ -79,7 +72,6 @@ public class RowAdapter extends RecyclerView.Adapter<RowHolder> {
     public int getItemViewType(int position) {
         return position%2==0 ? OUTGOING : INCOMING;
     }
-
 
 
 
