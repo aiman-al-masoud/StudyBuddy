@@ -30,7 +30,6 @@
         android:layout_marginBottom="32dp"
         android:imeOptions="actionSend"
         android:singleLine="true"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
