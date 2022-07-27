@@ -16,12 +16,16 @@ import java.util.List;
 
 public class RowAdapter extends RecyclerView.Adapter<RowHolder> {
 
+    private final int OUTGOING = 0;
+    private final int INCOMING = 1;
+
+
     private final Context context;
     private final LayoutInflater inflater;
     private final List<String> items;
 
-    public RowAdapter(Context context){
-        this.context =  context;
+    public RowAdapter(Context context) {
+        this.context = context;
         inflater = LayoutInflater.from(context);
         items = new ArrayList<String>();
     }
@@ -30,7 +34,15 @@ public class RowAdapter extends RecyclerView.Adapter<RowHolder> {
     @NonNull
     @Override
     public RowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View row = inflater.inflate(R.layout.row_incoming_bubble, parent, false);
+
+        View row;
+
+        if(viewType==OUTGOING){
+            row = inflater.inflate(R.layout.row_outgoing_bubble, parent, false);
+        }else{
+            row = inflater.inflate(R.layout.row_incoming_bubble, parent, false);
+        }
+
         return new RowHolder(row);
     }
 
@@ -46,12 +58,27 @@ public class RowAdapter extends RecyclerView.Adapter<RowHolder> {
     }
 
 
-    public void addIncomingBubbleRow(String text){
+    public void addRow(String text) {
         items.add(text);
-        notifyItemInserted(getItemCount()-1);
+        notifyItemInserted(getItemCount() - 1);
     }
 
+//    public void addOutgoingBubbleRow(String text) {
+//        items.add(text);
+//        notifyItemInserted(getItemCount() - 1);
+//    }
 
+    /**
+     * Assumptions:
+     * 1. strict alternation of messages.
+     * 2. Initial message by user (outgoing).
+     * @param position
+     * @return
+     */
+    @Override
+    public int getItemViewType(int position) {
+        return position%2==0 ? OUTGOING : INCOMING;
+    }
 
 
 
