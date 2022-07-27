@@ -91,6 +91,9 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
     public void enterUserInput(final String userInput){
 
+        listener.onUserInput(userInput);
+
+
         // AnotherCommand type should never become the previous command
         previousCommand = (currentCommand instanceof AnotherTimeCommand)? previousCommand : currentCommand;
 
@@ -224,7 +227,6 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         Log.d("StudyBuddy", "onTranscription: "+transcription);
 
         enterUserInput(transcription);
-        listener.onUserVoiceInput(transcription);
     }
 
     @Override

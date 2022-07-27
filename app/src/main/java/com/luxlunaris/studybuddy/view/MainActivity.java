@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     }
 
     @Override
-    public void onUserVoiceInput(String voiceInput) {
+    public void onUserInput(String voiceInput) {
         Log.d("MainActivity", "onUserVoiceInput: "+voiceInput);
         rowAdapter.addRow(voiceInput);
     }
