@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         rowAdapter = new RowAdapter(this);
         recyclerView.setAdapter(rowAdapter);
 
+        inputText.setZ(10000);
+
 
         micButton.setOnClickListener(e->{
             if(!studyBuddy.isKeyboardMode()){
