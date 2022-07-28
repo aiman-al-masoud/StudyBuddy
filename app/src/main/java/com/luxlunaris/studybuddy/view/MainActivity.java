@@ -178,6 +178,8 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     @Override
     public void onFileChanged(String title, String newBody) {
         Log.d("MainActivity", "onFileChanged: "+title);
+
+        studyBuddy.addChallengesFile(title, newBody);
     }
 
 
