@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.luxlunaris.studybuddy.R;
+import com.luxlunaris.studybuddy.model.utils.FileManager;
 import com.luxlunaris.studybuddy.view.filemanager.editor.TextEditorActivity;
 import com.luxlunaris.studybuddy.view.filemanager.list.FileList;
 
@@ -34,7 +35,18 @@ public class FileManagerActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("FileManagerActivity", "onActivityResult: "+data.getStringExtra(TextEditorActivity.TEXT_OUTPUT));
+
+        String newText = data.getStringExtra(TextEditorActivity.TEXT_OUTPUT);
+        String fileName = data.getStringExtra(TextEditorActivity.EDITED_FILE_NAME);
+
+
+        Log.d("FileManagerActivity", "onActivityResult: "+fileName);
+
+        Log.d("FileManagerActivity", "onActivityResult: "+newText);
+
+
+//        FileManager.writeTextFileToRootDir();
+
     }
 
 }

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,10 +24,13 @@ public class FileHolder extends RecyclerView.ViewHolder {
 
         textView.setOnClickListener(e->{
             try {
-                String text = FileManager.readTextFileFromRootDir(textView.getText().toString().replace(".txt", ""));
+                String fileName = textView.getText().toString().replace(".txt", "");
+                String text = FileManager.readTextFileFromRootDir(fileName);
 
                 Intent i = new Intent(e.getContext(), TextEditorActivity.class);
-                i.putExtra(TextEditorActivity.TEXT_EXTRA, text);
+
+                i.putExtra(TextEditorActivity.TEXT_INPUT, text);
+                i.putExtra(TextEditorActivity.EDITED_FILE_NAME, fileName);
 
                 ((Activity)e.getContext()).startActivityForResult(i, TextEditorActivity.TEXT_OUTPUT_RES_CODE);
 

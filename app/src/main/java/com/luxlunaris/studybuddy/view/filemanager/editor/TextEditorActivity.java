@@ -11,13 +11,15 @@ import com.luxlunaris.studybuddy.R;
 
 public class TextEditorActivity extends AppCompatActivity {
 
-    public static final String TEXT_EXTRA = "TEXT_EXTRA";
+    public static final String TEXT_INPUT = "TEXT_EXTRA";
     public static final String TEXT_OUTPUT = "TEXT_OUTPUT";
+    public static final String EDITED_FILE_NAME = "EDITED_FILE_NAME";
     public static final int TEXT_OUTPUT_RES_CODE = 1;
 
 
-    EditText editText;
-    String text;
+    private EditText editText;
+    private String text;
+    private String fileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +27,8 @@ public class TextEditorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_text_editor);
 
         editText = (EditText) findViewById(R.id.textEditorEditText);
-        text = getIntent().getExtras().getString(TEXT_EXTRA);
+        text = getIntent().getExtras().getString(TEXT_INPUT);
+        fileName = getIntent().getExtras().getString(EDITED_FILE_NAME);
         editText.setText(text);
     }
 
@@ -35,6 +38,7 @@ public class TextEditorActivity extends AppCompatActivity {
         Log.d("TextEditorActivity", "finish: I'm done!");
         Intent i = new Intent();
         i.putExtra(TEXT_OUTPUT, editText.getText().toString());
+        i.putExtra(EDITED_FILE_NAME, fileName);
         setResult(RESULT_OK, i);
         super.finish();
     }
