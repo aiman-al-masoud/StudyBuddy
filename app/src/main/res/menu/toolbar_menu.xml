@@ -6,6 +6,6 @@
         android:id="@+id/settingsItem"
         android:title="Settings" />
     <item
-        android:id="@+id/corporaItem"
+        android:id="@+id/fileManagerItem"
         android:title="Corpora" />
 </menu>
