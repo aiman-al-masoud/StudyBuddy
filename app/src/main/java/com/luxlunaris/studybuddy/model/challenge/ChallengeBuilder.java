@@ -90,6 +90,7 @@ public class ChallengeBuilder {
             return null;
         }
 
+
         String one = lines.get(0).replaceAll("\\s+", "");
         String two = lines.get(1).replaceAll("\\s+", "");
 
