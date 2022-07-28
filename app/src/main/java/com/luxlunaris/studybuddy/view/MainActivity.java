@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.luxlunaris.studybuddy.R;
+import com.luxlunaris.studybuddy.model.challenge.exceptions.WrongFormatException;
 import com.luxlunaris.studybuddy.model.studybuddy.StudyBuddy;
 import com.luxlunaris.studybuddy.model.studybuddy.StudyBuddyListener;
 import com.luxlunaris.studybuddy.model.utils.Async;
@@ -179,9 +180,15 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     public void onFileChanged(String title, String newBody) {
         Log.d("MainActivity", "onFileChanged: "+title);
 
+        try{
+            studyBuddy.setChallenges(title, newBody);
+
+        }catch (WrongFormatException e){
+            e.printStackTrace();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
 
 
-        studyBuddy.setChallenges(title, newBody);
     }
 
 

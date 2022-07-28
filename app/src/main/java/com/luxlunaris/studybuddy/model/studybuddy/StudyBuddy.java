@@ -10,6 +10,7 @@ import com.luxlunaris.studybuddy.model.challenge.ChallengeBuilder;
 import com.luxlunaris.studybuddy.model.challenge.ChallengeManager;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchFileException;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchKeywordsException;
+import com.luxlunaris.studybuddy.model.challenge.exceptions.WrongFormatException;
 import com.luxlunaris.studybuddy.model.examiner.Examiner;
 import com.luxlunaris.studybuddy.model.examiner.Verdict;
 import com.luxlunaris.studybuddy.model.scribe.Scribe;
@@ -64,7 +65,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         loudspeakerMode = true;
     }
 
-    public void setChallenges(String fileName, String body){
+    public void setChallenges(String fileName, String body) throws WrongFormatException {
         cm.setChallenges(fileName, cb.fromText(body,fileName));
     }
 
