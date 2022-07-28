@@ -19,6 +19,14 @@ import java.util.stream.Collectors;
 
 public class FileManager {
 
+
+    public static FileManagerListener listener;
+
+    public static  void setListener(FileManagerListener l){
+        listener = l;
+    }
+
+
     public static String getRootDirPath(){
         return Environment.getExternalStorageDirectory()+"/StudyBuddy";
     }
@@ -40,12 +48,6 @@ public class FileManager {
 
         overwriteTextFileInRootDir(title, body);
 
-//        f.createNewFile();
-//        FileWriter fr = new FileWriter(f);
-//        fr.write(body);
-//        fr.flush();
-//        fr.close();
-
     }
 
 
@@ -56,6 +58,8 @@ public class FileManager {
         fr.write(newBody);
         fr.flush();
         fr.close();
+
+        listener.onFileChanged(title, newBody);
     }
 
 
