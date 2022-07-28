@@ -39,12 +39,7 @@ public class TextEditorActivity extends AppCompatActivity {
         text = getIntent().getExtras().getString(TEXT_INPUT);
         fileName = getIntent().getExtras().getString(EDITED_FILE_NAME);
 
-
-
-
         toolbar.setTitle(fileName);
-
-
         editText.setText(text);
     }
 
@@ -78,11 +73,8 @@ public class TextEditorActivity extends AppCompatActivity {
     private void askExitWithoutSavePrompt(){
 
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
-//        final EditText input = new EditText(this);
-//        input.setText("new-file.txt");
-//        input.requestFocus();
+
         builder.setTitle("Exit without saving?");
-//        builder.setView(input);
 
         builder.setPositiveButton("Ok", (d, w)->{
             Log.d("TextEditorActivity", "askExitWithoutSavePrompt: yes<!!!+!P");
