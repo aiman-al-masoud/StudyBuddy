@@ -22,9 +22,7 @@ public class TextEditorToolbarMenuClickListener implements Toolbar.OnMenuItemCli
 
         switch (item.getItemId()){
 
-//            case R.id.settingsItem:
-//                Toast.makeText(context, "you clicked on settings...", Toast.LENGTH_SHORT).show();
-//                break;
+
             case R.id.saveEditedTextItem:
                 Toast.makeText(context, "Changes Saved! :-)", Toast.LENGTH_SHORT).show();
                 break;
