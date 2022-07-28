@@ -63,5 +63,16 @@ public abstract class AbstractChallenge implements Challenge{
         return answer;
     }
 
-
+    @Override
+    public String toString() {
+        return "Challenge{" +
+                "type=" + type +
+                ", question='" + question + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", allKeywords=" + allKeywords +
+                ", questionKeywords=" + questionKeywords +
+                ", answerKeywords=" + answerKeywords +
+                ", answer='" + answer + '\'' +
+                '}';
+    }
 }

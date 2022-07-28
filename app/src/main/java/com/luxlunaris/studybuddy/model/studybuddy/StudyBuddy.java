@@ -64,8 +64,8 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         loudspeakerMode = true;
     }
 
-    public void addChallengesFile(String title, String body){
-        cm.addAllChallenges(cb.fromText(body,title));
+    public void setChallenges(String fileName, String body){
+        cm.setChallenges(fileName, cb.fromText(body,fileName));
     }
 
     public void startTranscribing(){

@@ -18,7 +18,7 @@ public class ChallengeManager {
     public static final String ALL_FILES = "*";
 
     public final int MATCHING_KEYWORDS_THRESHOLD = 10; // percent
-    private final List<Challenge> challenges;
+    private List<Challenge> challenges;
 
     public ChallengeManager() {
         challenges = new ArrayList<Challenge>();
@@ -29,7 +29,14 @@ public class ChallengeManager {
      *
      * @param challenges
      */
-    public void addAllChallenges(List<Challenge> challenges) {
+    public void setChallenges(final String fileName, final List<Challenge> challenges) {
+
+        Log.d("ChallengeManager", "setChallenges: "+fileName);
+
+        this.challenges = this.challenges.stream().filter(c->!c.fileName().equals(fileName)).collect(Collectors.toList());
+
+        Log.d("ChallengeManager", "setChallenges: "+this.challenges);
+
         this.challenges.addAll(challenges);
     }
 

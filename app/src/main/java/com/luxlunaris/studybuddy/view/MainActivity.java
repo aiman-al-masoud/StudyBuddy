@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
                 FileManager.lsRootDir().stream().map(n->n.split("\\.")[0]).forEach(n->{
                     try {
                         String b = FileManager.readTextFileFromRootDir(n);
-                        studyBuddy.addChallengesFile(n, b);
+                        studyBuddy.setChallenges(n, b);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     public void onFileChanged(String title, String newBody) {
         Log.d("MainActivity", "onFileChanged: "+title);
 
-        studyBuddy.addChallengesFile(title, newBody);
+        studyBuddy.setChallenges(title, newBody);
     }
 
 
