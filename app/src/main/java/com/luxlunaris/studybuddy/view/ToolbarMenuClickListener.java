@@ -23,9 +23,9 @@ public class ToolbarMenuClickListener implements Toolbar.OnMenuItemClickListener
 
         switch (item.getItemId()){
 
-            case R.id.settingsItem:
-                Toast.makeText(context, "you clicked on settings...", Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.settingsItem:
+//                Toast.makeText(context, "you clicked on settings...", Toast.LENGTH_SHORT).show();
+//                break;
             case R.id.fileManagerItem:
                 Intent i = new Intent(context, FileManagerActivity.class);
                 context.startActivity(i);
