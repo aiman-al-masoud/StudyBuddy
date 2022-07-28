@@ -1,20 +1,15 @@
 package com.luxlunaris.studybuddy.model.challenge;
 
-import android.os.Build;
-
-
 import com.luxlunaris.studybuddy.model.challenge.classes.MultiAnswerChallenge;
 import com.luxlunaris.studybuddy.model.challenge.classes.SingleAnswerChallenge;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.WrongFormatException;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ChallengeBuilder {
-
 
     /**
      * Text format requires distinct answer-question blocks to be separated
@@ -27,27 +22,21 @@ public class ChallengeBuilder {
     public List<Challenge> fromText(String text, String fileName) throws WrongFormatException {
 
         String[] pars = text.split("(\\n){2,}");
-
-//        if(pars.length < 1){
-//            throw new WrongFormatException("Zero paragraphs!");
-//        }
-
-        return IntStream.range(0, pars.length).mapToObj(i->buildChallenge(i+1, pars[i], fileName)).collect(Collectors.toList());
-
-//        return Arrays.stream(pars).map(c -> buildChallenge(c, fileName)).collect(Collectors.toList());
-
+        return IntStream.range(0, pars.length).mapToObj(i -> buildChallenge(i + 1, pars[i], fileName)).collect(Collectors.toList());
     }
 
     /**
-     * Builds a Challenge from a paragraph with a question and an answer.
+     * Builds a Challenge from a paragraph with a question and an answer
+     * separated by a question mark.
+     *
      * @param challengeParagraph
      * @param fileName
      * @return
      */
-    private Challenge buildChallenge(final int paragraphIndex, final String challengeParagraph, final String fileName) throws WrongFormatException{
+    private Challenge buildChallenge(final int paragraphIndex, final String challengeParagraph, final String fileName) throws WrongFormatException {
 
-        if(!challengeParagraph.contains("?")){
-            throw new WrongFormatException("Missing (?) in paragraph: "+paragraphIndex);
+        if (!challengeParagraph.contains("?")) {
+            throw new WrongFormatException("Missing (?) in paragraph: " + paragraphIndex);
         }
 
         String answer;
@@ -57,14 +46,14 @@ public class ChallengeBuilder {
 
         question = parts[0];
 
-        if(question.length()<1){
-            throw new WrongFormatException("Empty question in paragraph: "+paragraphIndex);
+        if (question.length() < 1) {
+            throw new WrongFormatException("Empty question in paragraph: " + paragraphIndex);
         }
 
-        try{
+        try {
             answer = parts[1];
-        }catch (IndexOutOfBoundsException e){
-            throw new WrongFormatException("Empty answer in paragraph: "+paragraphIndex);
+        } catch (IndexOutOfBoundsException e) {
+            throw new WrongFormatException("Empty answer in paragraph: " + paragraphIndex);
         }
 
         List<String> answerList = isAnswerMutli(answer);
@@ -85,7 +74,7 @@ public class ChallengeBuilder {
      */
     private List<String> isAnswerMutli(String answerText) {
 
-        List<String> lines = Arrays.stream(answerText.split("\\n")).filter(l->l.length()>1).collect(Collectors.toList());
+        List<String> lines = Arrays.stream(answerText.split("\\n")).filter(l -> l.length() > 1).collect(Collectors.toList());
 
         if (lines.size() == 1) {
             return null;
@@ -104,23 +93,6 @@ public class ChallengeBuilder {
 
         return null;
     }
-
-
-//    public static boolean isFormatOk(String body){
-//
-//        String[] pars = body.split("(\\n){2,}");
-//
-//        if(pars.length < 1){
-//            return false;
-//        }
-//
-//        return Arrays.stream(pars).allMatch(s->{
-//            String[] qna = s.split("\\?");
-//            return (qna.length == 2) && (qna[0].length() > 0) && (qna[1].length() > 0);
-//        });
-//
-//    }
-
 
 
 }
