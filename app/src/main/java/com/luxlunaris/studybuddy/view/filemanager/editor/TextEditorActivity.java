@@ -1,6 +1,7 @@
 package com.luxlunaris.studybuddy.view.filemanager.editor;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.widget.EditText;
 
 import com.luxlunaris.studybuddy.R;
+import com.luxlunaris.studybuddy.view.ToolbarMenuClickListener;
 
 public class TextEditorActivity extends AppCompatActivity {
 
@@ -20,11 +22,17 @@ public class TextEditorActivity extends AppCompatActivity {
     private EditText editText;
     private String text;
     private String fileName;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_editor);
+
+        toolbar = (Toolbar) findViewById(R.id.textEditorToolbar);
+        toolbar.setOnMenuItemClickListener(new TextEditorToolbarMenuClickListener(this));
+
+
 
         editText = (EditText) findViewById(R.id.textEditorEditText);
         text = getIntent().getExtras().getString(TEXT_INPUT);

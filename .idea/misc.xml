@@ -14,6 +14,7 @@
         <entry key="app/src/main/res/layout/row.xml" value="0.264" />
         <entry key="app/src/main/res/layout/row_incoming_bubble.xml" value="0.1" />
         <entry key="app/src/main/res/layout/row_outgoing_bubble.xml" value="0.4" />
+        <entry key="app/src/main/res/menu/text_editor_toolbar_menu.xml" value="0.4" />
         <entry key="app/src/main/res/menu/toolbar_menu.xml" value="0.536" />
       </map>
     </option>

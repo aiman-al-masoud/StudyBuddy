@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         myToolbar.setOnMenuItemClickListener(new ToolbarMenuClickListener(this));
 
 
-
         micButton.setOnClickListener(e->{
             if(!studyBuddy.isKeyboardMode()){
                 studyBuddy.stopTranscribing();
