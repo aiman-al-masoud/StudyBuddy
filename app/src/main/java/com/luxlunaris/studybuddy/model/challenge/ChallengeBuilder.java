@@ -21,6 +21,10 @@ public class ChallengeBuilder {
      */
     public List<Challenge> fromText(String text, String fileName) throws WrongFormatException {
 
+        if(text.replaceAll("\\s+", "").isEmpty()){
+            throw new WrongFormatException("Empty corpus!");
+        }
+
         String[] pars = text.split("(\\n){2,}");
         return IntStream.range(0, pars.length).mapToObj(i -> buildChallenge(i + 1, pars[i], fileName)).collect(Collectors.toList());
     }
@@ -46,7 +50,7 @@ public class ChallengeBuilder {
 
         question = parts[0];
 
-        if (question.length() < 1) {
+        if (question.replaceAll("\\s+", "").length() < 1) {
             throw new WrongFormatException("Empty question in paragraph: " + paragraphIndex);
         }
 
@@ -55,6 +59,12 @@ public class ChallengeBuilder {
         } catch (IndexOutOfBoundsException e) {
             throw new WrongFormatException("Empty answer in paragraph: " + paragraphIndex);
         }
+
+        if(answer.replaceAll("\\s+", "").isEmpty()){
+            throw new WrongFormatException("Empty answer in paragraph: " + paragraphIndex);
+        }
+
+
 
         List<String> answerList = isAnswerMutli(answer);
 
