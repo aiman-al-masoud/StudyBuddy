@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ChallengeBuilder {
 
@@ -31,7 +32,9 @@ public class ChallengeBuilder {
 //            throw new WrongFormatException("Zero paragraphs!");
 //        }
 
-        return Arrays.stream(pars).map(c -> buildChallenge(c, fileName)).collect(Collectors.toList());
+        return IntStream.range(0, pars.length).mapToObj(i->buildChallenge(i+1, pars[i], fileName)).collect(Collectors.toList());
+
+//        return Arrays.stream(pars).map(c -> buildChallenge(c, fileName)).collect(Collectors.toList());
 
     }
 
@@ -41,14 +44,14 @@ public class ChallengeBuilder {
      * @param fileName
      * @return
      */
-    private Challenge buildChallenge(String challengeParagraph, String fileName) throws WrongFormatException{
+    private Challenge buildChallenge(int paragraphIndex, String challengeParagraph, String fileName) throws WrongFormatException{
 
         String[] parts;
         String question;
         String answer;
 
         if(!challengeParagraph.contains("?")){
-            throw new WrongFormatException("Missing (?)");
+            throw new WrongFormatException("Missing (?) in paragraph: "+paragraphIndex);
         }
 
         try{
