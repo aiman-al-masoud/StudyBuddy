@@ -118,7 +118,10 @@ public class FileManager {
     public static List<String> lsRootDir() throws IOException{
 
         try {
-            return Arrays.stream(new File(getRootDirPath()).listFiles()).map(File::getName).collect(Collectors.toList());
+            return Arrays.stream(new File(getRootDirPath()).listFiles())
+                    .sorted((f1,f2)->{return (int) (f2.lastModified() - f1.lastModified() ); })
+                    .map(File::getName)
+                    .collect(Collectors.toList());
         }catch (NullPointerException e){
             throw new IOException();
         }

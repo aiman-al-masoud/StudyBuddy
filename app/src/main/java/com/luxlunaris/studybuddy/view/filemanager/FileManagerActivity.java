@@ -38,6 +38,7 @@ public class FileManagerActivity extends AppCompatActivity {
         rowAdapter = new FileList(this);
         recyclerView.setAdapter(rowAdapter);
 
+
         addFileFab.setOnClickListener(this::askNewFileName);
 
     }
@@ -54,6 +55,13 @@ public class FileManagerActivity extends AppCompatActivity {
 
         builder.setPositiveButton("Ok", (d, w)->{
             Log.d("FileManagerActivity", "askNewFileName: "+input.getText().toString());
+
+//            rowAdapter.notifyItemInserted(rowAdapter.getItemCount()-1);
+            try {
+                FileManager.writeTextFileToRootDir(input.getText().toString().replace(".txt", ""), "");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         builder.setNegativeButton("Cancel", (d, w)->{
