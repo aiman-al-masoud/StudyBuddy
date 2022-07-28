@@ -11,10 +11,11 @@ import com.luxlunaris.studybuddy.view.filemanager.FileManagerActivity;
 
 public class TextEditorToolbarMenuClickListener implements Toolbar.OnMenuItemClickListener{
 
-    private Context context;
+//    private Context context;
+    private TextEditorActivity textEditorActivity;
 
-    public TextEditorToolbarMenuClickListener(Context context){
-        this.context = context;
+    public TextEditorToolbarMenuClickListener(TextEditorActivity textEditorActivity){
+        this.textEditorActivity = textEditorActivity;
     }
 
     @Override
@@ -24,7 +25,8 @@ public class TextEditorToolbarMenuClickListener implements Toolbar.OnMenuItemCli
 
 
             case R.id.saveEditedTextItem:
-                Toast.makeText(context, "Changes Saved! :-)", Toast.LENGTH_SHORT).show();
+                Toast.makeText(textEditorActivity, "Changes Saved! :-)", Toast.LENGTH_SHORT).show();
+                textEditorActivity.saveChanges();
                 break;
 
         }

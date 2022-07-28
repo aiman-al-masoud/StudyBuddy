@@ -86,6 +86,21 @@ public class TextEditorActivity extends AppCompatActivity {
         return !editText.getText().toString().equals(text);
     }
 
+    protected void saveChanges(){
+
+
+
+        try {
+            String newText = editText.getText().toString();
+            FileManager.overwriteTextFileInRootDir(fileName, newText);
+            text = newText;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
     private void askExitWithoutSavePrompt(){
 
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
