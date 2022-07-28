@@ -9,16 +9,28 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.luxlunaris.studybuddy.R;
+import com.luxlunaris.studybuddy.model.utils.FileManager;
+
+import java.io.IOException;
+import java.util.List;
 
 public class FileList extends RecyclerView.Adapter<FileHolder> {
 
-    Context context;
+    private Context context;
     private final LayoutInflater inflater;
 
+    private List<String> fileNames;
 
     public FileList(Context context){
         this.context = context;
+
         inflater = LayoutInflater.from(context);
+
+        try {
+            fileNames = FileManager.lsRootDir();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -31,12 +43,19 @@ public class FileList extends RecyclerView.Adapter<FileHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FileHolder holder, int position) {
-        holder.textView.setText("file"+position);
+        holder.textView.setText(positionToName(position));
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return fileNames.size();
     }
+
+
+    private String positionToName(int pos){
+        return fileNames.get(pos);
+    }
+
+
 
 }
