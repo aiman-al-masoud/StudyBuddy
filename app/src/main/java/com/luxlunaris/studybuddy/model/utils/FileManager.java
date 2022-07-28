@@ -83,6 +83,10 @@ public class FileManager {
         return os.toString();
     }
 
+//    public static void deleteFile(){
+
+//    }
+
 
     public static String readTextFileFromRootDir(String title) throws  IOException{
         String path = getRootDirPath()+"/"+title+".txt";

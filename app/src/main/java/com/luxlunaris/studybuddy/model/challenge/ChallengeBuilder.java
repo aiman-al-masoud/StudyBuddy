@@ -7,6 +7,7 @@ import com.luxlunaris.studybuddy.model.challenge.classes.MultiAnswerChallenge;
 import com.luxlunaris.studybuddy.model.challenge.classes.SingleAnswerChallenge;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,10 @@ public class ChallengeBuilder {
      * @return
      */
     public List<Challenge> fromText(String text, String fileName) {
+
+        if(!isFormatOk(text)){
+            return Collections.emptyList();
+        }
 
         System.out.println("this is the text "+text);
 
@@ -81,6 +86,22 @@ public class ChallengeBuilder {
         }
 
         return null;
+    }
+
+
+    public static boolean isFormatOk(String body){
+
+        String[] pars = body.split("(\\n){2,}");
+
+        if(pars.length < 1){
+            return false;
+        }
+
+        return Arrays.stream(pars).allMatch(s->{
+            String[] qna = s.split("\\?");
+            return (qna.length == 2) && (qna[0].length() > 0) && (qna[1].length() > 0);
+        });
+
     }
 
 
