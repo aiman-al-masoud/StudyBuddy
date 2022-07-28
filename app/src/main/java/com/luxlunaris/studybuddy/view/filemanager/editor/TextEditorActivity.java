@@ -39,6 +39,9 @@ public class TextEditorActivity extends AppCompatActivity {
         text = getIntent().getExtras().getString(TEXT_INPUT);
         fileName = getIntent().getExtras().getString(EDITED_FILE_NAME);
 
+
+
+
         toolbar.setTitle(fileName);
 
 
@@ -49,7 +52,13 @@ public class TextEditorActivity extends AppCompatActivity {
     @Override
     public void finish() {
         Log.d("TextEditorActivity", "finish: I'm done!");
-        askExitWithoutSavePrompt();
+
+        if(isEdited()){
+            askExitWithoutSavePrompt();
+        }else{
+            super.finish();
+        }
+
     }
 
 
@@ -61,6 +70,10 @@ public class TextEditorActivity extends AppCompatActivity {
 //        super.finish();
 //    }
 
+
+    private boolean isEdited(){
+        return !editText.getText().toString().equals(text);
+    }
 
     private void askExitWithoutSavePrompt(){
 
