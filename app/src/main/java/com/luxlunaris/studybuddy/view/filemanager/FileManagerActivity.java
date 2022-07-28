@@ -1,6 +1,7 @@
 package com.luxlunaris.studybuddy.view.filemanager;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,8 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
 import com.luxlunaris.studybuddy.view.filemanager.editor.TextEditorActivity;
@@ -21,6 +25,7 @@ public class FileManagerActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private FileList rowAdapter;
+    private FloatingActionButton addFileFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +33,30 @@ public class FileManagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_file_manager);
 
         recyclerView = (RecyclerView) findViewById(R.id.fileManagerRecyclerView);
+        addFileFab = (FloatingActionButton) findViewById(R.id.fileManagerAddFileFab);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         rowAdapter = new FileList(this);
         recyclerView.setAdapter(rowAdapter);
 
+        addFileFab.setOnClickListener(this::askNewFileName);
+
+    }
+
+    private void askNewFileName(View view) {
+
+        AlertDialog.Builder builder =new AlertDialog.Builder(this);
+        final EditText input = new EditText(this);
+        builder.setView(input);
+
+        builder.setPositiveButton("Ok", (d, w)->{
+            Log.d("FileManagerActivity", "askNewFileName: "+input.getText().toString());
+        });
+
+        builder.setNegativeButton("Cancel", (d, w)->{
+            d.cancel();
+        });
+
+        builder.show();
 
     }
 
@@ -55,5 +80,12 @@ public class FileManagerActivity extends AppCompatActivity {
         }
         
     }
+
+
+
+
+
+
+
 
 }
