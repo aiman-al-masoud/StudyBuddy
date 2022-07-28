@@ -27,9 +27,9 @@ public class ChallengeBuilder {
 
         String[] pars = text.split("(\\n){2,}");
 
-        if(pars.length < 1){
-            throw new WrongFormatException("Zero paragraphs!");
-        }
+//        if(pars.length < 1){
+//            throw new WrongFormatException("Zero paragraphs!");
+//        }
 
         return Arrays.stream(pars).map(c -> buildChallenge(c, fileName)).collect(Collectors.toList());
 
@@ -46,6 +46,10 @@ public class ChallengeBuilder {
         String[] parts;
         String question;
         String answer;
+
+        if(!challengeParagraph.contains("?")){
+            throw new WrongFormatException("Missing (?)");
+        }
 
         try{
             parts = challengeParagraph.split("\\?");
