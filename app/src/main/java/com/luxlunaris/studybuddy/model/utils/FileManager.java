@@ -46,6 +46,7 @@ public class FileManager {
             return;
         }
 
+        f.createNewFile();
         overwriteTextFileInRootDir(title, body);
 
     }
@@ -83,9 +84,11 @@ public class FileManager {
         return os.toString();
     }
 
-//    public static void deleteFile(){
-
-//    }
+    public static void deleteTextFileFromRootDir(String title){
+        String path = getRootDirPath()+"/"+title+".txt";
+        File f = new File(path);
+        f.delete();
+    }
 
 
     public static String readTextFileFromRootDir(String title) throws  IOException{
