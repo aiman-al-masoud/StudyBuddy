@@ -10,6 +10,9 @@ import com.luxlunaris.studybuddy.model.speaker.SpeakerListener;
 
 import org.w3c.dom.Text;
 
+import java.util.Arrays;
+import java.util.Locale;
+
 public class GoogleSpeaker extends UtteranceProgressListener implements Speaker {
 
     private TextToSpeech tts;
@@ -24,8 +27,22 @@ public class GoogleSpeaker extends UtteranceProgressListener implements Speaker 
         tts.setOnUtteranceProgressListener(this);
         this.speakerListener  =speakerListener;
 
+//        String locale = context.getResources().getConfiguration().locale.getCountry();
+//        Log.d("GoogleSpeaker", "GoogleSpeaker: "+locale);
+
+        Arrays.stream(Locale.getAvailableLocales()).forEach(l->{
+            Log.d("GoogleSpeaker", "GoogleSpeaker: "+l);
+        });
+
+
         //TODO: check locale
-//        tts.setLanguage(Locale.US);
+        tts.setLanguage(Locale.US);
+//        tts.setLanguage()
+
+//        Locale l = Locale.forLanguageTag("it");
+//        tts.setLanguage(l);
+//        tts.setLanguage(new Locale("it_IT"));
+
     }
 
     @Override
