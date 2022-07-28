@@ -1,5 +1,6 @@
 package com.luxlunaris.studybuddy.view.filemanager.list;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
@@ -28,7 +29,9 @@ public class FileHolder extends RecyclerView.ViewHolder {
 
                 Intent i = new Intent(e.getContext(), TextEditorActivity.class);
                 i.putExtra(TextEditorActivity.TEXT_EXTRA, text);
-                e.getContext().startActivity(i);
+
+                ((Activity)e.getContext()).startActivityForResult(i, TextEditorActivity.TEXT_OUTPUT_RES_CODE);
+
 
             } catch (IOException ioException) {
                 ioException.printStackTrace();
