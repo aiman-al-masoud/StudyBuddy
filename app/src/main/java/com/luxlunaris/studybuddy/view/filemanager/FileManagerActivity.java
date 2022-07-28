@@ -8,11 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
 import com.luxlunaris.studybuddy.view.filemanager.editor.TextEditorActivity;
 import com.luxlunaris.studybuddy.view.filemanager.list.FileList;
+
+import java.io.IOException;
 
 public class FileManagerActivity extends AppCompatActivity {
 
@@ -44,9 +47,13 @@ public class FileManagerActivity extends AppCompatActivity {
 
         Log.d("FileManagerActivity", "onActivityResult: "+newText);
 
-
-//        FileManager.writeTextFileToRootDir();
-
+        try {
+            FileManager.overwriteTextFileInRootDir(fileName, newText);
+            Toast.makeText(this, "Saved Changes!", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
     }
 
 }

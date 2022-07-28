@@ -38,13 +38,26 @@ public class FileManager {
             return;
         }
 
-        f.createNewFile();
-        FileWriter fr = new FileWriter(f);
-        fr.write(body);
-        fr.flush();
-        fr.close();
+        overwriteTextFileInRootDir(title, body);
+
+//        f.createNewFile();
+//        FileWriter fr = new FileWriter(f);
+//        fr.write(body);
+//        fr.flush();
+//        fr.close();
 
     }
+
+
+    public static void overwriteTextFileInRootDir(String title, String newBody) throws IOException{
+
+        File f = new File(getRootDirPath()+"/"+title+".txt");
+        FileWriter fr = new FileWriter(f);
+        fr.write(newBody);
+        fr.flush();
+        fr.close();
+    }
+
 
 
     public static String uriToText(Context context, Uri uri) throws  IOException{
