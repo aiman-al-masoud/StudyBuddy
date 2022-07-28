@@ -1,6 +1,7 @@
 package com.luxlunaris.studybuddy.view.filemanager.list;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
+import com.luxlunaris.studybuddy.model.utils.FileManagerListener;
 
 import java.io.IOException;
 import java.util.List;
 
-public class FileList extends RecyclerView.Adapter<FileHolder> {
+public class FileList extends RecyclerView.Adapter<FileHolder> implements FileManagerListener {
 
     private Context context;
     private final LayoutInflater inflater;
@@ -31,6 +33,8 @@ public class FileList extends RecyclerView.Adapter<FileHolder> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        FileManager.addListener(this);
 
     }
 
@@ -57,5 +61,8 @@ public class FileList extends RecyclerView.Adapter<FileHolder> {
     }
 
 
-
+    @Override
+    public void onFileChanged(String title, String newBody) {
+        Log.d("FileList", "onFileChanged: "+title);
+    }
 }

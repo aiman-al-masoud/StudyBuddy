@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         }
 
 
-        FileManager.setListener(this);
+        FileManager.addListener(this);
 
         inputText = (EditText) findViewById(R.id.inputText);
         micButton = (FloatingActionButton) findViewById(R.id.micButton);
