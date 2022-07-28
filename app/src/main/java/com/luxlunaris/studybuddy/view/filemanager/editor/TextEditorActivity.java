@@ -31,9 +31,6 @@ public class TextEditorActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.textEditorToolbar);
         toolbar.setOnMenuItemClickListener(new TextEditorToolbarMenuClickListener(this));
-
-
-
         editText = (EditText) findViewById(R.id.textEditorEditText);
         text = getIntent().getExtras().getString(TEXT_INPUT);
         fileName = getIntent().getExtras().getString(EDITED_FILE_NAME);
