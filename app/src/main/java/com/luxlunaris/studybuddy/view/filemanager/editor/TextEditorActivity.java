@@ -7,6 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
 import android.widget.EditText;
 
 import com.luxlunaris.studybuddy.R;
@@ -41,6 +43,20 @@ public class TextEditorActivity extends AppCompatActivity {
 
         toolbar.setTitle(fileName);
         editText.setText(text);
+
+
+        editText.setOnKeyListener((a,b,c)->{
+            Log.d("TextEditorActivity", "onKey: "+a);
+
+            if(isEdited()){
+                toolbar.setTitle(fileName+"*");
+            }else{
+                toolbar.setTitle(fileName);
+            }
+
+            return false;
+        });
+
     }
 
 
