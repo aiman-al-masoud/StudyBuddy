@@ -46,6 +46,10 @@ public class FileManagerActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
         final EditText input = new EditText(this);
+        input.setText("new-file.txt");
+        input.requestFocus();
+        builder.setTitle("Create New File");
+
         builder.setView(input);
 
         builder.setPositiveButton("Ok", (d, w)->{
