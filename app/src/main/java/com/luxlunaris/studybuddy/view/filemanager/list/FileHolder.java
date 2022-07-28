@@ -32,8 +32,7 @@ public class FileHolder extends RecyclerView.ViewHolder {
                 i.putExtra(TextEditorActivity.TEXT_INPUT, text);
                 i.putExtra(TextEditorActivity.EDITED_FILE_NAME, fileName);
 
-                ((Activity)e.getContext()).startActivityForResult(i, TextEditorActivity.TEXT_OUTPUT_RES_CODE);
-
+                e.getContext().startActivity(i);
 
             } catch (IOException ioException) {
                 ioException.printStackTrace();

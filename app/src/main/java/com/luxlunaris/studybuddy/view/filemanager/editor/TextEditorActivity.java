@@ -20,9 +20,7 @@ import java.io.IOException;
 public class TextEditorActivity extends AppCompatActivity {
 
     public static final String TEXT_INPUT = "TEXT_EXTRA";
-    public static final String TEXT_OUTPUT = "TEXT_OUTPUT";
     public static final String EDITED_FILE_NAME = "EDITED_FILE_NAME";
-    public static final int TEXT_OUTPUT_RES_CODE = 1;
 
 
     private EditText editText;
@@ -71,15 +69,6 @@ public class TextEditorActivity extends AppCompatActivity {
         }
 
     }
-
-
-//    private void doFinish(){
-//        Intent i = new Intent();
-//        i.putExtra(TEXT_OUTPUT, editText.getText().toString());
-//        i.putExtra(EDITED_FILE_NAME, fileName);
-//        setResult(RESULT_OK, i);
-//        super.finish();
-//    }
 
 
     private boolean isEdited(){

@@ -74,19 +74,6 @@ public class FileManagerActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-//        String newText = data.getStringExtra(TextEditorActivity.TEXT_OUTPUT);
-//        String fileName = data.getStringExtra(TextEditorActivity.EDITED_FILE_NAME);
-//        Log.d("FileManagerActivity", "onActivityResult: "+fileName);
-//        Log.d("FileManagerActivity", "onActivityResult: "+newText);
-
-//        try {
-//            FileManager.overwriteTextFileInRootDir(fileName, newText);
-//            Toast.makeText(this, "Saved Changes!", Toast.LENGTH_SHORT).show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        
     }
 
 
