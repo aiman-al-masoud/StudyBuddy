@@ -59,7 +59,13 @@ public class FileManager {
         fr.flush();
         fr.close();
 
-        listener.onFileChanged(title, newBody);
+
+        try{
+            listener.onFileChanged(title, newBody);
+        }catch (NullPointerException e ){
+            e.printStackTrace();
+        }
+
     }
 
 

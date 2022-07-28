@@ -20,13 +20,14 @@ import com.luxlunaris.studybuddy.model.studybuddy.StudyBuddy;
 import com.luxlunaris.studybuddy.model.studybuddy.StudyBuddyListener;
 import com.luxlunaris.studybuddy.model.utils.Async;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
+import com.luxlunaris.studybuddy.model.utils.FileManagerListener;
 import com.luxlunaris.studybuddy.model.utils.Permissions;
 import com.luxlunaris.studybuddy.view.chatui.RowAdapter;
 
 import java.io.IOException;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity implements StudyBuddyListener {
+public class MainActivity extends AppCompatActivity implements StudyBuddyListener, FileManagerListener {
 
     private StudyBuddy studyBuddy;
     private EditText inputText;
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
             init();
         }
 
+
+        FileManager.setListener(this);
 
         inputText = (EditText) findViewById(R.id.inputText);
         micButton = (FloatingActionButton) findViewById(R.id.micButton);
@@ -171,5 +174,11 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         micButton.setImageDrawable(getDrawable(android.R.drawable.stat_notify_call_mute));
 
     }
+
+    @Override
+    public void onFileChanged(String title, String newBody) {
+        Log.d("MainActivity", "onFileChanged: "+title);
+    }
+
 
 }
