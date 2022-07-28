@@ -86,7 +86,7 @@ public class ChallengeBuilder {
 
         List<String> lines = Arrays.stream(answerText.split("\\n")).filter(l -> l.length() > 1).collect(Collectors.toList());
 
-        if (lines.size() == 1) {
+        if (lines.size() < 2) {
             return null;
         }
 
