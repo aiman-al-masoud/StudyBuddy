@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     }
 
 
+
     @Override
     public void onOutput(String output) {
         Log.d("MainActivity", "onOutput: "+output);
