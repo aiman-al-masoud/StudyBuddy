@@ -56,7 +56,6 @@ public class FileManagerActivity extends AppCompatActivity {
         builder.setPositiveButton("Ok", (d, w)->{
             Log.d("FileManagerActivity", "askNewFileName: "+input.getText().toString());
 
-//            rowAdapter.notifyItemInserted(rowAdapter.getItemCount()-1);
             try {
                 FileManager.writeTextFileToRootDir(input.getText().toString().replace(".txt", ""), "");
             } catch (IOException e) {
@@ -76,20 +75,17 @@ public class FileManagerActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        String newText = data.getStringExtra(TextEditorActivity.TEXT_OUTPUT);
-        String fileName = data.getStringExtra(TextEditorActivity.EDITED_FILE_NAME);
+//        String newText = data.getStringExtra(TextEditorActivity.TEXT_OUTPUT);
+//        String fileName = data.getStringExtra(TextEditorActivity.EDITED_FILE_NAME);
+//        Log.d("FileManagerActivity", "onActivityResult: "+fileName);
+//        Log.d("FileManagerActivity", "onActivityResult: "+newText);
 
-
-        Log.d("FileManagerActivity", "onActivityResult: "+fileName);
-
-        Log.d("FileManagerActivity", "onActivityResult: "+newText);
-
-        try {
-            FileManager.overwriteTextFileInRootDir(fileName, newText);
-            Toast.makeText(this, "Saved Changes!", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            FileManager.overwriteTextFileInRootDir(fileName, newText);
+//            Toast.makeText(this, "Saved Changes!", Toast.LENGTH_SHORT).show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         
     }
 
