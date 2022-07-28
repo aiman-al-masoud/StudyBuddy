@@ -44,22 +44,27 @@ public class ChallengeBuilder {
      * @param fileName
      * @return
      */
-    private Challenge buildChallenge(int paragraphIndex, String challengeParagraph, String fileName) throws WrongFormatException{
-
-        String[] parts;
-        String question;
-        String answer;
+    private Challenge buildChallenge(final int paragraphIndex, final String challengeParagraph, final String fileName) throws WrongFormatException{
 
         if(!challengeParagraph.contains("?")){
             throw new WrongFormatException("Missing (?) in paragraph: "+paragraphIndex);
         }
 
+        String answer;
+        String[] parts;
+        String question;
+        parts = challengeParagraph.split("\\?");
+
+        question = parts[0];
+
+        if(question.length()<1){
+            throw new WrongFormatException("Empty question in paragraph: "+paragraphIndex);
+        }
+
         try{
-            parts = challengeParagraph.split("\\?");
-            question = parts[0];
             answer = parts[1];
-        }catch (Exception e){
-            throw new WrongFormatException("Wrong ...");
+        }catch (IndexOutOfBoundsException e){
+            throw new WrongFormatException("Empty answer in paragraph: "+paragraphIndex);
         }
 
         List<String> answerList = isAnswerMutli(answer);
