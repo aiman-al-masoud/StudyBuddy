@@ -64,5 +64,16 @@ public class FileList extends RecyclerView.Adapter<FileHolder> implements FileMa
     @Override
     public void onFileChanged(String title, String newBody) {
         Log.d("FileList", "onFileChanged: "+title);
+
+        if(fileNames.contains(title+".txt")){
+            return;
+        }
+
+        fileNames.add(title+".txt");
+        notifyItemInserted(fileNames.size()-1);
+
+
     }
+
+
 }
