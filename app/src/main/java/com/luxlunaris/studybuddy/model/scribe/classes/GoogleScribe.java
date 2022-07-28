@@ -11,6 +11,7 @@ import android.speech.SpeechRecognizer;
 
 import com.luxlunaris.studybuddy.model.scribe.Scribe;
 import com.luxlunaris.studybuddy.model.scribe.ScribeListener;
+import com.luxlunaris.studybuddy.model.utils.Settings;
 
 import java.util.List;
 
@@ -32,8 +33,13 @@ public class GoogleScribe implements Scribe, RecognitionListener {
 
         speechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
-        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "en-US");
+//        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
+//        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "en-US");
+
+        String lang = Settings.instance().getString(Settings.LANGUAGE);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, lang);
+        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, lang);
+
 
         // check if offline usage is still supported
         if(isGoogleSearchVersionCivilized()){
