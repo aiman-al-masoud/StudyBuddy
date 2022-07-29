@@ -1,19 +1,15 @@
-package com.luxlunaris.studybuddy.view.filemanager.editor;
+package com.luxlunaris.studybuddy.view.editor;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
 import android.widget.EditText;
 
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
-import com.luxlunaris.studybuddy.view.ToolbarMenuClickListener;
 
 import java.io.IOException;
 

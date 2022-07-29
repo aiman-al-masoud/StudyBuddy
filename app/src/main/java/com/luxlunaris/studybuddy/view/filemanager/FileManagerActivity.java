@@ -12,16 +12,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
-import com.luxlunaris.studybuddy.view.ToolbarMenuClickListener;
-import com.luxlunaris.studybuddy.view.filemanager.editor.TextEditorActivity;
 import com.luxlunaris.studybuddy.view.filemanager.list.FileList;
 
-import java.io.File;
 import java.io.IOException;
 
 public class FileManagerActivity extends AppCompatActivity {

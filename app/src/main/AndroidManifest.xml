@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
-            android:name=".view.filemanager.editor.TextEditorActivity"
+            android:name=".view.editor.TextEditorActivity"
             android:exported="false" />
         <activity
             android:name=".view.filemanager.FileManagerActivity"

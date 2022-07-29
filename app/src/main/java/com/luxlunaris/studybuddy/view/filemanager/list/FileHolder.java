@@ -1,8 +1,6 @@
 package com.luxlunaris.studybuddy.view.filemanager.list;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
@@ -11,9 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
-import com.luxlunaris.studybuddy.view.filemanager.editor.TextEditorActivity;
+import com.luxlunaris.studybuddy.view.editor.TextEditorActivity;
 
-import java.io.File;
 import java.io.IOException;
 
 

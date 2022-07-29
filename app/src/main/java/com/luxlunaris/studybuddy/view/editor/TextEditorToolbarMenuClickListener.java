@@ -1,13 +1,11 @@
-package com.luxlunaris.studybuddy.view.filemanager.editor;
+package com.luxlunaris.studybuddy.view.editor;
 
-import android.content.Context;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
 import com.luxlunaris.studybuddy.R;
-import com.luxlunaris.studybuddy.view.filemanager.FileManagerActivity;
 
 public class TextEditorToolbarMenuClickListener implements Toolbar.OnMenuItemClickListener{
 
