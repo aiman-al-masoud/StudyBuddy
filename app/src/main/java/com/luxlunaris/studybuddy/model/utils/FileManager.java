@@ -110,11 +110,21 @@ public class FileManager {
         return Environment.getExternalStorageDirectory() + "/StudyBuddy";
     }
 
+    public static String getConfigDirPath(){
+        return getRootDirPath()+"/"+"Config";
+    }
+
     public static void createRootDir() {
         File dir = new File(getRootDirPath());
         if (!dir.exists()) {
             dir.mkdirs();
         }
+
+        dir = new File(getConfigDirPath());
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+
     }
 
     public static void writeTextFileToRootDir(String title, String body) throws IOException {
@@ -197,9 +207,6 @@ public class FileManager {
             l.onFileDeleted(title, oldPosition);
         }
 
-
-//        listeners.forEach(l->{
-//        });
     }
 
     public static void deleteAll(List<String> titles){
@@ -244,16 +251,6 @@ public class FileManager {
      */
     public static List<String> lsRootDir() throws IOException {
 
-//        try {
-//            return Arrays.stream(new File(getRootDirPath()).listFiles())
-//                    .sorted((f1, f2) -> {
-//                        return (int) (f2.lastModified() - f1.lastModified());
-//                    })
-//                    .map(File::getName)
-//                    .collect(Collectors.toList());
-//        } catch (NullPointerException e) {
-//            throw new IOException();
-//        }
 
         return files.stream()
                 .map(File::getName)
@@ -308,10 +305,18 @@ public class FileManager {
         activity.startActivityForResult(intent, PICK_TEXT_FILE_REQUEST_CODE);
     }
 
-    /*public static void importTextFileToRootDir(Activity activity, Uri pickerInitialUri){
 
-    }*/
+    public static void setIntroSeen(){
+        try {
+            new File(getConfigDirPath()+"/"+"intro_seen.txt").createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public static boolean isIntroSeen(){
+        return new File(getConfigDirPath()+"/"+"intro_seen.txt").exists();
+    }
 
 
 

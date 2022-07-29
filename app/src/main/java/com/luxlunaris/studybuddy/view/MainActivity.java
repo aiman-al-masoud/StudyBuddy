@@ -115,8 +115,9 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         });
 
 
-        startActivity(new Intent(this, IntroActivity.class));
-
+        if(!FileManager.isIntroSeen()){
+            startActivity(new Intent(this, IntroActivity.class));
+        }
 
     }
 
