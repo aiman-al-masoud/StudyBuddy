@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
 
         }catch (WrongFormatException e){
             e.printStackTrace();
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
 
