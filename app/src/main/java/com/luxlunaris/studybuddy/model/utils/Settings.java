@@ -3,6 +3,7 @@ package com.luxlunaris.studybuddy.model.utils;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class Settings {
 
@@ -31,6 +32,10 @@ public class Settings {
 
     public List<String> getAvailableLanguages(){
         return Arrays.asList("en");
+    }
+
+    public String getLanguage(){
+        return Locale.getDefault().getLanguage();
     }
 
 

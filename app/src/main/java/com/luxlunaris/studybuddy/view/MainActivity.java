@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         });
 
 
-        Log.d("MainActivity", "onCreate: "+Locale.getDefault().getLanguage());
+
 
 
     }
