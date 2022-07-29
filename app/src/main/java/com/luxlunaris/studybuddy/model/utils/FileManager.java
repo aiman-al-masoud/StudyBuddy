@@ -119,7 +119,7 @@ public class FileManager {
 
     public static void writeTextFileToRootDir(String title, String body) throws IOException {
 
-        File f = new File(getRootDirPath() + "/" + title + ".txt");
+        File f = new File(getRootDirPath() + "/" + title.replace(".txt", "") + ".txt");
 
         if (f.exists()) {
             return;
@@ -155,12 +155,20 @@ public class FileManager {
         InputStream is = context.getContentResolver().openInputStream(uri);
         ByteArrayOutputStream os = new ByteArrayOutputStream();
 
+//        Log.d("FileManager", "uriToText: "+uri.getPath());
+
         int i;
         while ((i = is.read()) != -1) {
             os.write(i);
         }
 
         return os.toString();
+    }
+
+
+    public static String fileNameFromUri(Uri uri){
+        String[] p = uri.getPath().split("/");
+        return p[p.length-1];
     }
 
     //TODO
@@ -298,6 +306,10 @@ public class FileManager {
         intent.setType("text/plain");
         activity.startActivityForResult(intent, PICK_TEXT_FILE_REQUEST_CODE);
     }
+
+    /*public static void importTextFileToRootDir(Activity activity, Uri pickerInitialUri){
+
+    }*/
 
 
 

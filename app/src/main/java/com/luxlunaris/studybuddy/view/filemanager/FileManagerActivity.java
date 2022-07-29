@@ -21,6 +21,7 @@ import com.luxlunaris.studybuddy.view.ToolbarMenuClickListener;
 import com.luxlunaris.studybuddy.view.filemanager.editor.TextEditorActivity;
 import com.luxlunaris.studybuddy.view.filemanager.list.FileList;
 
+import java.io.File;
 import java.io.IOException;
 
 public class FileManagerActivity extends AppCompatActivity {
@@ -94,8 +95,14 @@ public class FileManagerActivity extends AppCompatActivity {
 
         if(requestCode == FileManager.PICK_TEXT_FILE_REQUEST_CODE){
             try {
-                String s = FileManager.uriToText(this, data.getData());
-                Log.d("FileManagerActivity", "onActivityResult: "+s);
+                String title = FileManager.fileNameFromUri(data.getData()).replace(".txt", "");
+                String body = FileManager.uriToText(this, data.getData());
+
+                Log.d("FileManagerActivity", "onActivityResult: "+title);
+                Log.d("FileManagerActivity", "onActivityResult: "+body);
+
+                FileManager.writeTextFileToRootDir(title, body);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
