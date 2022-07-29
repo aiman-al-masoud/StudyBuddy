@@ -27,6 +27,7 @@ import com.luxlunaris.studybuddy.view.chatui.RowAdapter;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements StudyBuddyListener, FileManagerListener {
 
@@ -104,6 +105,9 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
                 speakerButton.setImageDrawable(getDrawable(android.R.drawable.ic_lock_silent_mode_off));
             }
         });
+
+
+        Log.d("MainActivity", "onCreate: "+Locale.getDefault().getLanguage());
 
 
     }

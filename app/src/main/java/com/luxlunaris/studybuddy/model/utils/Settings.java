@@ -1,6 +1,8 @@
 package com.luxlunaris.studybuddy.model.utils;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class Settings {
 
@@ -27,6 +29,9 @@ public class Settings {
         return map.put(key, val);
     }
 
+    public List<String> getAvailableLanguages(){
+        return Arrays.asList("en");
+    }
 
 
 

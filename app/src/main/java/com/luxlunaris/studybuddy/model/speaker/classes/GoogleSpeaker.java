@@ -30,13 +30,13 @@ public class GoogleSpeaker extends UtteranceProgressListener implements Speaker 
 //        String locale = context.getResources().getConfiguration().locale.getCountry();
 //        Log.d("GoogleSpeaker", "GoogleSpeaker: "+locale);
 
-        Arrays.stream(Locale.getAvailableLocales()).forEach(l->{
-            Log.d("GoogleSpeaker", "GoogleSpeaker: "+l);
-        });
+//        Arrays.stream(Locale.getAvailableLocales()).forEach(l->{
+//            Log.d("GoogleSpeaker", "GoogleSpeaker: "+l);
+//        });
 
 
         //TODO: check locale
-        tts.setLanguage(Locale.US);
+//        tts.setLanguage(Locale.US);
 //        tts.setLanguage()
 
 //        Locale l = Locale.forLanguageTag("it");
