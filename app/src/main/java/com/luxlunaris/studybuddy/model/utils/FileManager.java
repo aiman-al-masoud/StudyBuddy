@@ -139,6 +139,7 @@ public class FileManager {
         }
 
         files = files.stream().filter(of -> of.getName()!=f.getName()).collect(Collectors.toList());
+        unselectFile(title+".txt");
 
         listeners.forEach(l->{
             l.onFileDeleted(title);
