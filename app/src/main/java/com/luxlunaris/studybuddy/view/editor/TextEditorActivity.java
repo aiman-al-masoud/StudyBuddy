@@ -2,6 +2,10 @@ package com.luxlunaris.studybuddy.view.editor;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.BackgroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.util.Pair;
 
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.challenge.ChallengeBuilder;
@@ -18,8 +23,10 @@ import com.luxlunaris.studybuddy.model.challenge.exceptions.WrongFormatException
 import com.luxlunaris.studybuddy.model.utils.FileManager;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.EmptyStackException;
 import java.util.Stack;
+
 
 public class TextEditorActivity extends AppCompatActivity {
 
@@ -70,6 +77,8 @@ public class TextEditorActivity extends AppCompatActivity {
 
             return false;
         });
+
+
 
     }
 
@@ -155,12 +164,69 @@ public class TextEditorActivity extends AppCompatActivity {
             cb.fromText(text, "name");
             formatErrorTextView.setText("");
             formatErrorTextView.setVisibility(View.GONE);
+            removeHighlights();
+
         } catch (WrongFormatException e) {
             formatErrorTextView.setText(e.getMessage());
             formatErrorTextView.setTextColor(Color.RED);
             formatErrorTextView.setVisibility(View.VISIBLE);
+            int parNum = Integer.parseInt(e.getMessage().replaceAll("\\D*",""));
+            Log.d("TextEditorActivity", "checkFormat: parNum:"+parNum);
+            highlightParagraph(parNum);
             Log.d("TextEditorActivity", "onCreate: " + e.getMessage());
         }
+    }
+
+
+    private Pair<Integer, Integer> paragraphNumToSpanBounds(int paragraphNum){
+
+        try{
+            String[] pars = editText.getText().toString().split("\\n{2,}");
+
+            Log.d("TextEditorActivity", "paragraphNumToSpanBounds: "+ Arrays.asList(pars));
+
+
+            String par = pars[paragraphNum-1];
+
+            Log.d("TextEditorActivity", "paragraphNumToSpanBounds: "+par);
+
+
+            int start = editText.getText().toString().indexOf(par);
+            int end = start + par.length();
+            return new Pair<>(start, end);
+        }catch (IndexOutOfBoundsException e ){
+
+        }
+
+        return  new Pair<>(0,0);
+    }
+
+    private void highlightParagraph(int paragraphNumber){
+
+        int selStart = editText.getSelectionStart();
+
+
+        Pair<Integer, Integer> p = paragraphNumToSpanBounds(paragraphNumber);
+
+        Log.d("TextEditorActivity", "highlightParagraph: "+p);
+
+        if(p.first==0 && p.second==0){
+            return;
+        }
+
+        SpannableString s = new SpannableString(editText.getText().toString());
+        s.setSpan(new BackgroundColorSpan(Color.YELLOW), p.first, p.second, 0);
+        editText.setText(s);
+
+        editText.setSelection(selStart);
+    }
+
+    private void removeHighlights(){
+        int selStart = editText.getSelectionStart();
+
+        editText.setText(editText.getText().toString());
+        editText.setSelection(selStart);
+
     }
 
 
