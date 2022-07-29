@@ -21,19 +21,9 @@ public class FileList extends RecyclerView.Adapter<FileHolder> implements FileMa
     private Context context;
     private final LayoutInflater inflater;
 
-//    private List<String> fileNames;
-
     public FileList(Context context){
         this.context = context;
-
         inflater = LayoutInflater.from(context);
-
-//        try {
-//            fileNames = FileManager.lsRootDir();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
         FileManager.addListener(this);
 
     }
@@ -52,7 +42,7 @@ public class FileList extends RecyclerView.Adapter<FileHolder> implements FileMa
 
     @Override
     public int getItemCount() {
-//        return fileNames.size();
+
         try {
             return FileManager.lsRootDir().size();
         } catch (IOException e) {
@@ -63,9 +53,11 @@ public class FileList extends RecyclerView.Adapter<FileHolder> implements FileMa
 
 
     private String positionToName(int pos){
-//        return fileNames.get(pos);
+
         try {
-            return FileManager.lsRootDir().get(pos);
+            List<String> ls = FileManager.lsRootDir();
+            Log.d("FileList", "positionToName: "+ls);
+            return ls.get(pos);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -76,15 +68,7 @@ public class FileList extends RecyclerView.Adapter<FileHolder> implements FileMa
     @Override
     public void onFileChanged(String title, String newBody) {
         Log.d("FileList", "onFileChanged: "+title);
-
-//        if(fileNames.contains(title+".txt")){
-//            return;
-//        }
-
-//        fileNames.add(title+".txt");
-//        notifyItemInserted(fileNames.size()-1);
-
-        notifyItemInserted(getItemCount()-1);
+        notifyItemInserted(getItemCount());
     }
 
     @Override
