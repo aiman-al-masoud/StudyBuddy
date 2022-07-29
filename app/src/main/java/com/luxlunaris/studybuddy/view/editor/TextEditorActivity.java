@@ -215,7 +215,7 @@ public class TextEditorActivity extends AppCompatActivity {
         }
 
         SpannableString s = new SpannableString(editText.getText().toString());
-        s.setSpan(new BackgroundColorSpan(Color.YELLOW), p.first, p.second, 0);
+        s.setSpan(new BackgroundColorSpan(Color.rgb( 100, 10, 10)), p.first, p.second, 0);
         editText.setText(s);
 
         editText.setSelection(selStart);
