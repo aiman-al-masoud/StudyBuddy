@@ -72,8 +72,10 @@ public class FileList extends RecyclerView.Adapter<FileHolder> implements FileMa
     }
 
     @Override
-    public void onFileDeleted(String title) {
-//        notifyItemRemoved();
+    public void onFileDeleted(String title, int oldPosition) {
+        Log.d("FileList", "onFileDeleted: "+title+" "+oldPosition);
+
+        notifyItemRemoved(oldPosition);
     }
 
 

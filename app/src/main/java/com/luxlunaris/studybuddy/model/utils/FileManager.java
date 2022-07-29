@@ -132,8 +132,17 @@ public class FileManager {
 
     //TODO
     public static void deleteTextFileFromRootDir(String title) {
+
         String path = getRootDirPath() + "/" + title + ".txt";
         File f = new File(path);
+
+
+        int oldPosition = -1;
+        try {
+            oldPosition = lsRootDir().indexOf(title.replace(".txt", "")+".txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         if(!f.delete()){
             return;
@@ -142,9 +151,12 @@ public class FileManager {
         files = files.stream().filter(of -> of.getName()!=f.getName()).collect(Collectors.toList());
         unselectFile(title+".txt");
 
-        listeners.forEach(l->{
-            l.onFileDeleted(title);
-        });
+        for(FileManagerListener l : listeners){
+            l.onFileDeleted(title, oldPosition);
+        }
+
+//        listeners.forEach(l->{
+//        });
     }
 
     public static void deleteAll(List<String> titles){
