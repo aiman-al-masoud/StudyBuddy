@@ -24,6 +24,7 @@ import com.luxlunaris.studybuddy.model.studybuddy.StudyBuddyListener;
 import com.luxlunaris.studybuddy.model.utils.Async;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
 import com.luxlunaris.studybuddy.model.utils.FileManagerListener;
+import com.luxlunaris.studybuddy.model.utils.Language;
 import com.luxlunaris.studybuddy.model.utils.Permissions;
 //import com.luxlunaris.studybuddy.model.utils.Settings;
 import com.luxlunaris.studybuddy.view.chatui.RowAdapter;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         if(Permissions.checkPermissions(this)){
             init();
         }
+
+        Language.checkLanguage(this);
 
 
         FileManager.addListener(this);
@@ -110,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         });
 
 
-//        Async.setTimeout(this::goToLanguageSettings, 2000);
 
     }
 
@@ -198,10 +200,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     }
 
 
-    private  void goToLanguageSettings(){
-        Intent i = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-        startActivity(i);
-    }
+
 
 
 }
