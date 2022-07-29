@@ -148,7 +148,7 @@ public class FileManager {
             return;
         }
 
-        files = files.stream().filter(of -> of.getName()!=f.getName()).collect(Collectors.toList());
+        files = files.stream().filter(of -> !of.getName().equals(f.getName())).collect(Collectors.toList());
         unselectFile(title+".txt");
 
         for(FileManagerListener l : listeners){
