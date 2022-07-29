@@ -28,6 +28,7 @@ import com.luxlunaris.studybuddy.model.utils.Language;
 import com.luxlunaris.studybuddy.model.utils.Permissions;
 //import com.luxlunaris.studybuddy.model.utils.Settings;
 import com.luxlunaris.studybuddy.view.chatui.RowAdapter;
+import com.luxlunaris.studybuddy.view.intro.IntroActivity;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -113,6 +114,8 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
             }
         });
 
+
+        startActivity(new Intent(this, IntroActivity.class));
 
 
     }
