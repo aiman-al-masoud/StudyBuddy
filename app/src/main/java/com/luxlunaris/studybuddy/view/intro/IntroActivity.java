@@ -10,14 +10,17 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.widget.CheckBox;
 
 import com.luxlunaris.studybuddy.R;
+import com.luxlunaris.studybuddy.model.utils.FileManager;
 
 public class IntroActivity extends FragmentActivity {
 
     private static final int NUM_PAGES = 5;
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
+    private CheckBox doNotShowIntroAgainCheckBox;
 
 
     @Override
@@ -30,6 +33,8 @@ public class IntroActivity extends FragmentActivity {
         pagerAdapter = new FAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
 
+        doNotShowIntroAgainCheckBox = findViewById(R.id.dontShowIntroAgaincheckBox);
+
 
     }
 
@@ -41,6 +46,18 @@ public class IntroActivity extends FragmentActivity {
         }else{
             viewPager.setCurrentItem(viewPager.getCurrentItem()-1);
         }
+
+    }
+
+    @Override
+    public void finish() {
+
+
+        if(doNotShowIntroAgainCheckBox.isChecked()){
+            FileManager.setIntroSeen();
+        }
+
+        super.finish();
 
     }
 
