@@ -10,7 +10,9 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.CheckBox;
+import android.widget.ProgressBar;
 
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
@@ -21,6 +23,7 @@ public class IntroActivity extends FragmentActivity {
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
     private CheckBox doNotShowIntroAgainCheckBox;
+    private ProgressBar progressBar;
 
 
     @Override
@@ -34,6 +37,27 @@ public class IntroActivity extends FragmentActivity {
         viewPager.setAdapter(pagerAdapter);
 
         doNotShowIntroAgainCheckBox = findViewById(R.id.dontShowIntroAgaincheckBox);
+        progressBar = findViewById(R.id.introProgress);
+        progressBar.setMax(NUM_PAGES-1);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Log.d("IntroActivity", "onPageScrolled: "+position);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.d("IntroActivity", "onPageSelected: "+position);
+                progressBar.setProgress(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                Log.d("IntroActivity", "onPageScrollStateChanged: "+state);
+            }
+        });
+
 
 
     }
@@ -72,6 +96,7 @@ public class IntroActivity extends FragmentActivity {
         public Fragment getItem(int position) {
             return new IntroFragment(R.layout.fragment_intro);
         }
+
 
         @Override
         public int getCount() {
