@@ -125,6 +125,7 @@ public class TextEditorActivity extends AppCompatActivity {
         try {
 
             editText.setText(stack.pop());
+            checkFormat(editText.getText().toString());
 
             if (!isEdited()) {
                 toolbar.getMenu().findItem(R.id.undoItem).setVisible(false);
