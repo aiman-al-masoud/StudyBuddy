@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -100,6 +101,8 @@ public class TextEditorActivity extends AppCompatActivity {
             stack.clear();
             toolbar.setTitle(fileName);
             toolbar.getMenu().findItem(R.id.undoItem).setVisible(false);
+            Toast.makeText(this, "Saved! :-)", Toast.LENGTH_SHORT).show();
+
 
         } catch (IOException e) {
             e.printStackTrace();

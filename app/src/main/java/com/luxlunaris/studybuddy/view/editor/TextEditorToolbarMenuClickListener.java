@@ -22,7 +22,6 @@ public class TextEditorToolbarMenuClickListener implements Toolbar.OnMenuItemCli
 
 
             case R.id.saveEditedTextItem:
-                Toast.makeText(textEditorActivity, "Changes Saved! :-)", Toast.LENGTH_SHORT).show();
                 textEditorActivity.saveChanges();
                 break;
             case R.id.undoItem:
