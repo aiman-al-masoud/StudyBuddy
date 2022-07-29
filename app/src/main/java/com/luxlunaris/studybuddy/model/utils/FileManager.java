@@ -25,6 +25,39 @@ public class FileManager {
 
     private static List<File> files = lsRootDirFiles();
     private static List<FileManagerListener> listeners = new ArrayList<>();
+    private static List<String> selectedFiles = new ArrayList<>();
+
+
+    public static void selectFile(String title){
+        if(!selectedFiles.contains(title)){
+            selectedFiles.add(title);
+        }
+    }
+
+    public static void unselectFile(String title){
+        if(selectedFiles.contains(title)){
+            selectedFiles.remove(title);
+        }
+    }
+
+    public static void unselectAllFiles(){
+        selectedFiles.clear();
+    }
+
+    public static void selectAllFiles(){
+        selectedFiles.clear();
+        try {
+            selectedFiles.addAll(lsRootDir());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<String> getSelectedFiles(){
+        return selectedFiles;
+    }
+
+
 
 
 

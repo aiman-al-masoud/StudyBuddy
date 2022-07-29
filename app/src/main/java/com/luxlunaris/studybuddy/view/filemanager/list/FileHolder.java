@@ -2,6 +2,8 @@ package com.luxlunaris.studybuddy.view.filemanager.list;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,6 +13,7 @@ import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
 import com.luxlunaris.studybuddy.view.filemanager.editor.TextEditorActivity;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -39,6 +42,20 @@ public class FileHolder extends RecyclerView.ViewHolder {
             }
 
 
+        });
+
+        textView.setOnLongClickListener(e->{
+            String fileName = textView.getText().toString();
+
+            if(FileManager.getSelectedFiles().contains(fileName)){
+                FileManager.unselectFile(fileName);
+                textView.setTextColor(Color.WHITE);
+            }else{
+                FileManager.selectFile(fileName);
+                textView.setTextColor(Color.RED);
+            }
+
+            return true;
         });
 
     }
