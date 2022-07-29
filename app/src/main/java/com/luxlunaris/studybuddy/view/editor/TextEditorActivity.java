@@ -2,7 +2,9 @@ package com.luxlunaris.studybuddy.view.editor;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +29,7 @@ public class TextEditorActivity extends AppCompatActivity {
     protected String fileName;
     protected Toolbar toolbar;
     protected Stack<String> stack;
+    protected TextView formatErrorTextView; //error bar
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class TextEditorActivity extends AppCompatActivity {
         textOnDisk = getIntent().getExtras().getString(TEXT_INPUT);
         fileName = getIntent().getExtras().getString(EDITED_FILE_NAME);
         stack = new Stack<String>();
+        formatErrorTextView = (TextView) findViewById(R.id.formatErrorTextView);
 
         toolbar.setTitle(fileName);
         editText.setText(textOnDisk);
@@ -144,8 +148,11 @@ public class TextEditorActivity extends AppCompatActivity {
 
         try {
             cb.fromText(text, "name");
-
+            formatErrorTextView.setText("");
+            formatErrorTextView.setVisibility(View.GONE);
         } catch (WrongFormatException e) {
+            formatErrorTextView.setText(e.getMessage());
+            formatErrorTextView.setVisibility(View.VISIBLE);
             Log.d("TextEditorActivity", "onCreate: " + e.getMessage());
         }
     }
