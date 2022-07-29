@@ -8,10 +8,13 @@
         android:title="Delete"
         android:visible="false"
         app:showAsAction="always" />
-    <item android:title="id" />
+    <item
+        android:id="@+id/openFileItem"
+        android:title="Open File" />
     <item
         android:id="@+id/seeeearch"
         android:icon="@drawable/ic_search_black_24dp"
         android:title="Search"
+        android:visible="false"
         app:actionViewClass="android.widget.SearchView" />
 </menu>

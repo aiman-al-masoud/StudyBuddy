@@ -44,7 +44,7 @@ public class FileManagerActivity extends AppCompatActivity {
         addFileFab.setOnClickListener(this::askNewFileName);
 
         toolbar = (Toolbar) findViewById(R.id.fileManagerToolbar);
-        toolbar.setOnMenuItemClickListener(new FileManagerToolbarMenuClickListener(toolbar.getMenu()));
+        toolbar.setOnMenuItemClickListener(new FileManagerToolbarMenuClickListener(toolbar.getMenu(), this));
 
 
 
@@ -81,6 +81,26 @@ public class FileManagerActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode != RESULT_OK){
+            Log.d("FileManagerActivity", "onActivityResult: error: "+resultCode);
+            return;
+        }
+
+        if(data == null){
+            Log.d("FileManagerActivity", "onActivityResult: data: "+data);
+            return;
+        }
+
+        if(requestCode == FileManager.PICK_TEXT_FILE_REQUEST_CODE){
+            try {
+                String s = FileManager.uriToText(this, data.getData());
+                Log.d("FileManagerActivity", "onActivityResult: "+s);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
 

@@ -1,10 +1,14 @@
 package com.luxlunaris.studybuddy.model.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchFileException;
 
@@ -23,6 +27,7 @@ import java.util.stream.Collectors;
 
 public class FileManager {
 
+    public final static int PICK_TEXT_FILE_REQUEST_CODE = 1;
 
     private static List<File> files = lsRootDirFiles();
     private static List<FileManagerListener> listeners = new ArrayList<>();
@@ -284,6 +289,18 @@ public class FileManager {
         }
 
     }
+
+
+
+    public static void openTextFile(Activity activity, Uri pickerInitialUri){
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("text/plain");
+        activity.startActivityForResult(intent, PICK_TEXT_FILE_REQUEST_CODE);
+    }
+
+
+
 
 
 }

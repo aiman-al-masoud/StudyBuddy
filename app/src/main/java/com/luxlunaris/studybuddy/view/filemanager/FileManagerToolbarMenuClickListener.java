@@ -16,9 +16,11 @@ import com.luxlunaris.studybuddy.model.utils.FileManagerListener;
 public class FileManagerToolbarMenuClickListener implements Toolbar.OnMenuItemClickListener, FileManagerListener {
 
     Menu menu;
+    Activity activity;
 
-    public FileManagerToolbarMenuClickListener(Menu menu){
+    public FileManagerToolbarMenuClickListener(Menu menu, Activity activity){
         this.menu = menu;
+        this.activity = activity;
         FileManager.addListener(this);
     }
 
@@ -29,6 +31,10 @@ public class FileManagerToolbarMenuClickListener implements Toolbar.OnMenuItemCl
 
             case R.id.deleteItem:
                 FileManager.deleteAll(FileManager.getSelectedFiles());
+                break;
+            case R.id.openFileItem:
+//                FileManager.
+                FileManager.openTextFile( activity, null );
                 break;
         }
 
