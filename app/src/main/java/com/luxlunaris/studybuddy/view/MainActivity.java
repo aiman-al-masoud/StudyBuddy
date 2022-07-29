@@ -6,8 +6,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -23,6 +25,7 @@ import com.luxlunaris.studybuddy.model.utils.Async;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
 import com.luxlunaris.studybuddy.model.utils.FileManagerListener;
 import com.luxlunaris.studybuddy.model.utils.Permissions;
+//import com.luxlunaris.studybuddy.model.utils.Settings;
 import com.luxlunaris.studybuddy.view.chatui.RowAdapter;
 
 import java.io.IOException;
@@ -107,8 +110,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         });
 
 
-
-
+//        Async.setTimeout(this::goToLanguageSettings, 2000);
 
     }
 
@@ -193,6 +195,12 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         }
 
 
+    }
+
+
+    private  void goToLanguageSettings(){
+        Intent i = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+        startActivity(i);
     }
 
 
