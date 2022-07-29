@@ -44,7 +44,9 @@ public class FileManagerActivity extends AppCompatActivity {
         addFileFab.setOnClickListener(this::askNewFileName);
 
         toolbar = (Toolbar) findViewById(R.id.fileManagerToolbar);
-        toolbar.setOnMenuItemClickListener(new FileManagerToolbarMenuClickListener(this));
+        toolbar.setOnMenuItemClickListener(new FileManagerToolbarMenuClickListener(toolbar.getMenu()));
+
+
 
     }
 

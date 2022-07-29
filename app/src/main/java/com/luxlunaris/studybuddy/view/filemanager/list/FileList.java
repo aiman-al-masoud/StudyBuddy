@@ -80,5 +80,15 @@ public class FileList extends RecyclerView.Adapter<FileHolder> implements FileMa
         notifyItemRangeChanged(oldPosition, getItemCount()+1);
     }
 
+    @Override
+    public void onFileSelected(String title) {
+
+    }
+
+    @Override
+    public void onFileDeSelected(String title) {
+
+    }
+
 
 }

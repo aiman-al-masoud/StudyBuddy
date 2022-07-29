@@ -204,5 +204,15 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
 
     }
 
+    @Override
+    public void onFileSelected(String title) {
+
+    }
+
+    @Override
+    public void onFileDeSelected(String title) {
+
+    }
+
 
 }

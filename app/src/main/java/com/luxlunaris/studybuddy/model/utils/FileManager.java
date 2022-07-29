@@ -30,28 +30,56 @@ public class FileManager {
 
 
     public static void selectFile(String title){
+
+        listeners.forEach(l->{
+            l.onFileSelected(title);
+        });
+
         if(!selectedFiles.contains(title)){
             selectedFiles.add(title);
         }
     }
 
     public static void unselectFile(String title){
+
         if(selectedFiles.contains(title)){
             selectedFiles.remove(title);
         }
+
+        listeners.forEach(l->{
+            l.onFileDeSelected(title);
+        });
     }
 
     public static void unselectAllFiles(){
+
+        selectedFiles.forEach(f->{
+            listeners.forEach(l->{
+                l.onFileDeSelected(f);
+            });
+        });
+
         selectedFiles.clear();
+
     }
 
     public static void selectAllFiles(){
+
+
+
         selectedFiles.clear();
         try {
             selectedFiles.addAll(lsRootDir());
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+        selectedFiles.forEach(f->{
+            listeners.forEach(l->{
+                l.onFileSelected(f);
+            });
+        });
     }
 
     public static List<String> getSelectedFiles(){
