@@ -47,6 +47,7 @@ public class TextEditorActivity extends AppCompatActivity {
         toolbar.setTitle(fileName);
         editText.setText(textOnDisk);
         stack.push(textOnDisk);
+        checkFormat(textOnDisk);
 
         editText.setOnKeyListener((a, b, c) -> {
 
