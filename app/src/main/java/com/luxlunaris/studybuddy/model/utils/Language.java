@@ -48,6 +48,10 @@ public class Language {
             System.exit(0);
         });
 
+        builder.setOnDismissListener(e->{
+            System.exit(0);
+        });
+
         builder.show();
     }
 
