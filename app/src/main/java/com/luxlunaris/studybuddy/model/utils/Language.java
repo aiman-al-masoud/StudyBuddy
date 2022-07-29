@@ -21,6 +21,7 @@ public class Language {
         return Arrays.asList("en");
     }
 
+
     public static String getLanguage(){
         return Locale.getDefault().getLanguage();
     }
