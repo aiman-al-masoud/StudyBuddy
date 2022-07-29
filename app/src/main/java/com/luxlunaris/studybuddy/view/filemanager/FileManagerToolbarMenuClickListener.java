@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
 
 import com.luxlunaris.studybuddy.R;
+import com.luxlunaris.studybuddy.model.utils.FileManager;
 
 public class FileManagerToolbarMenuClickListener implements Toolbar.OnMenuItemClickListener{
 
@@ -21,8 +22,10 @@ public class FileManagerToolbarMenuClickListener implements Toolbar.OnMenuItemCl
 
         switch (item.getItemId()){
 
-
-
+//            case R.id.dele
+            case R.id.deleteItem:
+                FileManager.deleteAll(FileManager.getSelectedFiles());
+                break;
         }
 
         return false;

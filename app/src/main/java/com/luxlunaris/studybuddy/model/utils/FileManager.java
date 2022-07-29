@@ -14,6 +14,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -143,6 +144,12 @@ public class FileManager {
 
         listeners.forEach(l->{
             l.onFileDeleted(title);
+        });
+    }
+
+    public static void deleteAll(List<String> titles){
+        new ArrayList<String>(titles).forEach(t->{
+            deleteTextFileFromRootDir( t.replaceAll(".txt", ""));
         });
     }
 
