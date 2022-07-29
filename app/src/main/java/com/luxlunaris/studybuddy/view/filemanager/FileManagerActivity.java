@@ -3,6 +3,7 @@ package com.luxlunaris.studybuddy.view.filemanager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
+import com.luxlunaris.studybuddy.view.ToolbarMenuClickListener;
 import com.luxlunaris.studybuddy.view.filemanager.editor.TextEditorActivity;
 import com.luxlunaris.studybuddy.view.filemanager.list.FileList;
 
@@ -26,6 +28,8 @@ public class FileManagerActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FileList rowAdapter;
     private FloatingActionButton addFileFab;
+    private Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +41,10 @@ public class FileManagerActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         rowAdapter = new FileList(this);
         recyclerView.setAdapter(rowAdapter);
-
-
         addFileFab.setOnClickListener(this::askNewFileName);
+
+        toolbar = (Toolbar) findViewById(R.id.fileManagerToolbar);
+        toolbar.setOnMenuItemClickListener(new FileManagerToolbarMenuClickListener(this));
 
     }
 
