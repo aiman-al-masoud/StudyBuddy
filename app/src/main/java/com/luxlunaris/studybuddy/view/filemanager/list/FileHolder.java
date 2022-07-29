@@ -17,10 +17,13 @@ import java.io.IOException;
 public class FileHolder extends RecyclerView.ViewHolder {
 
     public TextView textView;
+    public int normalTextColor;
 
     public FileHolder(@NonNull View itemView) {
         super(itemView);
         textView = (TextView) itemView.findViewById(R.id.fileHolderTextView);
+        normalTextColor = textView.getCurrentTextColor();
+
 
         textView.setOnClickListener(e->{
             try {
@@ -46,7 +49,7 @@ public class FileHolder extends RecyclerView.ViewHolder {
 
             if(FileManager.getSelectedFiles().contains(fileName)){
                 FileManager.unselectFile(fileName);
-                textView.setTextColor(Color.WHITE);
+                textView.setTextColor(normalTextColor);
             }else{
                 FileManager.selectFile(fileName);
                 textView.setTextColor(Color.RED);
