@@ -13,11 +13,16 @@ import com.luxlunaris.studybuddy.R;
 
 public class IntroFragment extends Fragment {
 
+    private int fragmentLayout;
+
+    public IntroFragment(@NonNull int fragmentLayout){
+        this.fragmentLayout = fragmentLayout;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        return super.onCreateView(inflater, container, savedInstanceState);
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_intro, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(fragmentLayout, container, false);
         return rootView;
     }
 

@@ -53,7 +53,7 @@ public class IntroActivity extends FragmentActivity {
         @NonNull
         @Override
         public Fragment getItem(int position) {
-            return new IntroFragment();
+            return new IntroFragment(R.layout.fragment_intro);
         }
 
         @Override
