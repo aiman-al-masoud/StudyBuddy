@@ -1,14 +1,16 @@
 package com.luxlunaris.studybuddy.view.editor;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.luxlunaris.studybuddy.R;
+import com.luxlunaris.studybuddy.model.challenge.ChallengeBuilder;
+import com.luxlunaris.studybuddy.model.challenge.exceptions.WrongFormatException;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
 
 import java.io.IOException;
@@ -42,15 +44,18 @@ public class TextEditorActivity extends AppCompatActivity {
         editText.setText(textOnDisk);
         stack.push(textOnDisk);
 
-        editText.setOnKeyListener((a,b,c)->{
+        editText.setOnKeyListener((a, b, c) -> {
 
 
+            String newText = editText.getText().toString();
+            checkFormat(newText);
 
-            if(isEdited()){
-                stack.push(editText.getText().toString());
+
+            if (isEdited()) {
+                stack.push(newText);
                 toolbar.getMenu().findItem(R.id.undoItem).setVisible(true);
-                toolbar.setTitle(fileName+"*");
-            }else{
+                toolbar.setTitle(fileName + "*");
+            } else {
                 toolbar.setTitle(fileName);
                 toolbar.getMenu().findItem(R.id.undoItem).setVisible(false);
 
@@ -65,9 +70,9 @@ public class TextEditorActivity extends AppCompatActivity {
     @Override
     public void finish() {
 
-        if(isEdited()){
+        if (isEdited()) {
             askExitWithoutSavePrompt();
-        }else{
+        } else {
             Log.d("TextEditorActivity", "finish: I'm done!");
             super.finish();
         }
@@ -75,11 +80,11 @@ public class TextEditorActivity extends AppCompatActivity {
     }
 
 
-    private boolean isEdited(){
+    private boolean isEdited() {
         return !editText.getText().toString().equals(textOnDisk);
     }
 
-    protected void saveChanges(){
+    protected void saveChanges() {
 
 
         try {
@@ -97,36 +102,36 @@ public class TextEditorActivity extends AppCompatActivity {
 
     }
 
-    protected void undo()  {
+    protected void undo() {
 
-        try{
+        try {
 
             editText.setText(stack.pop());
 
-            if(!isEdited()){
+            if (!isEdited()) {
                 toolbar.getMenu().findItem(R.id.undoItem).setVisible(false);
                 toolbar.setTitle(fileName);
             }
 
-        }catch (EmptyStackException  e){
+        } catch (EmptyStackException e) {
 
         }
 
     }
 
 
-    private void askExitWithoutSavePrompt(){
+    private void askExitWithoutSavePrompt() {
 
-        AlertDialog.Builder builder =new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle("Exit without saving?");
 
-        builder.setPositiveButton("Ok", (d, w)->{
+        builder.setPositiveButton("Ok", (d, w) -> {
             Log.d("TextEditorActivity", "finish: I'm done!");
             super.finish();
         });
 
-        builder.setNegativeButton("Cancel", (d, w)->{
+        builder.setNegativeButton("Cancel", (d, w) -> {
             d.cancel();
         });
 
@@ -134,6 +139,16 @@ public class TextEditorActivity extends AppCompatActivity {
     }
 
 
+    private void checkFormat(final String text) {
+        ChallengeBuilder cb = new ChallengeBuilder();
+
+        try {
+            cb.fromText(text, "name");
+
+        } catch (WrongFormatException e) {
+            Log.d("TextEditorActivity", "onCreate: " + e.getMessage());
+        }
+    }
 
 
 }
