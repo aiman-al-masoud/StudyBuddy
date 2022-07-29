@@ -199,8 +199,10 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
 
     }
 
+    @Override
+    public void onFileDeleted(String title) {
 
-
+    }
 
 
 }

@@ -23,12 +23,15 @@ import java.util.stream.Collectors;
 public class FileManager {
 
 
+    private static List<File> files = lsRootDirFiles();
     private static List<FileManagerListener> listeners = new ArrayList<>();
+
+
 
     public static void addListener(FileManagerListener l) {
 
         if (listeners.contains(l)) {
-            Log.d("FileManager", "addListener: attempted to add twice same instance of listener.");
+            Log.d("FileManager", "addListener: attempt to add twice same instance of listener.");
             return;
         }
 
@@ -69,6 +72,9 @@ public class FileManager {
         fr.flush();
         fr.close();
 
+        files = files.stream().filter(of -> of.getName()!=f.getName()).collect(Collectors.toList());
+        files.add(f);
+
         listeners.forEach(l -> {
             l.onFileChanged(title, newBody);
         });
@@ -76,6 +82,7 @@ public class FileManager {
     }
 
 
+    //TODO
     public static String uriToText(Context context, Uri uri) throws IOException {
 
         InputStream is = context.getContentResolver().openInputStream(uri);
@@ -89,10 +96,20 @@ public class FileManager {
         return os.toString();
     }
 
+    //TODO
     public static void deleteTextFileFromRootDir(String title) {
         String path = getRootDirPath() + "/" + title + ".txt";
         File f = new File(path);
-        f.delete();
+
+        if(!f.delete()){
+            return;
+        }
+
+        files = files.stream().filter(of -> of.getName()!=f.getName()).collect(Collectors.toList());
+
+        listeners.forEach(l->{
+            l.onFileDeleted(title);
+        });
     }
 
 
@@ -115,7 +132,15 @@ public class FileManager {
         throw new IOException();
     }
 
+
+
+    private static List<File> lsRootDirFiles(){
+        return Arrays.asList(new File(getRootDirPath()).listFiles());
+    }
+
     /**
+     *
+     * TODO
      * Lists filenames in the root directory, including their extension.
      *
      * @return
@@ -123,17 +148,24 @@ public class FileManager {
      */
     public static List<String> lsRootDir() throws IOException {
 
-        try {
-            return Arrays.stream(new File(getRootDirPath()).listFiles())
-                    .sorted((f1, f2) -> {
-                        return (int) (f2.lastModified() - f1.lastModified());
-                    })
-                    .map(File::getName)
-                    .collect(Collectors.toList());
-        } catch (NullPointerException e) {
-            throw new IOException();
-        }
+//        try {
+//            return Arrays.stream(new File(getRootDirPath()).listFiles())
+//                    .sorted((f1, f2) -> {
+//                        return (int) (f2.lastModified() - f1.lastModified());
+//                    })
+//                    .map(File::getName)
+//                    .collect(Collectors.toList());
+//        } catch (NullPointerException e) {
+//            throw new IOException();
+//        }
+
+        return files.stream()
+                .map(File::getName)
+                .collect(Collectors.toList());
     }
+
+
+
 
     /**
      * Get the closest matching text file name that exists in

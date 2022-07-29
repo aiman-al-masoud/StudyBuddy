@@ -21,18 +21,18 @@ public class FileList extends RecyclerView.Adapter<FileHolder> implements FileMa
     private Context context;
     private final LayoutInflater inflater;
 
-    private List<String> fileNames;
+//    private List<String> fileNames;
 
     public FileList(Context context){
         this.context = context;
 
         inflater = LayoutInflater.from(context);
 
-        try {
-            fileNames = FileManager.lsRootDir();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            fileNames = FileManager.lsRootDir();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         FileManager.addListener(this);
 
@@ -52,12 +52,24 @@ public class FileList extends RecyclerView.Adapter<FileHolder> implements FileMa
 
     @Override
     public int getItemCount() {
-        return fileNames.size();
+//        return fileNames.size();
+        try {
+            return FileManager.lsRootDir().size();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
 
     private String positionToName(int pos){
-        return fileNames.get(pos);
+//        return fileNames.get(pos);
+        try {
+            return FileManager.lsRootDir().get(pos);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
@@ -65,13 +77,18 @@ public class FileList extends RecyclerView.Adapter<FileHolder> implements FileMa
     public void onFileChanged(String title, String newBody) {
         Log.d("FileList", "onFileChanged: "+title);
 
-        if(fileNames.contains(title+".txt")){
-            return;
-        }
+//        if(fileNames.contains(title+".txt")){
+//            return;
+//        }
 
-        fileNames.add(title+".txt");
-        notifyItemInserted(fileNames.size()-1);
+//        fileNames.add(title+".txt");
+//        notifyItemInserted(fileNames.size()-1);
 
+        notifyItemInserted(getItemCount()-1);
+    }
+
+    @Override
+    public void onFileDeleted(String title) {
 
     }
 
