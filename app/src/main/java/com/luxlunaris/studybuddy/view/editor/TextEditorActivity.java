@@ -12,6 +12,8 @@ import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
 
 import java.io.IOException;
+import java.util.EmptyStackException;
+import java.util.Stack;
 
 public class TextEditorActivity extends AppCompatActivity {
 
@@ -23,6 +25,7 @@ public class TextEditorActivity extends AppCompatActivity {
     private String text;
     private String fileName;
     private Toolbar toolbar;
+    private Stack<String> stack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,9 @@ public class TextEditorActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.textEditorEditText);
         text = getIntent().getExtras().getString(TEXT_INPUT);
         fileName = getIntent().getExtras().getString(EDITED_FILE_NAME);
+
+        stack = new Stack<String>();
+
 
         toolbar.setTitle(fileName);
         editText.setText(text);
@@ -73,17 +79,46 @@ public class TextEditorActivity extends AppCompatActivity {
 
     protected void saveChanges(){
 
-
-
         try {
             String newText = editText.getText().toString();
             FileManager.overwriteTextFileInRootDir(fileName, newText);
+
+            stack.push(text);
             text = newText;
+
+            toolbar.setTitle(fileName);
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
+
+    protected void undo()  {
+
+//        try{
+
+        try{
+            String t = stack.pop();
+            editText.setText(t);
+            toolbar.setTitle(fileName+"*");
+        }catch (EmptyStackException  e){
+
+        }
+
+//           FileManager.overwriteTextFileInRootDir(fileName, text);
+//       }catch (IOException e){
+//
+//       }
+
+    }
+
+    protected void redo(){
+
+    }
+
+
 
 
     private void askExitWithoutSavePrompt(){

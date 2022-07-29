@@ -9,7 +9,6 @@ import com.luxlunaris.studybuddy.R;
 
 public class TextEditorToolbarMenuClickListener implements Toolbar.OnMenuItemClickListener{
 
-//    private Context context;
     private TextEditorActivity textEditorActivity;
 
     public TextEditorToolbarMenuClickListener(TextEditorActivity textEditorActivity){
@@ -25,6 +24,9 @@ public class TextEditorToolbarMenuClickListener implements Toolbar.OnMenuItemCli
             case R.id.saveEditedTextItem:
                 Toast.makeText(textEditorActivity, "Changes Saved! :-)", Toast.LENGTH_SHORT).show();
                 textEditorActivity.saveChanges();
+                break;
+            case R.id.undoItem:
+                textEditorActivity.undo();
                 break;
 
         }
