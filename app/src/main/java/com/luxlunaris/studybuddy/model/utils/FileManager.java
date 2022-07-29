@@ -155,6 +155,7 @@ public class FileManager {
             l.onFileDeleted(title, oldPosition);
         }
 
+
 //        listeners.forEach(l->{
 //        });
     }
