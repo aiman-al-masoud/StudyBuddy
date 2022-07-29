@@ -35,6 +35,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements StudyBuddyListener, FileManagerListener {
 
+
     private StudyBuddy studyBuddy;
     private EditText inputText;
     private FloatingActionButton micButton;
