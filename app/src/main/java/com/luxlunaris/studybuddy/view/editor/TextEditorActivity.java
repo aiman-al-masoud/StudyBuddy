@@ -20,12 +20,11 @@ public class TextEditorActivity extends AppCompatActivity {
     public static final String TEXT_INPUT = "TEXT_EXTRA";
     public static final String EDITED_FILE_NAME = "EDITED_FILE_NAME";
 
-
-    private EditText editText;
-    private String text;
-    private String fileName;
-    private Toolbar toolbar;
-    private Stack<String> stack;
+    protected EditText editText;
+    protected String textOnDisk;
+    protected String fileName;
+    protected Toolbar toolbar;
+    protected Stack<String> stack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,23 +34,26 @@ public class TextEditorActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.textEditorToolbar);
         toolbar.setOnMenuItemClickListener(new TextEditorToolbarMenuClickListener(this));
         editText = (EditText) findViewById(R.id.textEditorEditText);
-        text = getIntent().getExtras().getString(TEXT_INPUT);
+        textOnDisk = getIntent().getExtras().getString(TEXT_INPUT);
         fileName = getIntent().getExtras().getString(EDITED_FILE_NAME);
-
         stack = new Stack<String>();
 
-
         toolbar.setTitle(fileName);
-        editText.setText(text);
-
+        editText.setText(textOnDisk);
+        stack.push(textOnDisk);
 
         editText.setOnKeyListener((a,b,c)->{
-            Log.d("TextEditorActivity", "onKey: "+a);
+
+
 
             if(isEdited()){
+                stack.push(editText.getText().toString());
+                toolbar.getMenu().findItem(R.id.undoItem).setVisible(true);
                 toolbar.setTitle(fileName+"*");
             }else{
                 toolbar.setTitle(fileName);
+                toolbar.getMenu().findItem(R.id.undoItem).setVisible(false);
+
             }
 
             return false;
@@ -62,11 +64,11 @@ public class TextEditorActivity extends AppCompatActivity {
 
     @Override
     public void finish() {
-        Log.d("TextEditorActivity", "finish: I'm done!");
 
         if(isEdited()){
             askExitWithoutSavePrompt();
         }else{
+            Log.d("TextEditorActivity", "finish: I'm done!");
             super.finish();
         }
 
@@ -74,20 +76,20 @@ public class TextEditorActivity extends AppCompatActivity {
 
 
     private boolean isEdited(){
-        return !editText.getText().toString().equals(text);
+        return !editText.getText().toString().equals(textOnDisk);
     }
 
     protected void saveChanges(){
+
 
         try {
             String newText = editText.getText().toString();
             FileManager.overwriteTextFileInRootDir(fileName, newText);
 
-            stack.push(text);
-            text = newText;
-
+            textOnDisk = newText;
+            stack.clear();
             toolbar.setTitle(fileName);
-
+            toolbar.getMenu().findItem(R.id.undoItem).setVisible(false);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -97,28 +99,20 @@ public class TextEditorActivity extends AppCompatActivity {
 
     protected void undo()  {
 
-//        try{
-
         try{
-            String t = stack.pop();
-            editText.setText(t);
-            toolbar.setTitle(fileName+"*");
+
+            editText.setText(stack.pop());
+
+            if(!isEdited()){
+                toolbar.getMenu().findItem(R.id.undoItem).setVisible(false);
+                toolbar.setTitle(fileName);
+            }
+
         }catch (EmptyStackException  e){
 
         }
 
-//           FileManager.overwriteTextFileInRootDir(fileName, text);
-//       }catch (IOException e){
-//
-//       }
-
     }
-
-    protected void redo(){
-
-    }
-
-
 
 
     private void askExitWithoutSavePrompt(){
@@ -128,7 +122,7 @@ public class TextEditorActivity extends AppCompatActivity {
         builder.setTitle("Exit without saving?");
 
         builder.setPositiveButton("Ok", (d, w)->{
-            Log.d("TextEditorActivity", "askExitWithoutSavePrompt: yes<!!!+!P");
+            Log.d("TextEditorActivity", "finish: I'm done!");
             super.finish();
         });
 

@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/saveEditedTextItem"
-        android:icon="@android:drawable/ic_menu_save"
-        android:title="Save"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/undoItem"
         android:icon="@android:drawable/ic_menu_revert"
         android:title="Undo"
+        android:visible="false"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/saveEditedTextItem"
+        android:icon="@android:drawable/ic_menu_save"
+        android:title="Save"
         app:showAsAction="always" />
 </menu>
