@@ -3,7 +3,6 @@ package com.luxlunaris.studybuddy.model.scribe.classes;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.AudioManager;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
@@ -12,7 +11,6 @@ import android.speech.SpeechRecognizer;
 import com.luxlunaris.studybuddy.model.scribe.Scribe;
 import com.luxlunaris.studybuddy.model.scribe.ScribeListener;
 import com.luxlunaris.studybuddy.model.utils.Language;
-//import com.luxlunaris.studybuddy.model.utils.Settings;
 
 import java.util.List;
 
@@ -34,10 +32,6 @@ public class GoogleScribe implements Scribe, RecognitionListener {
 
         speechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-//        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
-//        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "en-US");
-
-//        String lang = Settings.instance().getString(Settings.LANGUAGE);
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Language.getLanguage());
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, Language.getLanguage());
 
@@ -53,14 +47,6 @@ public class GoogleScribe implements Scribe, RecognitionListener {
 
     @Override
     public void startTranscribing() {
-
-        // mute beep-bop mic de/activation noises
-//        AudioManager aManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
-//        aManager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true);
-//        aManager.setStreamMute(AudioManager.STREAM_ALARM, true);
-//        aManager.setStreamMute(AudioManager.STREAM_MUSIC, true);
-//        aManager.setStreamMute(AudioManager.STREAM_RING, true);
-//        aManager.setStreamMute(AudioManager.STREAM_SYSTEM, true);
 
         speechRecognizer.startListening(speechRecognizerIntent);
         isListening = true;
