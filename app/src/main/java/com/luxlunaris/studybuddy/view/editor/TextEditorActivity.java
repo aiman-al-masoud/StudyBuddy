@@ -1,5 +1,6 @@
 package com.luxlunaris.studybuddy.view.editor;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -156,6 +157,7 @@ public class TextEditorActivity extends AppCompatActivity {
             formatErrorTextView.setVisibility(View.GONE);
         } catch (WrongFormatException e) {
             formatErrorTextView.setText(e.getMessage());
+            formatErrorTextView.setTextColor(Color.RED);
             formatErrorTextView.setVisibility(View.VISIBLE);
             Log.d("TextEditorActivity", "onCreate: " + e.getMessage());
         }
