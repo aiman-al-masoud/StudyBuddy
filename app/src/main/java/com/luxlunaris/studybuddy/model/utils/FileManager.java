@@ -140,7 +140,7 @@ public class FileManager {
         fr.flush();
         fr.close();
 
-        files = files.stream().filter(of -> of.getName()!=f.getName()).collect(Collectors.toList());
+        files = files.stream().filter(of -> !of.getName().equals(f.getName())).collect(Collectors.toList());
         files.add(f);
 
         listeners.forEach(l -> {
