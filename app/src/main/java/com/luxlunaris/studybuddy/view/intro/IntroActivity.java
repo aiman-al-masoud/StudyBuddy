@@ -28,6 +28,7 @@ public class IntroActivity extends FragmentActivity {
     private TextView nextTextView;
     private TextView backTextView;
     private TextView skipIntroTextView;
+    private TextView doneIntroTextView;
 
 
     @Override
@@ -38,6 +39,7 @@ public class IntroActivity extends FragmentActivity {
         nextTextView = findViewById(R.id.nextTextView);
         backTextView = findViewById(R.id.backTextView);
         skipIntroTextView = findViewById(R.id.skipIntroTextView);
+        doneIntroTextView = findViewById(R.id.doneIntroTextView);
 
 
         viewPager = (ViewPager) findViewById(R.id.introViewPager);
@@ -63,6 +65,15 @@ public class IntroActivity extends FragmentActivity {
                 }else{
                     backTextView.setVisibility(View.INVISIBLE);
                 }
+
+                if(position==PAGES.length-1){
+                    nextTextView.setVisibility(View.GONE);
+                    doneIntroTextView.setVisibility(View.VISIBLE);
+                }else{
+                    doneIntroTextView.setVisibility(View.GONE);
+                    nextTextView.setVisibility(View.VISIBLE);
+                }
+
             }
 
             @Override
