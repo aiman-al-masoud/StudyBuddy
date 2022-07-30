@@ -14,13 +14,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.luxlunaris.studybuddy.R;
 
+import org.w3c.dom.Text;
+
 public class HelpHolder extends RecyclerView.ViewHolder {
 
-//    public TextView rowText;
+    public TextView textView;
 
     public HelpHolder(@NonNull View itemView) {
         super(itemView);
-//        rowText = itemView.findViewById();
+        textView = (TextView) itemView;
     }
+
+    public void setContent(String content){
+        textView.setText(content);
+    }
+
+
 
 }

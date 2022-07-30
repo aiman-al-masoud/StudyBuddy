@@ -33,28 +33,22 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpHolder> {
     public HelpHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         TextView row = new TextView(parent.getContext());
-        row.setText(Help.getDocumentations().get(viewType));
-
         return new HelpHolder(row);
     }
 
     @Override
     public void onBindViewHolder(@NonNull HelpHolder holder, int position) {
         // Bind the data to be displayed to the new row.
-//        holder.rowText.setText(items.get(position));
+        holder.setContent(Help.getDocumentations().get(position));
     }
 
     @Override
     public int getItemCount() {
-//        return items.size();
         return Help.numberOfCommands();
     }
 
 
-    @Override
-    public int getItemViewType(int position) {
-        return position;
-    }
+
 
 
 
