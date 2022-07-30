@@ -18,7 +18,6 @@ import com.luxlunaris.studybuddy.model.utils.FileManager;
 
 public class IntroActivity extends FragmentActivity {
 
-//    private static final int NUM_PAGES = 5;
     private  static int[] PAGES = new int[]{R.layout.fragment_intro_0, R.layout.fragment_intro_1, R.layout.fragment_intro_2};
 
     private ViewPager viewPager;
