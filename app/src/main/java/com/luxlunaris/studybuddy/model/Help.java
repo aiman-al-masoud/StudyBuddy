@@ -22,9 +22,27 @@ public class Help {
 
     public static Help getDocumentationFor(CommandTypes commandType){
 
-        if(commandType==CommandTypes.ASK_ME){
-            return new Help("Ask Me", "Use it to trigger a question from Study Buddy.", "ask me [keyword|random] from [filename]");
+        switch (commandType){
+            case ASK_ME:
+                return new Help("Ask Me", "Use it to trigger a question from Study Buddy.", "ask me [keywords|random] from [filename]");
+            case TELL_ME:
+                return new Help("Tell Me", "Use it to ask Study Buddy to talk about a topic.", "tell me [keywords]");
+            case COME_AGAIN:
+                return new Help("Come Again", "Prompts study buddy to repeat the question.", "come again [slowly]");
+            case ANOTHER_TIME:
+                return new Help("Another Time", "Prompts study buddy to re-run a Tell Me command with the same arguments.", "another time");
+            case EXIT:
+                return new Help("Exit", "Exits the app", "exit");
+            case BINARY:
+                return new Help("Binary", "Use it when Study Buddy asks a binary question.", "yes|no");
+            case UNDEFINED:
+                return new Help("Undefined","","");
+            case HELP:
+                return new Help("Help","","help");
+
         }
+
+
 
         return new Help("--", "--", "--");
     }
