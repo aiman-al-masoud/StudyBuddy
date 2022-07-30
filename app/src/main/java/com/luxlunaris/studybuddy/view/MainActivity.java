@@ -44,19 +44,73 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     private RowAdapter rowAdapter;
     private RecyclerView recyclerView;
     private Toolbar myToolbar;
+    private Boolean isInit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(Permissions.checkPermissions(this)){
+
+        boolean permissionsGranted = Permissions.checkPermissions(this);
+
+        if(!permissionsGranted){
+            return;
+        }
+
+
+        boolean langOk = Language.checkLanguage(this);
+
+        if(!langOk){
+            return;
+        }
+
+
+        boolean introSeen = FileManager.isIntroSeen();
+
+        if(!introSeen){
+            startActivity(new Intent(this, IntroActivity.class));
+        }
+
+        if(permissionsGranted && langOk && introSeen){
             init();
         }
 
-        Language.checkLanguage(this);
+    }
+
+    @Override
+    protected void onResume() {
+
+        boolean langOk = Language.checkLanguage(this);
+        boolean introSeen = FileManager.isIntroSeen();
+
+//        if(!langOk){
+//            return;
+//        }
+//
+//        if(introSeen){
+//            init();
+//        }
+
+        super.onResume();
+    }
 
 
+    private void init(){
+
+        if(isInit!=null && isInit){
+            return;
+        }
+
+        isInit=true;
+
+        // Logic
+        FileManager.createRootDir();
+        studyBuddy = new StudyBuddy(this, this);
+        loadChallengesFromDisk();
+        studyBuddy.startTranscribing();
+
+        // UI
         FileManager.addListener(this);
         inputText = (EditText) findViewById(R.id.inputText);
         micButton = (FloatingActionButton) findViewById(R.id.micButton);
@@ -107,19 +161,6 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
                 speakerButton.setImageDrawable(getDrawable(android.R.drawable.ic_lock_silent_mode_off));
             }
         });
-
-
-        if(!FileManager.isIntroSeen()){
-            startActivity(new Intent(this, IntroActivity.class));
-        }
-
-    }
-
-    private void init(){
-        FileManager.createRootDir();
-        studyBuddy = new StudyBuddy(this, this);
-        loadChallengesFromDisk();
-        studyBuddy.startTranscribing();
     }
 
 
@@ -189,12 +230,9 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
 
         try{
             studyBuddy.setChallenges(title, newBody);
-
         }catch (WrongFormatException e){
             e.printStackTrace();
-//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }
-
 
     }
 

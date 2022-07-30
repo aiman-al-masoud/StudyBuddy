@@ -56,12 +56,15 @@ public class Language {
         builder.show();
     }
 
-    public static void checkLanguage(Context context){
+    public static boolean checkLanguage(Context context){
 
-        if(!getAvailableLanguages().contains(getLanguage())){
+        boolean langOk = getAvailableLanguages().contains(getLanguage());
+
+        if(!langOk){
             unsupportedLanguageDialog(context);
         }
 
+        return langOk;
     }
 
 
