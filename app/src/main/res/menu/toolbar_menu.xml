@@ -9,4 +9,7 @@
     <item
         android:id="@+id/fileManagerItem"
         android:title="Corpora" />
+    <item
+        android:id="@+id/helpItem"
+        android:title="Help" />
 </menu>

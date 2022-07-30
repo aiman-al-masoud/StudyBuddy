@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
+            android:name=".view.help.HelpActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.intro.IntroActivity"
             android:exported="false" />
         <activity

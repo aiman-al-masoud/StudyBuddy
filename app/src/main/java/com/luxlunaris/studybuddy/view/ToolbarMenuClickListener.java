@@ -9,6 +9,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.view.filemanager.FileManagerActivity;
+import com.luxlunaris.studybuddy.view.help.HelpActivity;
+import com.luxlunaris.studybuddy.view.help.HelpAdapter;
 
 public class ToolbarMenuClickListener implements Toolbar.OnMenuItemClickListener {
 
@@ -27,8 +29,10 @@ public class ToolbarMenuClickListener implements Toolbar.OnMenuItemClickListener
 //                Toast.makeText(context, "you clicked on settings...", Toast.LENGTH_SHORT).show();
 //                break;
             case R.id.fileManagerItem:
-                Intent i = new Intent(context, FileManagerActivity.class);
-                context.startActivity(i);
+                context.startActivity(new Intent(context, FileManagerActivity.class));
+                break;
+            case R.id.helpItem:
+                context.startActivity(new Intent(context, HelpActivity.class));
                 break;
 
         }
