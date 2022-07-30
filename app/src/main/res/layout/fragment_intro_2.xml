@@ -15,38 +15,64 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.295"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+
+
+        />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="335dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="72dp"
+        android:layout_width="309dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="64dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="4dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
         android:text="A beautifully crafted and intuitive chat-based UI,  where you can choose to  communicate through your voice or your keyboard, and hear or read the ouput."
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+
+
+        />
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="127dp"
-        android:layout_height="30dp"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/outgoing_speech_bubble"
         android:drawablePadding="5dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="4dp"
+
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
         android:text="Ask me about "
         android:textColor="#000000"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+
+
+        />
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="127dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="52dp"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="36dp"
         android:background="@drawable/outgoing_speech_bubble"
+        android:paddingLeft="20dp"
+        android:paddingTop="4dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+
         android:text="My answer is..."
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,28 +80,44 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="133dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="40dp"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:background="@drawable/incoming_speech_bubble"
         android:drawablePadding="10dp"
         android:includeFontPadding="true"
+        android:paddingLeft="20dp"
+        android:paddingTop="4dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
         android:text="What about ..."
         android:textColor="#000000"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+
+        />
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="223dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="44dp"
+
+        android:layout_width="221dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
         android:background="@drawable/incoming_speech_bubble"
         android:foregroundTint="#000000"
+        android:paddingLeft="20dp"
+        android:paddingTop="4dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
         android:text="Your answer is wrong, wish to try again? Yes or no?"
         android:textColor="#000000"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
