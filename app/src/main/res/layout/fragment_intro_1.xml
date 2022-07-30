@@ -19,12 +19,12 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="235dp"
-        android:layout_height="123dp"
-        android:layout_marginTop="52dp"
-        android:text="Extend your Study Buddy's knowledge, through easy to handle text-files."
+        android:layout_width="240dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="28dp"
+        android:text="Extend your Study Buddy's knowledge, through easy to use text-files."
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.278"
+        app:layout_constraintHorizontal_bias="0.286"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -33,10 +33,23 @@
         android:layout_width="307dp"
         android:layout_height="125dp"
         android:layout_marginBottom="56dp"
-        android:text="The format is very forgiving, each question-answer pair takes up a paragraph, and Study Buddy will help you if it finds any syntax errors."
+        android:text="The format is very forgiving, each question-answer pair takes up a paragraph, and Study Buddy will help you out if it finds any errors."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="266dp"
+        android:layout_height="128dp"
+        android:layout_marginBottom="28dp"
+        android:background="#807F7F"
+        android:padding="10dp"
+        android:text="Is this a question?\nYes! I'm the answer!\n\nIs this another question?\nYou bet it is!"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.337"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
