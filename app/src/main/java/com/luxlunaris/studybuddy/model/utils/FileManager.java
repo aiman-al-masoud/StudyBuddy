@@ -238,7 +238,10 @@ public class FileManager {
 
 
     private static List<File> lsRootDirFiles(){
-        return Arrays.asList(new File(getRootDirPath()).listFiles());
+
+        return Arrays.stream(new File(getRootDirPath()).listFiles())
+                .filter(File::isFile)
+                .collect(Collectors.toList());
     }
 
     /**
