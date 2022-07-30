@@ -18,11 +18,10 @@ import com.luxlunaris.studybuddy.model.utils.FileManager;
 
 public class IntroActivity extends FragmentActivity {
 
-    private  static int[] PAGES = new int[]{R.layout.fragment_intro_0, R.layout.fragment_intro_1, R.layout.fragment_intro_2};
+    private  static int[] PAGES = new int[]{R.layout.fragment_intro_0, R.layout.fragment_intro_2, R.layout.fragment_intro_1, R.layout.fragment_intro_3};
 
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
-//    private CheckBox doNotShowIntroAgainCheckBox;
     private ProgressBar progressBar;
 
 
@@ -36,7 +35,6 @@ public class IntroActivity extends FragmentActivity {
         pagerAdapter = new FAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
 
-//        doNotShowIntroAgainCheckBox = findViewById(R.id.dontShowIntroAgaincheckBox);
         progressBar = findViewById(R.id.introProgress);
         progressBar.setMax(PAGES.length-1);
 
@@ -76,10 +74,7 @@ public class IntroActivity extends FragmentActivity {
     @Override
     public void finish() {
 
-//        if(doNotShowIntroAgainCheckBox.isChecked()){
         FileManager.setIntroSeen();
-//        }
-
         super.finish();
 
     }
