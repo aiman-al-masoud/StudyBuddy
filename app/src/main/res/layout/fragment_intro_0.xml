@@ -10,7 +10,7 @@
         android:layout_width="293dp"
         android:layout_height="84dp"
         android:layout_marginTop="92dp"
-        android:text="Ciao mondo ciao!!!!!"
+        android:text="Study Buddy is a chatbot designed to help you rehearse your own study material."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -27,4 +27,16 @@
         app:srcCompat="@drawable/ic_launcher_foreground"
         android:src="@drawable/ic_launcher_foreground"
         />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="245dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="36dp"
+        android:text="Weclome!"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.295"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
