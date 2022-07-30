@@ -11,5 +11,7 @@
         android:title="Corpora" />
     <item
         android:id="@+id/helpItem"
-        android:title="Help" />
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="Help"
+        app:showAsAction="always" />
 </menu>
