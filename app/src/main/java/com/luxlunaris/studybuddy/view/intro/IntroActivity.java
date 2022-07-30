@@ -96,6 +96,10 @@ public class IntroActivity extends FragmentActivity {
             finish();
         });
 
+        doneIntroTextView.setOnClickListener(e->{
+            finish();
+        });
+
 
     }
 
