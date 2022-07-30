@@ -10,7 +10,7 @@
         android:layout_width="245dp"
         android:layout_height="65dp"
         android:layout_marginTop="28dp"
-        android:text="Free"
+        android:text="Get Started"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.289"
@@ -18,23 +18,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="8dp"
-        android:text="as in 'Freedom'"
-        android:textStyle="bold|italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-    <TextView
         android:id="@+id/textView16"
         android:layout_width="283dp"
         android:layout_height="82dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="52dp"
-        android:text="Study Buddy's source code is licensed under GPLv3, and it's available on this link:"
+        android:text="Try asking Study Buddy what's"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
