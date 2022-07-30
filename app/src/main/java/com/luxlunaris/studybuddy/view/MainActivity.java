@@ -141,7 +141,14 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
                 speakerButton.setImageDrawable(getDrawable(android.R.drawable.ic_lock_silent_mode_off));
             }
         });
+
+        speakerButton.setOnLongClickListener(e->{
+            Toast.makeText(this, "Click to toggle speaker.", Toast.LENGTH_SHORT).show();
+            return true;
+        });
     }
+
+
 
 
     /**
