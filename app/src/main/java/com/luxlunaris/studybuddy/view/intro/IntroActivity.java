@@ -72,6 +72,19 @@ public class IntroActivity extends FragmentActivity {
         });
 
 
+        nextTextView.setOnClickListener(e->{
+            viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
+        });
+
+
+        backTextView.setOnClickListener(e->{
+            viewPager.setCurrentItem(viewPager.getCurrentItem()-1);
+        });
+
+        skipIntroTextView.setOnClickListener(e->{
+            finish();
+        });
+
 
     }
 
