@@ -1,7 +1,6 @@
 package com.luxlunaris.studybuddy.view.intro;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -19,7 +18,9 @@ import com.luxlunaris.studybuddy.model.utils.FileManager;
 
 public class IntroActivity extends FragmentActivity {
 
-    private static final int NUM_PAGES = 5;
+//    private static final int NUM_PAGES = 5;
+    private  static int[] PAGES = new int[]{R.layout.fragment_intro_0, R.layout.fragment_intro_1, R.layout.fragment_intro_2};
+
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
     private CheckBox doNotShowIntroAgainCheckBox;
@@ -38,7 +39,7 @@ public class IntroActivity extends FragmentActivity {
 
         doNotShowIntroAgainCheckBox = findViewById(R.id.dontShowIntroAgaincheckBox);
         progressBar = findViewById(R.id.introProgress);
-        progressBar.setMax(NUM_PAGES-1);
+        progressBar.setMax(PAGES.length-1);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -87,6 +88,7 @@ public class IntroActivity extends FragmentActivity {
 
     class FAdapter extends FragmentStatePagerAdapter{
 
+
         public FAdapter(@NonNull FragmentManager fm) {
             super(fm);
         }
@@ -95,13 +97,13 @@ public class IntroActivity extends FragmentActivity {
         @NonNull
         @Override
         public Fragment getItem(int position) {
-            return new IntroFragment(R.layout.fragment_intro);
+            return new IntroFragment(PAGES[position]);
         }
 
 
         @Override
         public int getCount() {
-            return NUM_PAGES;
+            return PAGES.length;
         }
     }
 

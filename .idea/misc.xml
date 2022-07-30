@@ -13,6 +13,10 @@
         <entry key="app/src/main/res/layout/activity_text_editor.xml" value="0.4" />
         <entry key="app/src/main/res/layout/file_holder_row.xml" value="0.536" />
         <entry key="app/src/main/res/layout/fragment_intro.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_intro_0.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/fragment_intro_1.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_intro_2.xml" value="0.14719202898550723" />
+        <entry key="app/src/main/res/layout/intro0.xml" value="0.14719202898550723" />
         <entry key="app/src/main/res/layout/row.xml" value="0.264" />
         <entry key="app/src/main/res/layout/row_incoming_bubble.xml" value="0.1" />
         <entry key="app/src/main/res/layout/row_outgoing_bubble.xml" value="0.4" />
