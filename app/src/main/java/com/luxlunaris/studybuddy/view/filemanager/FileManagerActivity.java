@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.luxlunaris.studybuddy.R;
@@ -44,6 +45,10 @@ public class FileManagerActivity extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new FileManagerToolbarMenuClickListener(toolbar.getMenu(), this));
 
 
+        addFileFab.setOnLongClickListener(e->{
+            Toast.makeText(this, "Click to create new file.", Toast.LENGTH_SHORT).show();
+            return true;
+        });
 
     }
 
