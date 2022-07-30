@@ -22,7 +22,7 @@ public class IntroActivity extends FragmentActivity {
 
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
-    private CheckBox doNotShowIntroAgainCheckBox;
+//    private CheckBox doNotShowIntroAgainCheckBox;
     private ProgressBar progressBar;
 
 
@@ -36,7 +36,7 @@ public class IntroActivity extends FragmentActivity {
         pagerAdapter = new FAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
 
-        doNotShowIntroAgainCheckBox = findViewById(R.id.dontShowIntroAgaincheckBox);
+//        doNotShowIntroAgainCheckBox = findViewById(R.id.dontShowIntroAgaincheckBox);
         progressBar = findViewById(R.id.introProgress);
         progressBar.setMax(PAGES.length-1);
 
@@ -76,10 +76,9 @@ public class IntroActivity extends FragmentActivity {
     @Override
     public void finish() {
 
-
-        if(doNotShowIntroAgainCheckBox.isChecked()){
-            FileManager.setIntroSeen();
-        }
+//        if(doNotShowIntroAgainCheckBox.isChecked()){
+        FileManager.setIntroSeen();
+//        }
 
         super.finish();
 
