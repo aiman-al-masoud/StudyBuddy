@@ -21,21 +21,22 @@
         android:id="@+id/textView"
         android:layout_width="235dp"
         android:layout_height="123dp"
-        android:layout_marginBottom="356dp"
-        android:text="You can extend Study Buddy's knowledge by adding text files with the questions and answers you would like to revise. "
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="52dp"
+        android:text="Extend your Study Buddy's knowledge, through easy to handle text-files."
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.278"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="330dp"
-        android:layout_height="196dp"
-        android:layout_marginBottom="116dp"
-        android:text="The format is very forgiving, it's basically a bunch of paragraphs; within each paragraph there should be a question mark to separate the question from the answer. The answer can also be an ordered list. Study Buddy will tell you if the format is unrecognized and help you correct it."
+        android:layout_width="307dp"
+        android:layout_height="125dp"
+        android:layout_marginBottom="56dp"
+        android:text="The format is very forgiving, each question-answer pair takes up a paragraph, and Study Buddy will help you if it finds any syntax errors."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
