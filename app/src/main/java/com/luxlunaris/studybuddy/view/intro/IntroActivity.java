@@ -10,8 +10,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
@@ -23,12 +25,19 @@ public class IntroActivity extends FragmentActivity {
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
     private ProgressBar progressBar;
+    private TextView nextTextView;
+    private TextView backTextView;
+    private TextView skipIntroTextView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
+
+        nextTextView = findViewById(R.id.nextTextView);
+        backTextView = findViewById(R.id.backTextView);
+        skipIntroTextView = findViewById(R.id.skipIntroTextView);
 
 
         viewPager = (ViewPager) findViewById(R.id.introViewPager);
@@ -48,6 +57,12 @@ public class IntroActivity extends FragmentActivity {
             public void onPageSelected(int position) {
                 Log.d("IntroActivity", "onPageSelected: "+position);
                 progressBar.setProgress(position);
+
+                if(position!=0){
+                    backTextView.setVisibility(View.VISIBLE);
+                }else{
+                    backTextView.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
@@ -64,7 +79,7 @@ public class IntroActivity extends FragmentActivity {
     public void onBackPressed() {
 
         if(viewPager.getCurrentItem()==0){
-            super.onBackPressed();
+//            super.onBackPressed();
         }else{
             viewPager.setCurrentItem(viewPager.getCurrentItem()-1);
         }
