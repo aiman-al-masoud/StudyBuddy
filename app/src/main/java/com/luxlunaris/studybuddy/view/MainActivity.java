@@ -58,21 +58,15 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
 
 
         FileManager.addListener(this);
-
         inputText = (EditText) findViewById(R.id.inputText);
         micButton = (FloatingActionButton) findViewById(R.id.micButton);
         speakerButton = (FloatingActionButton) findViewById(R.id.speakerButton);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         myToolbar = (Toolbar) findViewById(R.id.myToolbar);
-
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         rowAdapter = new RowAdapter(this);
         recyclerView.setAdapter(rowAdapter);
-
         inputText.setZ(10000);
-
-
         myToolbar.setOnMenuItemClickListener(new ToolbarMenuClickListener(this));
 
 
