@@ -1,6 +1,7 @@
 package com.luxlunaris.studybuddy.view;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
 
         boolean permissionsGranted = Permissions.checkPermissions(this);
 
@@ -58,41 +59,20 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
             return;
         }
 
-
         boolean langOk = Language.checkLanguage(this);
 
         if(!langOk){
             return;
         }
 
-
         boolean introSeen = FileManager.isIntroSeen();
 
         if(!introSeen){
-            startActivity(new Intent(this, IntroActivity.class));
-        }
-
-        if(permissionsGranted && langOk && introSeen){
+            startActivityForResult(new Intent(this, IntroActivity.class), IntroActivity.SHOW_INTRO);
+        }else{
             init();
         }
 
-    }
-
-    @Override
-    protected void onResume() {
-
-        boolean langOk = Language.checkLanguage(this);
-        boolean introSeen = FileManager.isIntroSeen();
-
-//        if(!langOk){
-//            return;
-//        }
-//
-//        if(introSeen){
-//            init();
-//        }
-
-        super.onResume();
     }
 
 
@@ -192,14 +172,15 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         Log.d("onRequestPermissionsRes", "onRequestPermissionsResult: "+requestCode+" "+ Arrays.asList(permissions) +" "+ Arrays.asList(grantResults));
 
         if(Arrays.stream(grantResults).allMatch(p-> p == PackageManager.PERMISSION_GRANTED)){
-            init();
+
+            if(Language.checkLanguage(this)){
+                init();
+            }
+
         }else{
-            Toast.makeText(this, "Sorry, you must grant all of the permissions or the app won't work.", Toast.LENGTH_LONG).show();
-            Async.setTimeout(()->System.exit(0), 3000);
+            System.exit(0);
         }
     }
-
-
 
     @Override
     public void onOutput(String output) {
@@ -213,15 +194,12 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         Log.d("MainActivity", "onUserVoiceInput: "+voiceInput);
         rowAdapter.addRow(voiceInput);
         recyclerView.scrollToPosition(rowAdapter.getItemCount()-1);
-
     }
 
     @Override
     public void onError(String error) {
         Log.d("MainActivity", "onError: "+error);
-
         micButton.setImageDrawable(getDrawable(android.R.drawable.stat_notify_call_mute));
-
     }
 
     @Override
@@ -250,6 +228,17 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     public void onFileDeSelected(String title) {
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==IntroActivity.SHOW_INTRO){
+            init();
+        }
+
+    }
+
 
 
 }

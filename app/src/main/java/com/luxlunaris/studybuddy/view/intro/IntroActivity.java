@@ -20,6 +20,8 @@ import com.luxlunaris.studybuddy.model.utils.FileManager;
 
 public class IntroActivity extends FragmentActivity {
 
+
+    public static final int SHOW_INTRO = 33;
     private  static int[] PAGES = new int[]{R.layout.fragment_intro_0, R.layout.fragment_intro_2, R.layout.fragment_intro_1, R.layout.fragment_intro_3};
 
     private ViewPager viewPager;
