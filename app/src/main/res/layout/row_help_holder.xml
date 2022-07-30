@@ -10,11 +10,12 @@
         android:id="@+id/commandTitleTextView"
         android:layout_width="164dp"
         android:layout_height="40dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:text="TextView"
         android:textColor="#000000"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,12 +23,10 @@
         android:id="@+id/commandDescriptionTextView"
         android:layout_width="306dp"
         android:layout_height="51dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:text="TextView"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/commandSyntaxTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.323"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/commandTitleTextView" />
 
@@ -37,17 +36,19 @@
         android:layout_height="64dp"
         android:text="TextView"
         android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
         android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="67dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:text="Syntax"
-        app:layout_constraintBottom_toTopOf="@+id/commandSyntaxTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commandDescriptionTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
