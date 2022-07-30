@@ -32,8 +32,9 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpHolder> {
     @Override
     public HelpHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        TextView row = new TextView(parent.getContext());
-        return new HelpHolder(row);
+//        TextView row = new TextView(parent.getContext());
+        View v = inflater.inflate(R.layout.row_help_holder, parent, false);
+        return new HelpHolder(v);
     }
 
     @Override

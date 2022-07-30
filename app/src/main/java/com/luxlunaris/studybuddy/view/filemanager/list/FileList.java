@@ -31,7 +31,7 @@ public class FileList extends RecyclerView.Adapter<FileHolder> implements FileMa
     @NonNull
     @Override
     public FileHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View row = inflater.inflate(R.layout.file_holder_row, parent, false);
+        View row = inflater.inflate(R.layout.row_file_holder, parent, false);
         return new FileHolder(row);
     }
 

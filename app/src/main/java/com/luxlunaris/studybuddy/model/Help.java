@@ -8,25 +8,38 @@ import java.util.stream.Collectors;
 
 public class Help {
 
+    public final String name;
+    public final String description;
+    public final String syntax;
 
-    public static String getDocumentationFor(CommandTypes commandType){
+    private Help(String name, String description, String syntax){
+        this.name = name;
+        this.description = description;
+        this.syntax = syntax;
+
+    }
+
+
+    public static Help getDocumentationFor(CommandTypes commandType){
 
         if(commandType==CommandTypes.ASK_ME){
-            return "ask me";
+            return new Help("Ask Me", "Use it to trigger a question from Study Buddy.", "ask me [keyword|random] from [filename]");
         }
 
-        return "help is ...";
+        return new Help("--", "--", "--");
     }
 
     public static int numberOfCommands(){
         return CommandTypes.values().length;
     }
 
-    public static List<String> getDocumentations(){
+    public static List<Help> getDocumentations(){
         return Arrays.stream(CommandTypes.values())
                 .map(Help::getDocumentationFor)
                 .collect(Collectors.toList());
     }
+
+
 
 
 

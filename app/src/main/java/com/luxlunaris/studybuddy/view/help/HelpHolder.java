@@ -13,20 +13,28 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.luxlunaris.studybuddy.R;
+import com.luxlunaris.studybuddy.model.Help;
 
-import org.w3c.dom.Text;
 
 public class HelpHolder extends RecyclerView.ViewHolder {
 
-    public TextView textView;
+
+    private TextView titleView;
+    private TextView descriptionView;
+    private TextView syntaxView;
 
     public HelpHolder(@NonNull View itemView) {
         super(itemView);
-        textView = (TextView) itemView;
+        titleView = itemView.findViewById(R.id.commandTitleTextView);
+        descriptionView = itemView.findViewById(R.id.commandDescriptionTextView);
+        syntaxView = itemView.findViewById(R.id.commandSyntaxTextView);
+
     }
 
-    public void setContent(String content){
-        textView.setText(content);
+    public void setContent(Help content){
+        titleView.setText(content.name);
+        descriptionView.setText(content.description);
+        syntaxView.setText(content.syntax);
     }
 
 
