@@ -2,6 +2,7 @@ package com.luxlunaris.studybuddy.model.utils;
 
 import android.content.Context;
 
+import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
 
 import java.util.Arrays;
@@ -18,7 +19,12 @@ public class Help {
         this.name = name;
         this.description = description;
         this.syntax = syntax;
+    }
 
+    private Help(String[] doc){
+        this.name = doc[0];
+        this.description = doc[1];
+        this.syntax = doc[2];
     }
 
 
@@ -26,7 +32,7 @@ public class Help {
 
         switch (commandType){
             case ASK_ME:
-                return new Help("Ask Me", "Use it to trigger a question from Study Buddy.", "ask me [keywords|random] from [filename]");
+                return new Help(context.getResources().getStringArray(R.array.doc_ask_me));
             case TELL_ME:
                 return new Help("Tell Me", "Use it to ask Study Buddy to talk about a topic.", "tell me [keywords|random] from [filename]");
             case COME_AGAIN:

@@ -6,7 +6,6 @@
         Ask me about acceleration.
     </string>>
 
-
     <string name="intro_example_question_2">
         Tell me about speed.
     </string>
@@ -18,18 +17,9 @@
         with respect to time.
     </string>
 
-
-    <string name="command_bar_hint">
-         Command or \'help\' …
-    </string>
-
-    <string name="mic_long_press">
-        Click to toggle microphone
-    </string>
-
-    <string name="speaker_long_press">
-        Click to toggle speaker
-    </string>
+    <string name="command_bar_hint">Command or \'help\' …</string>
+    <string name="mic_long_press">Click to toggle microphone</string>
+    <string name="speaker_long_press">Click to toggle speaker</string>
     <string name="help">Help</string>
     <string name="about">About</string>
     <string name="corpora">Corpora</string>
@@ -131,5 +121,17 @@
 
     <!--END KEYWORDS-->
 
+
+    <!--  COMMAND DOCUMENTATION -->
+
+    <string-array name="doc_ask_me">
+        <item>Ask Me</item>
+        <item>Use it to trigger a question from Study Buddy.</item>
+        <item>ask me [keywords|random] from [filename]</item>
+    </string-array>
+
+
+
+    <!-- END COMMAND DOCUMENTATION -->
 
 </resources>
