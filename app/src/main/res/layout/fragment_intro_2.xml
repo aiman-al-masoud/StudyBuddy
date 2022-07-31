@@ -25,7 +25,7 @@
         android:layout_width="309dp"
         android:layout_height="160dp"
         android:layout_marginStart="4dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="28dp"
         android:paddingLeft="20dp"
         android:paddingTop="4dp"
         android:paddingRight="10dp"
@@ -65,8 +65,8 @@
 
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/outgoing_speech_bubble"
         android:paddingLeft="20dp"
         android:paddingTop="4dp"
@@ -84,6 +84,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/incoming_speech_bubble"
         android:drawablePadding="10dp"
         android:includeFontPadding="true"
@@ -92,12 +93,11 @@
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
         android:text="@string/what_about"
+
         android:textColor="#000000"
-
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
 
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/textView12"
@@ -105,7 +105,7 @@
         android:layout_width="220dp"
         android:layout_height="85dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/incoming_speech_bubble"
         android:foregroundTint="#000000"
         android:paddingLeft="20dp"
