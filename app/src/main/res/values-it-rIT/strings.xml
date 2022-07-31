@@ -59,6 +59,11 @@
     <string name="cancel">Annulla</string>
     <string name="click_to_create_new_file">Clicca per creare un nuovo file.</string>
 
+    <string name="format_error_missing_question_mark">Manca \'?\' nel paragrafo:</string>
+    <string name="format_error_empty_question">Domanda vuota nel paragrafo:</string>
+    <string name="format_error_empty_answer">Risposta vuota nel paragrafo:</string>
+    <string name="format_error_empty_corpus">Corpus vuoto!</string>
+
 
 
 

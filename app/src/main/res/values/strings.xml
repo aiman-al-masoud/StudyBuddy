@@ -53,6 +53,10 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="click_to_create_new_file">Click to create new file.</string>
+    <string name="format_error_missing_question_mark">\"Missing \'?\' in paragraph: \"</string>
+    <string name="format_error_empty_question">\"Empty question in paragraph: \"</string>
+    <string name="format_error_empty_answer">\"Empty answer in paragraph: \"</string>
+    <string name="format_error_empty_corpus">Empty corpus!</string>
 
 
 

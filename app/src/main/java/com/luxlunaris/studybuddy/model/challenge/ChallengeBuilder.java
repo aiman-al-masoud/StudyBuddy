@@ -1,5 +1,8 @@
 package com.luxlunaris.studybuddy.model.challenge;
 
+import android.content.Context;
+
+import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.challenge.classes.MultiAnswerChallenge;
 import com.luxlunaris.studybuddy.model.challenge.classes.SingleAnswerChallenge;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.WrongFormatException;
@@ -10,6 +13,12 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ChallengeBuilder {
+
+    Context context;
+
+    public ChallengeBuilder(Context context){
+        this.context = context;
+    }
 
     /**
      * Text format requires distinct answer-question blocks to be separated
@@ -22,7 +31,7 @@ public class ChallengeBuilder {
     public List<Challenge> fromText(String text, String fileName) throws WrongFormatException {
 
         if(text.replaceAll("\\s+", "").isEmpty()){
-            throw new WrongFormatException("Empty corpus!");
+            throw new WrongFormatException(context.getResources().getString(R.string.format_error_empty_corpus));
         }
 
         String[] pars = text.split("(\\n){2,}");
@@ -40,7 +49,7 @@ public class ChallengeBuilder {
     private Challenge buildChallenge(final int paragraphIndex, final String challengeParagraph, final String fileName) throws WrongFormatException {
 
         if (!challengeParagraph.contains("?")) {
-            throw new WrongFormatException("Missing (?) in paragraph: " + paragraphIndex);
+            throw new WrongFormatException(context.getString(R.string.format_error_missing_question_mark) + paragraphIndex);
         }
 
         String answer;
@@ -51,17 +60,17 @@ public class ChallengeBuilder {
         question = parts[0];
 
         if (question.replaceAll("\\s+", "").length() < 1) {
-            throw new WrongFormatException("Empty question in paragraph: " + paragraphIndex);
+            throw new WrongFormatException(context.getResources().getString(R.string.format_error_empty_question) + paragraphIndex);
         }
 
         try {
             answer = parts[1];
         } catch (IndexOutOfBoundsException e) {
-            throw new WrongFormatException("Empty answer in paragraph: " + paragraphIndex);
+            throw new WrongFormatException(context.getResources().getString(R.string.format_error_empty_answer) + paragraphIndex);
         }
 
         if(answer.replaceAll("\\s+", "").isEmpty()){
-            throw new WrongFormatException("Empty answer in paragraph: " + paragraphIndex);
+            throw new WrongFormatException(context.getResources().getString(R.string.format_error_empty_answer) + paragraphIndex);
         }
 
 

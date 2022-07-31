@@ -159,7 +159,7 @@ public class TextEditorActivity extends AppCompatActivity {
 
 
     private void checkFormat(final String text) {
-        ChallengeBuilder cb = new ChallengeBuilder();
+        ChallengeBuilder cb = new ChallengeBuilder(this);
 
         try {
             cb.fromText(text, "doesntmatter");
