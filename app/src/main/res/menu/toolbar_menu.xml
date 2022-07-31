@@ -14,4 +14,7 @@
         android:icon="@android:drawable/ic_menu_help"
         android:title="Help"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/aboutItem"
+        android:title="About" />
 </menu>

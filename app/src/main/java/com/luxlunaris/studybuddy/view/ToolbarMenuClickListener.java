@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
 import com.luxlunaris.studybuddy.R;
+import com.luxlunaris.studybuddy.view.about.AboutActivity;
 import com.luxlunaris.studybuddy.view.filemanager.FileManagerActivity;
 import com.luxlunaris.studybuddy.view.help.HelpActivity;
 import com.luxlunaris.studybuddy.view.help.HelpAdapter;
@@ -33,6 +34,9 @@ public class ToolbarMenuClickListener implements Toolbar.OnMenuItemClickListener
                 break;
             case R.id.helpItem:
                 context.startActivity(new Intent(context, HelpActivity.class));
+                break;
+            case R.id.aboutItem:
+                context.startActivity(new Intent(context, AboutActivity.class));
                 break;
 
         }
