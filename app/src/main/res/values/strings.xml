@@ -22,7 +22,7 @@
     <string name="what_about">What about ...</string>
     <string name="your_answer_is_wrong_wish_to_try_again_yes_or_no">Your answer is wrong, wish to try again? Yes or no?</string>
     <string name="extensible">Extensible</string>
-    <string name="extend_your_study_buddy_s_knowledge_through_easy_to_use_text_files">Extend your Study Buddy\'s knowledge, through easy to use text-files.</string>
+    <string name="extend_your_study_buddy_s_knowledge_through_easy_to_use_text_files">Expand your Study Buddy\'s knowledge, through easy to use text-files.</string>
     <string name="the_format_is_very_forgiving_each_question_answer_pair_takes_up_a_paragraph_and_study_buddy_will_help_you_out_if_it_finds_any_errors">The format is very forgiving, each question-answer pair takes up a paragraph, and Study Buddy will help you out if it finds any errors.</string>
     <string name="is_this_a_question_nyes_i_m_the_answer_n_nis_this_another_question_nyou_bet_it_is">Is this a question?\nYes! I\'m the answer!\n\nIs this another question?\nYou bet it is!</string>
     <string name="study_buddy_is_a_chatbot_designed_to_help_you_rehearse_your_own_study_material">Study Buddy is a chatbot designed to help you rehearse your own study material.</string>
@@ -51,20 +51,14 @@
 
 
     <!--  DEFAULT CHALLENGES  -->
-    <string name="intro_example_question">
-        Ask me about acceleration.
-    </string>>
+    <string name="intro_example_question">"Ask me about acceleration."</string>>
 
-    <string name="intro_example_question_2">
-        Tell me about speed.
-    </string>
+    <string name="intro_example_question_2">Tell me about speed.</string>
 
     <string name="default_challenge_file">
-        Define speed?\nSpeed is the rate of change of distance
-        with respect to time.\n\n
-        Define acceleration?\nAcceleration is the rate of change of speed\n
-        with respect to time.
-    </string>
+        Define speed?
+        Speed is the rate of change of distance with respect to time.\n\n
+        Define acceleration? Acceleration is the rate of change of speed with respect to time.</string>
     <!-- END DEFAULT CHALLENGES  -->
 
     <!--KEYWORDS FOR THE PARSER-->

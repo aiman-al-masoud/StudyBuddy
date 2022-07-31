@@ -2,6 +2,173 @@
 <resources>
     <string name="app_name">Study Buddy</string>
     <string name="weclome">Benvenuto/a!</string>
+    <string name="command_bar_hint">Comando o \'aiuto\'.</string>
+    <string name="mic_long_press">Accendi/Spegni microfono.</string>
+    <string name="speaker_long_press">Accendi/Spegni altoparlante.</string>
+    <string name="help">Aiuto</string>
+    <string name="about">Info</string>
+    <string name="corpora">Corpora</string>
+    <string name="undo">Annulla</string>
+    <string name="save">Salva</string>
+    <string name="delete">Cancella</string>
+    <string name="import_file">Importa File</string>
+    <string name="syntax">Sintassi</string>
+    <string name="get_started">Per Cominciare</string>
+    <string name="try_asking_study_buddy_something_like">Prova a chiedere a Study Buddy qualcosa:</string>
+    <string name="or">Oppure:</string>
+    <string name="sleek_ui">Interfaccia Elegante</string>
+    <string name="a_beautifully_crafted_and_intuitive_chat_based_ui_where_you_can_choose_to_communicate_through_your_voice_or_your_keyboard_and_hear_or_read_the_ouput">Un\'interfaccia bella ed elegante basata sulla chat, dove puoi interagire con microfono o tastiera.</string>
+    <string name="ask_me_about">Chiedimi ...</string>
+    <string name="my_answer_is">La mia risposta è ...</string>
+    <string name="what_about">Riguardo a ...</string>
+    <string name="your_answer_is_wrong_wish_to_try_again_yes_or_no">La tua risposta è sbagliata, vuoi provare ancora? Sì o no?</string>
+    <string name="extensible">Estensibile</string>
+    <string name="extend_your_study_buddy_s_knowledge_through_easy_to_use_text_files">Espandi la conoscenza del tuo compagno di studio attraverso dei semplici file di testo.</string>
+    <string name="the_format_is_very_forgiving_each_question_answer_pair_takes_up_a_paragraph_and_study_buddy_will_help_you_out_if_it_finds_any_errors">Il formato è molto essenziale, ciascuna coppia domanda-risposta occupa un paragrafo, e Study Buddy ti aiuterà a correggere eventuali errori di sintassi.</string>
+    <string name="study_buddy_is_a_chatbot_designed_to_help_you_rehearse_your_own_study_material">Study Buddy è un chatbot progettato per animare le tue sessioni di studio.</string>
+    <string name="is_this_a_question_nyes_i_m_the_answer_n_nis_this_another_question_nyou_bet_it_is">Questa è una domanda?\\nCerto! Io sono la risposta!\\n\\nQuesta è un\'altra domanda?\\nCi puoi scommettere!</string>
+    <string name="license">Licenza</string>
+    <string name="study_buddy_is_free_software_licensed_under_gplv3_you_can_get_the_source_code_from_this_link">Study Buddy è software libero, distribuito sotto licenza GPLv3, puoi ottenere il codice sorgente sotto questo link:</string>
+    <string name="next"><![CDATA[Avanti ->]]></string>
+    <string name="lt_back"><![CDATA[Indietro ->]]></string>
+    <string name="skip_intro">Salta Intro</string>
+    <string name="done">Fatto</string>
+    <string name="see_intro">Vedi Intro</string>
+    <string name="commands_help">Aiuto Comandi</string>
+    <string name="about_corpora">Sui Corpora</string>
+    <string name="file_specified_doesnt_exist">Il file che hai specificato non esiste!</string>
+    <string name="no_match_found_for_that_topic">"Non ho trovato quest'argomento! "</string>
+    <string name="no_previous_command_to_re_run">Nessun comando precedente da ri-eseguire!</string>
+    <string name="heres_documentation">Ecco la documentazione</string>
+    <string name="no_such_command">Non ho capito</string>
+    <string name="answer_wrong">Risposta errata!</string>
+    <string name="wish_to_try_again">Vuoi provare ancora? Sì o no?</string>
+    <string name="the_correct_answer_is">La risposta giusta è:</string>
+    <string name="you_missed_a_lot">Ci sei andato vicino, ma hai dimenticato queste parole chiave:</string>
+    <string name="fair_enough">Non male, ma hai dimenticato queste parole chiave:</string>
+    <string name="yes_thats_right">Sì, giusto!</string>
+    <string name="flawless">Impeccabile!</string>
+    <string name="you_forgot_these_points">Hai dimenticato i seguenti punti:</string>
+    <string name="intro_example_question" translatable="false">Chiedimi dell\'accelerazione</string>
+    <string name="intro_example_question_2">"Dimmi della velocità "</string>
+    <string name="default_challenge_file">Definisci la velocità?\\nLa velocità è la derivata della distanza rispetto al tempo.\\n\\nDefinisci l\'accelerazione?L\'accelerazione è la derivata della velocità rispetto al tempo.</string>
+
+
+
+
+
+    <!--KEYWORDS FOR THE PARSER-->
+    <string-array name="tell_me_keywords">
+        <item>dimmi</item>
+        <item>parlami</item>
+    </string-array>
+
+    <string-array name="ask_me_keywords">
+        <item>chiedimi</item>
+        <item>domandami</item>
+    </string-array>
+
+
+    <string-array name="come_again_keywords">
+        <item>ripeti</item>
+        <item>come scusa</item>
+    </string-array>
+
+
+    <string-array name="another_time_keywords">
+        <item>un\'altra volta</item>
+        <item>ancora</item>
+    </string-array>
+
+
+    <string-array name="exit_keywords">
+        <item>esci</item>
+        <item>termina</item>
+    </string-array>
+
+    <string-array name="help_keywords">
+        <item>aiuto</item>
+    </string-array>
+
+    <string-array name="yes_keywords">
+        <item>sì</item>
+    </string-array>
+
+    <string-array name="no_keywords">
+        <item>no</item>
+    </string-array>
+
+    <string-array name="random_keywords">
+        <item>casuale</item>
+        <item>casualmente</item>
+    </string-array>
+
+    <string-array name="from_keywords">
+        <item>da</item>
+    </string-array>
+
+    <string-array name="slow_keywords">
+        <item>piano</item>
+        <item>più piano</item>
+        <item>adagio</item>
+    </string-array>
+    <!--END KEYWORDS-->
+
+
+
+    <!--  COMMAND DOCUMENTATION -->
+    <string-array name="doc_ask_me">
+        <item>Chiedimi</item>
+        <item>Per richiedere una domanda.</item>
+        <item>chiedimi \[parole-chiave|casualmente\] da \[nome\-file\]</item>
+    </string-array>
+
+
+    <string-array name="doc_tell_me">
+        <item>Dimmi</item>
+        <item>Per richiedere una risposta.</item>
+        <item>dimmi \[parole-chiave|casualmente\] da \[nome\-file\]</item>
+    </string-array>
+
+    <string-array name="doc_come_again">
+        <item>Ripeti</item>
+        <item>Per richiedere la ripetizione di una domanda.</item>
+        <item>ripeti | come scusa \[piano|adagio\]</item>
+    </string-array>
+
+    <string-array name="doc_another_time">
+        <item>Un\'altra volta</item>
+        <item>Ri\-esegue un comando Dimmi se è il comando precedente, con gli stessi argomenti.</item>
+        <item>un\'altra volta | ancora</item>
+    </string-array>
+
+    <string-array name="doc_exit">
+        <item>Esci</item>
+        <item>Termina l\'applicazione</item>
+        <item>esci | termina</item>
+    </string-array>
+
+
+    <string-array name="doc_binary">
+        <item>Binario</item>
+        <item>Per rispondere ad una domanda binaria.</item>
+        <item>sì | no</item>
+    </string-array>
+
+
+    <string-array name="doc_help">
+        <item>Aiuto</item>
+        <item>Visualizza questa pagina d\'aiuto.</item>
+        <item>aiuto</item>
+    </string-array>
+
+
+    <string-array name="doc_undefined">
+        <item>Undefined</item>
+        <item>Non fa nulla.</item>
+        <item>N/A</item>
+    </string-array>
+    <!-- END COMMAND DOCUMENTATION -->
 
 
 

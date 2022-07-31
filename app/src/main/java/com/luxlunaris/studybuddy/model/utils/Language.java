@@ -18,7 +18,7 @@ public class Language {
 
 
     public static List<String> getAvailableLanguages(){
-        return Arrays.asList("en");
+        return Arrays.asList("en", "it");
     }
 
 
