@@ -40,6 +40,10 @@ public class AboutActivity extends AppCompatActivity {
             startActivity(new Intent(this, HelpActivity.class));
         });
 
+        aboutCorpora.setOnClickListener(e->{
+
+        });
+
 
     }
 }
