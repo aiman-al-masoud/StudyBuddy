@@ -152,8 +152,9 @@ public class FileManager {
 
 
     public static void overwriteTextFileInRootDir(String title, String newBody) throws IOException {
+        Log.d("FileManager", "overwriteTextFileInRootDir: "+title);
 
-        File f = new File(getRootDirPath() + "/" + title + ".txt");
+        File f = new File(getRootDirPath() + "/" + title.replace(".txt", "") + ".txt");
         FileWriter fr = new FileWriter(f);
         fr.write(newBody);
         fr.flush();
