@@ -28,6 +28,9 @@ public class Parser {
     public static final List<String> HELP_KWS_1 = Arrays.asList("help");
     public static final List<String> BINARY_1 = Arrays.asList("yes");
     public static final List<String> BINARY_2 = Arrays.asList("no");//
+    public static final String RANDOM = "random";
+    public static final String FROM = "from";
+
 
     public Command parse(final String userInput){
 
@@ -44,11 +47,11 @@ public class Parser {
                 List<String> keywords = kws;
 
                 int c;
-                if ((c = userInput.indexOf("from")) != -1) {
-                    fromFile = userInput.substring(c + "from".length());
+                if ((c = userInput.indexOf(FROM)) != -1) {
+                    fromFile = userInput.substring(c + FROM.length());
                 }
 
-                if (userInput.toLowerCase().contains("random")) {
+                if (userInput.toLowerCase().contains(RANDOM)) {
                     keywords = AskMeCommand.RANDOM;
                 }
 
@@ -62,11 +65,11 @@ public class Parser {
                 List<String> keywords = kws;
 
                 int c;
-                if( (c = userInput.indexOf("from")) != -1 ){
-                    fromFile = userInput.substring(c+"from".length());
+                if( (c = userInput.indexOf(FROM)) != -1 ){
+                    fromFile = userInput.substring(c+FROM.length());
                 }
 
-                if(userInput.toLowerCase().contains("random") ){
+                if(userInput.toLowerCase().contains(RANDOM) ){
                     keywords = AskMeCommand.RANDOM;
                 }
 
