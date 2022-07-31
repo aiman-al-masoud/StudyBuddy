@@ -163,10 +163,18 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
             case TELL_ME:
 
                 TellMeCommand tellMeCmd = (TellMeCommand) cmd;
+                Challenge c;
 
-                try {
-                    Challenge c = cm.getChallengeByKeywords(tellMeCmd.keywords);
+                try{
+
+                    if(tellMeCmd.random){
+                        c = cm.getRandomChallenge(tellMeCmd.fromFile);
+                    }else {
+                        c = cm.getChallengeByKeywords(tellMeCmd.keywords, tellMeCmd.fromFile);
+                    }
+
                     output(c.question()+".\n"+c.answer());
+
                 }catch (NoSuchFileException e){
                     output(NO_SUCH_FILE);
                 }catch (NoSuchKeywordsException e){

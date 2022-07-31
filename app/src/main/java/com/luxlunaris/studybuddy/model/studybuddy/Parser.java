@@ -37,10 +37,23 @@ public class Parser {
         switch (cmdType){
 
             case TELL_ME:
-
+                {
                 kws.removeAll(TELL_ME_KWS);
-                return new TellMeCommand(kws);
 
+                String fromFile = AskMeCommand.ANY_FILE;
+                List<String> keywords = kws;
+
+                int c;
+                if ((c = userInput.indexOf("from")) != -1) {
+                    fromFile = userInput.substring(c + "from".length());
+                }
+
+                if (userInput.toLowerCase().contains("random")) {
+                    keywords = AskMeCommand.RANDOM;
+                }
+
+                return new TellMeCommand(keywords, fromFile);
+                }
             case ASK_ME:
 
                 kws.removeAll(ASK_ME_KWS);
