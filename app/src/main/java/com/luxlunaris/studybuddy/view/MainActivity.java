@@ -53,14 +53,10 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
-
         FileManager.createRootDir();
-
         boolean permissionsGranted = Permissions.checkPermissions(this);
-
         if(!permissionsGranted){
             return;
         }
@@ -72,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         }
 
         boolean introSeen = FileManager.isIntroSeen();
+        Log.d("MainActivity", "onCreate: "+introSeen);
 
         if(!introSeen){
             startActivityForResult(new Intent(this, IntroActivity.class), IntroActivity.SHOW_INTRO);
@@ -193,9 +190,16 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
 
         if(Arrays.stream(grantResults).allMatch(p-> p == PackageManager.PERMISSION_GRANTED)){
 
-            if(Language.checkLanguage(this)){
-                init();
+            if(!Language.checkLanguage(this)){
+                return;
             }
+
+            if(!FileManager.isIntroSeen()){
+                startActivityForResult(new Intent(this, IntroActivity.class), IntroActivity.SHOW_INTRO);
+                return;
+            }
+
+            init();
 
         }else{
             System.exit(0);
