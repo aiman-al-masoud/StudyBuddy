@@ -9,4 +9,5 @@ public interface StudyBuddyListener {
     void onError(String error);
     void onHelpCalled(CommandTypes commandTypes);
 
+
 }
