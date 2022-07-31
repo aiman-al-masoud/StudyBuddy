@@ -15,11 +15,6 @@ public class Help {
     public final String description;
     public final String syntax;
 
-    private Help(String name, String description, String syntax){
-        this.name = name;
-        this.description = description;
-        this.syntax = syntax;
-    }
 
     private Help(String[] doc){
         this.name = doc[0];
@@ -27,32 +22,29 @@ public class Help {
         this.syntax = doc[2];
     }
 
-
     public static Help getDocumentationFor(Context context, CommandTypes commandType){
 
         switch (commandType){
             case ASK_ME:
                 return new Help(context.getResources().getStringArray(R.array.doc_ask_me));
             case TELL_ME:
-                return new Help("Tell Me", "Use it to ask Study Buddy to talk about a topic.", "tell me [keywords|random] from [filename]");
+                return new Help(context.getResources().getStringArray(R.array.doc_tell_me));
             case COME_AGAIN:
-                return new Help("Come Again", "Prompts study buddy to repeat the question.", "come again [slowly]");
+                return new Help(context.getResources().getStringArray(R.array.doc_come_again));
             case ANOTHER_TIME:
-                return new Help("Another Time", "Prompts study buddy to re-run a Tell Me command with the same arguments.", "another time");
+                return new Help(context.getResources().getStringArray(R.array.doc_another_time));
             case EXIT:
-                return new Help("Exit", "Exits the app", "exit");
+                return new Help(context.getResources().getStringArray(R.array.doc_exit));
             case BINARY:
-                return new Help("Binary", "Use it when Study Buddy asks a binary question.", "yes|no");
+                return new Help(context.getResources().getStringArray(R.array.doc_binary));
             case UNDEFINED:
-                return new Help("Undefined","","");
+                return new Help(context.getResources().getStringArray(R.array.doc_undefined));
             case HELP:
-                return new Help("Help","","help");
+                return new Help(context.getResources().getStringArray(R.array.doc_help));
 
         }
 
-
-
-        return new Help("--", "--", "--");
+        return new Help(context.getResources().getStringArray(R.array.doc_help));
     }
 
     public static int numberOfCommands(){

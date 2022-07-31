@@ -127,9 +127,54 @@
     <string-array name="doc_ask_me">
         <item>Ask Me</item>
         <item>Use it to trigger a question from Study Buddy.</item>
-        <item>ask me [keywords|random] from [filename]</item>
+        <item>ask me \[keywords|random\] from \[filename\]</item>
     </string-array>
 
+
+    <string-array name="doc_tell_me">
+        <item>Tell Me</item>
+        <item>Use it to ask Study Buddy to talk about a topic.</item>
+        <item>tell me \[keywords|random\] from \[filename\]</item>
+    </string-array>
+
+    <string-array name="doc_come_again">
+        <item>Come Again</item>
+        <item>Prompts study buddy to repeat the question.</item>
+        <item>come again | repeat \[slowly\]</item>
+    </string-array>
+
+    <string-array name="doc_another_time">
+        <item>Another Time</item>
+        <item>Prompts study buddy to re-run a Tell Me command with the same arguments.</item>
+        <item>another time | one more</item>
+    </string-array>
+
+    <string-array name="doc_exit">
+        <item>Exit</item>
+        <item>Exits the app.</item>
+        <item>exit | get me out</item>
+    </string-array>
+
+
+    <string-array name="doc_binary">
+        <item>Binary</item>
+        <item>Use it when Study Buddy asks a binary question.</item>
+        <item>yes|no</item>
+    </string-array>
+
+
+    <string-array name="doc_help">
+        <item>Help</item>
+        <item>Displays this help page.</item>
+        <item>help</item>
+    </string-array>
+
+
+    <string-array name="doc_undefined">
+        <item>Undefined</item>
+        <item>Doesn\'t do anything.</item>
+        <item>N/A</item>
+    </string-array>
 
 
     <!-- END COMMAND DOCUMENTATION -->
