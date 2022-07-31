@@ -19,6 +19,19 @@
     </string>
 
 
+    <string name="command_bar_hint">
+         Command or \'help\' …
+    </string>
+
+    <string name="mic_long_press">
+        Click to toggle microphone
+    </string>
+
+    <string name="speaker_long_press">
+        Click to toggle speaker
+    </string>
+
+
     <!--KEYWORDS FOR THE PARSER-->
     <string-array name="tell_me_keywords">
         <item>tell me</item>

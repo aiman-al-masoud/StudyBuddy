@@ -47,19 +47,18 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/rounded_corners"
-        android:hint=" Command or 'help' ..."
+        android:hint="@string/command_bar_hint"
         android:imeOptions="actionSend"
         android:singleLine="true"
         android:textColor="@color/black"
+
+
         android:textColorHint="#D3D3D3"
-
-
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
 
 
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

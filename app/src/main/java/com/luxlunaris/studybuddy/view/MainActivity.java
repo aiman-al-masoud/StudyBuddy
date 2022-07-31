@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         });
 
         micButton.setOnLongClickListener(e->{
-            Toast.makeText(this, "Click to toggle microphone.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.mic_long_press, Toast.LENGTH_SHORT).show();
             return true;
         });
 
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         });
 
         speakerButton.setOnLongClickListener(e->{
-            Toast.makeText(this, "Click to toggle speaker.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.speaker_long_press, Toast.LENGTH_SHORT).show();
             return true;
         });
     }
