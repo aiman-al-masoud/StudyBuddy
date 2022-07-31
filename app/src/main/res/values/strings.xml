@@ -12,9 +12,10 @@
     </string>>
 
     <string name="default_challenge_file">
-        Define acceleration?\nAcceleration is the rate of change of speed\n
-        with respect to time.\n\nDefine speed?\nSpeed is the rate of change of distance
+        Define speed?\nSpeed is the rate of change of distance
         with respect to time.\n\n
+        Define acceleration?\nAcceleration is the rate of change of speed\n
+        with respect to time.
     </string>
 
 
