@@ -20,28 +20,29 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Commands Help" />
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="About Corpora" />
-
-            <Button
-                android:id="@+id/button3"
+                android:id="@+id/seeIntroButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="See Intro" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/licenseButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="License" />
+
+            <Button
+                android:id="@+id/commandsHelpButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Commands Help" />
+
+            <Button
+                android:id="@+id/aboutCorporaButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About Corpora" />
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
