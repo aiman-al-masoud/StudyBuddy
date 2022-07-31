@@ -1,22 +1,6 @@
 <resources>
     <string name="app_name">Study Buddy</string>
     <string name="weclome">Weclome!</string>
-
-    <string name="intro_example_question">
-        Ask me about acceleration.
-    </string>>
-
-    <string name="intro_example_question_2">
-        Tell me about speed.
-    </string>
-
-    <string name="default_challenge_file">
-        Define speed?\nSpeed is the rate of change of distance
-        with respect to time.\n\n
-        Define acceleration?\nAcceleration is the rate of change of speed\n
-        with respect to time.
-    </string>
-
     <string name="command_bar_hint">Command or \'help\' …</string>
     <string name="mic_long_press">Click to toggle microphone</string>
     <string name="speaker_long_press">Click to toggle speaker</string>
@@ -65,6 +49,23 @@
     <string name="flawless">Flawless!</string>
     <string name="you_forgot_these_points">You forgot the following points:\n</string>
 
+
+    <!--  DEFAULT CHALLENGES  -->
+    <string name="intro_example_question">
+        Ask me about acceleration.
+    </string>>
+
+    <string name="intro_example_question_2">
+        Tell me about speed.
+    </string>
+
+    <string name="default_challenge_file">
+        Define speed?\nSpeed is the rate of change of distance
+        with respect to time.\n\n
+        Define acceleration?\nAcceleration is the rate of change of speed\n
+        with respect to time.
+    </string>
+    <!-- END DEFAULT CHALLENGES  -->
 
     <!--KEYWORDS FOR THE PARSER-->
     <string-array name="tell_me_keywords">
@@ -118,12 +119,11 @@
         <item>slower</item>
         <item>slowly</item>
     </string-array>
-
     <!--END KEYWORDS-->
 
 
-    <!--  COMMAND DOCUMENTATION -->
 
+    <!--  COMMAND DOCUMENTATION -->
     <string-array name="doc_ask_me">
         <item>Ask Me</item>
         <item>Use it to trigger a question from Study Buddy.</item>
@@ -175,8 +175,6 @@
         <item>Doesn\'t do anything.</item>
         <item>N/A</item>
     </string-array>
-
-
     <!-- END COMMAND DOCUMENTATION -->
 
 </resources>
