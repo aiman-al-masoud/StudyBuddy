@@ -9,10 +9,7 @@ import java.util.List;
 public class TellMeCommand extends AbstractCommand {
 
 
-//    public static final String ANY_FILE = ChallengeManager.ALL_FILES;
     public static final List<String> RANDOM = null;
-
-
     public final List<String> keywords;
     public final String fromFile;
     public final boolean random;

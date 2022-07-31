@@ -65,6 +65,13 @@
         <item>from</item>
     </string-array>
 
+    <string-array name="slow_keywords" >
+        <item>slow</item>
+        <item>slower</item>
+        <item>slowly</item>
+    </string-array>
+
+
 
 
 

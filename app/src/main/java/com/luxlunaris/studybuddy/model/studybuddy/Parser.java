@@ -30,6 +30,8 @@ public class Parser {
     public static KeywordSet NO;
     public static KeywordSet FROM;
     public static KeywordSet RANDOM;
+    public static KeywordSet SLOW;
+
 
 
     public Parser(Context context) {
@@ -43,6 +45,8 @@ public class Parser {
         NO = new KeywordSet(context.getResources().getStringArray(R.array.no_keywords));
         FROM = new KeywordSet(context.getResources().getStringArray(R.array.from_keywords));
         RANDOM = new KeywordSet(context.getResources().getStringArray(R.array.random_keywords));
+        SLOW = new KeywordSet(context.getResources().getStringArray(R.array.slow_keywords));
+
     }
 
 
@@ -79,7 +83,7 @@ public class Parser {
 
             case COME_AGAIN:
 
-                return new ComeAgainCommand(userInput.contains("slowly") | userInput.contains("slow") | userInput.contains("slower"));
+                return new ComeAgainCommand(SLOW.matches(kws)>=0);
 
             case ANOTHER_TIME:
 
