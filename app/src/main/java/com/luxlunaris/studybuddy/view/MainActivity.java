@@ -31,6 +31,7 @@ import com.luxlunaris.studybuddy.model.utils.Permissions;
 import com.luxlunaris.studybuddy.view.chatui.RowAdapter;
 import com.luxlunaris.studybuddy.view.intro.IntroActivity;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Locale;
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
 
         // Logic
         FileManager.createRootDir();
+        FileManager.createExampleCorpus(this);
         studyBuddy = new StudyBuddy(this, this);
         loadChallengesFromDisk();
         studyBuddy.startTranscribing();

@@ -33,7 +33,7 @@
         android:layout_width="245dp"
         android:layout_height="65dp"
         android:layout_marginTop="36dp"
-        android:text="Weclome!"
+        android:text="@string/weclome"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.295"

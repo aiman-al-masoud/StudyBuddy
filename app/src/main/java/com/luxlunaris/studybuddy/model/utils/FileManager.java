@@ -10,6 +10,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchFileException;
 
 import java.io.ByteArrayOutputStream;
@@ -115,6 +116,7 @@ public class FileManager {
     }
 
     public static void createRootDir() {
+
         File dir = new File(getRootDirPath());
         if (!dir.exists()) {
             dir.mkdirs();
@@ -123,6 +125,19 @@ public class FileManager {
         dir = new File(getConfigDirPath());
         if(!dir.exists()){
             dir.mkdirs();
+        }
+
+    }
+
+
+    public static void createExampleCorpus(Context context){
+
+        String s = context.getResources().getString(R.string.default_challenge_file);
+
+        try {
+            writeTextFileToRootDir("example", s);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
