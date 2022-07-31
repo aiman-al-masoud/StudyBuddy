@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchFileException;
+import com.luxlunaris.studybuddy.view.MainActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -101,7 +102,8 @@ public class FileManager {
 
 
     public static String getRootDirPath() {
-        return Environment.getExternalStorageDirectory() + "/StudyBuddy";
+//        return Environment.getExternalStorageDirectory() + "/StudyBuddy";
+        return MainActivity.CONTEXT.getFilesDir().getPath();
     }
 
     public static String getConfigDirPath() {

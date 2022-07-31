@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -49,11 +50,13 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     private RecyclerView recyclerView;
     private Toolbar myToolbar;
     private Boolean isInit;
+    public static Context CONTEXT; // I know this is bad but try to empathise...
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        CONTEXT = this;
 
         FileManager.createRootDir();
         boolean permissionsGranted = Permissions.checkPermissions(this);
