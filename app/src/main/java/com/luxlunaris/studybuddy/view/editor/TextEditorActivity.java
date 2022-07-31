@@ -162,7 +162,7 @@ public class TextEditorActivity extends AppCompatActivity {
         ChallengeBuilder cb = new ChallengeBuilder();
 
         try {
-            cb.fromText(text, "name");
+            cb.fromText(text, "doesntmatter");
             formatErrorTextView.setText("");
             formatErrorTextView.setVisibility(View.GONE);
             removeHighlights();
@@ -171,10 +171,14 @@ public class TextEditorActivity extends AppCompatActivity {
             formatErrorTextView.setText(e.getMessage());
             formatErrorTextView.setTextColor(Color.RED);
             formatErrorTextView.setVisibility(View.VISIBLE);
-            int parNum = Integer.parseInt(e.getMessage().replaceAll("\\D*",""));
-            Log.d("TextEditorActivity", "checkFormat: parNum:"+parNum);
-            highlightParagraph(parNum);
-            Log.d("TextEditorActivity", "onCreate: " + e.getMessage());
+
+            try{
+                int parNum = Integer.parseInt(e.getMessage().replaceAll("\\D*",""));
+                highlightParagraph(parNum);
+            }catch (NumberFormatException ex ){
+                ex.printStackTrace();
+            }
+
         }
     }
 

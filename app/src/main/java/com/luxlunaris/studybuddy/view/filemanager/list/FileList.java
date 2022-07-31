@@ -37,7 +37,8 @@ public class FileList extends RecyclerView.Adapter<FileHolder> implements FileMa
 
     @Override
     public void onBindViewHolder(@NonNull FileHolder holder, int position) {
-        holder.textView.setText(positionToName(position));
+//        holder.textView.setText(positionToName(position));
+        holder.setContent(positionToName(position));
     }
 
     @Override
