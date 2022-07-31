@@ -6,6 +6,48 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/textView8"
+
+        android:layout_width="191dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="76dp"
+        android:background="@drawable/outgoing_speech_bubble"
+        android:drawablePadding="5dp"
+
+        android:paddingLeft="20dp"
+        android:paddingTop="4dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+
+
+        android:text="@string/intro_example_question"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView15"
+
+        android:layout_width="191dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="24dp"
+
+        android:layout_marginEnd="76dp"
+        android:background="@drawable/outgoing_speech_bubble"
+        android:drawablePadding="5dp"
+        android:paddingLeft="20dp"
+
+
+        android:paddingTop="4dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/intro_example_question_2"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <TextView
         android:id="@+id/textView14"
         android:layout_width="245dp"
         android:layout_height="65dp"
@@ -19,12 +61,23 @@
 
     <TextView
         android:id="@+id/textView16"
-        android:layout_width="283dp"
-        android:layout_height="82dp"
+        android:layout_width="270dp"
+        android:layout_height="64dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="52dp"
-        android:text="Try asking Study Buddy what's"
+        android:text="Try asking Study Buddy something, like:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Or:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
