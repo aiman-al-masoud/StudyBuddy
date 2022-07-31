@@ -23,25 +23,25 @@
                 android:id="@+id/seeIntroButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="See Intro" />
+                android:text="@string/see_intro" />
 
             <Button
                 android:id="@+id/licenseButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="License" />
+                android:text="@string/license" />
 
             <Button
                 android:id="@+id/commandsHelpButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Commands Help" />
+                android:text="@string/commands_help" />
 
             <Button
                 android:id="@+id/aboutCorporaButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="About Corpora" />
+                android:text="@string/about_corpora" />
 
         </LinearLayout>
     </ScrollView>

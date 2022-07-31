@@ -37,6 +37,30 @@
     <string name="save">Save</string>
     <string name="delete">Delete</string>
     <string name="import_file">Import File</string>
+    <string name="syntax">Syntax</string>
+    <string name="get_started">Get Started</string>
+    <string name="try_asking_study_buddy_something_like">Try asking Study Buddy something, like:</string>
+    <string name="or">Or:</string>
+    <string name="sleek_ui">Sleek UI</string>
+    <string name="a_beautifully_crafted_and_intuitive_chat_based_ui_where_you_can_choose_to_communicate_through_your_voice_or_your_keyboard_and_hear_or_read_the_ouput">A beautifully crafted and intuitive chat-based UI, where you can choose to communicate through your voice or your keyboard, and hear or read the ouput.</string>
+    <string name="ask_me_about">Ask me about</string>
+    <string name="my_answer_is">My answer is...</string>
+    <string name="what_about">What about ...</string>
+    <string name="your_answer_is_wrong_wish_to_try_again_yes_or_no">Your answer is wrong, wish to try again? Yes or no?</string>
+    <string name="extensible">Extensible</string>
+    <string name="extend_your_study_buddy_s_knowledge_through_easy_to_use_text_files">Extend your Study Buddy\'s knowledge, through easy to use text-files.</string>
+    <string name="the_format_is_very_forgiving_each_question_answer_pair_takes_up_a_paragraph_and_study_buddy_will_help_you_out_if_it_finds_any_errors">The format is very forgiving, each question-answer pair takes up a paragraph, and Study Buddy will help you out if it finds any errors.</string>
+    <string name="is_this_a_question_nyes_i_m_the_answer_n_nis_this_another_question_nyou_bet_it_is">Is this a question?\nYes! I\'m the answer!\n\nIs this another question?\nYou bet it is!</string>
+    <string name="study_buddy_is_a_chatbot_designed_to_help_you_rehearse_your_own_study_material">Study Buddy is a chatbot designed to help you rehearse your own study material.</string>
+    <string name="license">License</string>
+    <string name="study_buddy_is_free_software_licensed_under_gplv3_you_can_get_the_source_code_from_this_link">Study Buddy is free software, licensed under GPLv3, you can get the source code from this link:</string>
+    <string name="next"><![CDATA[Next ->]]></string>
+    <string name="lt_back"><![CDATA[<- Back]]></string>
+    <string name="skip_intro">Skip Intro</string>
+    <string name="done">Done</string>
+    <string name="see_intro">See Intro</string>
+    <string name="commands_help">Commands Help</string>
+    <string name="about_corpora">About Corpora</string>
 
 
     <!--KEYWORDS FOR THE PARSER-->

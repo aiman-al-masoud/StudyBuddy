@@ -10,7 +10,7 @@
         android:layout_width="245dp"
         android:layout_height="65dp"
         android:layout_marginTop="36dp"
-        android:text="Sleek UI"
+        android:text="@string/sleek_ui"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.295"
@@ -30,7 +30,7 @@
         android:paddingTop="4dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
-        android:text="A beautifully crafted and intuitive chat-based UI, where you can choose to communicate through your voice or your keyboard, and hear or read the ouput."
+        android:text="@string/a_beautifully_crafted_and_intuitive_chat_based_ui_where_you_can_choose_to_communicate_through_your_voice_or_your_keyboard_and_hear_or_read_the_ouput"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
@@ -51,7 +51,7 @@
 
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
-        android:text="Ask me about "
+        android:text="@string/ask_me_about"
         android:textColor="#000000"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
 
-        android:text="My answer is..."
+        android:text="@string/my_answer_is"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -91,7 +91,7 @@
         android:paddingTop="4dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
-        android:text="What about ..."
+        android:text="@string/what_about"
         android:textColor="#000000"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -112,7 +112,7 @@
         android:paddingTop="4dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
-        android:text="Your answer is wrong, wish to try again? Yes or no?"
+        android:text="@string/your_answer_is_wrong_wish_to_try_again_yes_or_no"
         android:textColor="#000000"
 
         app:layout_constraintStart_toStartOf="parent"
