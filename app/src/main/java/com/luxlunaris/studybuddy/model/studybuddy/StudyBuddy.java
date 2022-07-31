@@ -180,7 +180,10 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
                 return;
             case HELP:
 
-                output("Help is coming....");
+                output("Here's the documentation");
+                stopTranscribing();
+                listener.onHelpCalled(null);
+
                 return;
             case ANOTHER_TIME:
 

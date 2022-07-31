@@ -22,6 +22,7 @@ import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.WrongFormatException;
 import com.luxlunaris.studybuddy.model.studybuddy.StudyBuddy;
 import com.luxlunaris.studybuddy.model.studybuddy.StudyBuddyListener;
+import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
 import com.luxlunaris.studybuddy.model.utils.Async;
 import com.luxlunaris.studybuddy.model.utils.FileManager;
 import com.luxlunaris.studybuddy.model.utils.FileManagerListener;
@@ -29,6 +30,7 @@ import com.luxlunaris.studybuddy.model.utils.Language;
 import com.luxlunaris.studybuddy.model.utils.Permissions;
 //import com.luxlunaris.studybuddy.model.utils.Settings;
 import com.luxlunaris.studybuddy.view.chatui.RowAdapter;
+import com.luxlunaris.studybuddy.view.help.HelpActivity;
 import com.luxlunaris.studybuddy.view.intro.IntroActivity;
 
 import java.io.File;
@@ -215,6 +217,11 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
     public void onError(String error) {
         Log.d("MainActivity", "onError: "+error);
         micButton.setImageDrawable(getDrawable(android.R.drawable.stat_notify_call_mute));
+    }
+
+    @Override
+    public void onHelpCalled(CommandTypes commandTypes) {
+        startActivity(new Intent(this, HelpActivity.class));
     }
 
     @Override
