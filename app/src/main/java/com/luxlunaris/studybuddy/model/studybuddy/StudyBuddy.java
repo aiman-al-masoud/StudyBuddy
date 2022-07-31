@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.util.Log;
 
 
+import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.challenge.Challenge;
 import com.luxlunaris.studybuddy.model.challenge.ChallengeBuilder;
 import com.luxlunaris.studybuddy.model.challenge.ChallengeManager;
@@ -28,9 +29,13 @@ import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.TellMeCommand
 public class StudyBuddy implements ScribeListener, SpeakerListener {
 
 
-    public static final String NO_SUCH_FILE = "The file you specified doesn't exist!";
-    public static final String NO_SUCH_KEYWORDS = "No match found for that topic!";
-    public static final String NO_PREVIOUS_CMD = "No previous command to re-run!";
+    private final String NO_SUCH_FILE;
+    private final String NO_SUCH_KEYWORDS;
+    private final String NO_PREVIOUS_CMD;
+    private final String HERES_DOCUMENTATION;
+    private final String NO_SUCH_CMD;
+    private final String ANSWER_WRONG;
+    private final String TRY_AGAIN;
 
 
     private final Context context;
@@ -63,6 +68,16 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         keyboardMode = false;
         this.listener = listener;
         loudspeakerMode = true;
+
+        NO_SUCH_FILE = context.getResources().getString(R.string.file_specified_doesnt_exist);
+        NO_SUCH_KEYWORDS = context.getResources().getString(R.string.no_match_found_for_that_topic);
+        NO_PREVIOUS_CMD = context.getResources().getString(R.string.no_previous_command_to_re_run);
+        HERES_DOCUMENTATION = context.getResources().getString(R.string.heres_documentation);
+        NO_SUCH_CMD = context.getResources().getString(R.string.no_such_command);
+
+        ANSWER_WRONG = context.getResources().getString(R.string.answer_wrong);
+        TRY_AGAIN =  context.getResources().getString(R.string.wish_to_try_again);
+
     }
 
     public void setChallenges(String fileName, String body) throws WrongFormatException {
@@ -188,7 +203,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
                 return;
             case HELP:
 
-                output("Here's the documentation");
+                output(HERES_DOCUMENTATION);
                 stopTranscribing();
                 listener.onHelpCalled(null);
 
@@ -205,7 +220,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
             case UNDEFINED: // command not found
             default:
-                output("I didn't get what you said.");
+                output(NO_SUCH_CMD);
         }
 
     }
@@ -224,7 +239,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
 
         if(currentVerdict.isFail){
             currentMode = StudyBuddyModes.AWAIT_CONFIRM_TRY_AGAIN;
-            output("Your answer is wrong, wish to try again? Yes or no?");
+            output(ANSWER_WRONG+" "+TRY_AGAIN);
         }else{
             output(currentVerdict.text);
             currentMode = StudyBuddyModes.AWAIT_COMMAND;
@@ -247,7 +262,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
             }
 
         }catch (ClassCastException e){
-            output("I didn't get what you said. Do you want to try again, yes or no?");
+            output(NO_SUCH_CMD+" "+TRY_AGAIN);
         }
 
     }
