@@ -1,5 +1,7 @@
 package com.luxlunaris.studybuddy.model.utils;
 
+import android.content.Context;
+
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
 
 import java.util.Arrays;
@@ -20,7 +22,7 @@ public class Help {
     }
 
 
-    public static Help getDocumentationFor(CommandTypes commandType){
+    public static Help getDocumentationFor(Context context, CommandTypes commandType){
 
         switch (commandType){
             case ASK_ME:
@@ -51,9 +53,9 @@ public class Help {
         return CommandTypes.values().length;
     }
 
-    public static List<Help> getDocumentations(){
+    public static List<Help> getDocumentations(Context context){
         return Arrays.stream(CommandTypes.values())
-                .map(Help::getDocumentationFor)
+                .map(c->Help.getDocumentationFor(context, c))
                 .collect(Collectors.toList());
     }
 

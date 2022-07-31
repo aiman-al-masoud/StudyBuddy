@@ -28,7 +28,6 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpHolder> {
     @Override
     public HelpHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-//        TextView row = new TextView(parent.getContext());
         View v = inflater.inflate(R.layout.row_help_holder, parent, false);
         return new HelpHolder(v);
     }
@@ -36,7 +35,7 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpHolder> {
     @Override
     public void onBindViewHolder(@NonNull HelpHolder holder, int position) {
         // Bind the data to be displayed to the new row.
-        holder.setContent(Help.getDocumentations().get(position));
+        holder.setContent(Help.getDocumentations(context).get(position));
     }
 
     @Override
