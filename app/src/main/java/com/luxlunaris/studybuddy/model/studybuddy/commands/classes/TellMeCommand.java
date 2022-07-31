@@ -19,7 +19,6 @@ public class TellMeCommand extends AbstractCommand {
 
     public TellMeCommand(List<String> keywords, String fromFile) {
         super(CommandTypes.TELL_ME);
-//        this.keywords = keywords;
 
         this.fromFile = fromFile!=null ? fromFile : ANY_FILE;
         this.keywords = keywords;
