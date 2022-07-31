@@ -5,16 +5,18 @@
     <item
         android:id="@+id/deleteItem"
         android:icon="@android:drawable/ic_menu_delete"
-        android:title="Delete"
+        android:title="@string/delete"
         android:visible="false"
         app:showAsAction="always" />
     <item
         android:id="@+id/openFileItem"
-        android:title="Open File" />
-    <item
-        android:id="@+id/seeeearch"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="Search"
-        android:visible="false"
-        app:actionViewClass="android.widget.SearchView" />
+        android:title="@string/import_file" />
+
+<!--    <item-->
+<!--        android:id="@+id/seeeearch"-->
+<!--        android:icon="@drawable/ic_search_black_24dp"-->
+<!--        android:title="Search"-->
+<!--        android:visible="false"-->
+<!--        app:actionViewClass="android.widget.SearchView" />-->
+
 </menu>

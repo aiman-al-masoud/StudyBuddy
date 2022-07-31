@@ -30,6 +30,13 @@
     <string name="speaker_long_press">
         Click to toggle speaker
     </string>
+    <string name="help">Help</string>
+    <string name="about">About</string>
+    <string name="corpora">Corpora</string>
+    <string name="undo">Undo</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="import_file">Import File</string>
 
 
     <!--KEYWORDS FOR THE PARSER-->

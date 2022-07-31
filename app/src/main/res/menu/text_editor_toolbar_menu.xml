@@ -5,12 +5,12 @@
     <item
         android:id="@+id/undoItem"
         android:icon="@android:drawable/ic_menu_revert"
-        android:title="Undo"
+        android:title="@string/undo"
         android:visible="false"
         app:showAsAction="always" />
     <item
         android:id="@+id/saveEditedTextItem"
         android:icon="@android:drawable/ic_menu_save"
-        android:title="Save"
+        android:title="@string/save"
         app:showAsAction="always" />
 </menu>

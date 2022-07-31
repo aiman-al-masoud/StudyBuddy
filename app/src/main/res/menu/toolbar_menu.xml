@@ -8,13 +8,13 @@
 
     <item
         android:id="@+id/fileManagerItem"
-        android:title="Corpora" />
+        android:title="@string/corpora" />
     <item
         android:id="@+id/helpItem"
         android:icon="@android:drawable/ic_menu_help"
-        android:title="Help"
+        android:title="@string/help"
         app:showAsAction="always" />
     <item
         android:id="@+id/aboutItem"
-        android:title="About" />
+        android:title="@string/about" />
 </menu>
