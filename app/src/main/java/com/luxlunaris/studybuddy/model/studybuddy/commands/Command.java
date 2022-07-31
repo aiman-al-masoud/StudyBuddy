@@ -7,7 +7,7 @@ import java.util.List;
 public interface Command {
 
 
-    public static final String ANY_FILE = ChallengeManager.ALL_FILES;
+    String ANY_FILE = ChallengeManager.ALL_FILES;
     CommandTypes getType();
 
 }
