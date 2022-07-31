@@ -56,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
 
         setContentView(R.layout.activity_main);
 
+
+        FileManager.createRootDir();
+
         boolean permissionsGranted = Permissions.checkPermissions(this);
 
         if(!permissionsGranted){

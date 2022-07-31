@@ -7,9 +7,6 @@ import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.challenge.exceptions.NoSuchFileException;
 
@@ -19,9 +16,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,32 +32,32 @@ public class FileManager {
     private static List<String> selectedFiles = new ArrayList<>();
 
 
-    public static void selectFile(String title){
+    public static void selectFile(String title) {
 
-        listeners.forEach(l->{
+        listeners.forEach(l -> {
             l.onFileSelected(title);
         });
 
-        if(!selectedFiles.contains(title)){
+        if (!selectedFiles.contains(title)) {
             selectedFiles.add(title);
         }
     }
 
-    public static void unselectFile(String title){
+    public static void unselectFile(String title) {
 
-        if(selectedFiles.contains(title)){
+        if (selectedFiles.contains(title)) {
             selectedFiles.remove(title);
         }
 
-        listeners.forEach(l->{
+        listeners.forEach(l -> {
             l.onFileDeSelected(title);
         });
     }
 
-    public static void unselectAllFiles(){
+    public static void unselectAllFiles() {
 
-        selectedFiles.forEach(f->{
-            listeners.forEach(l->{
+        selectedFiles.forEach(f -> {
+            listeners.forEach(l -> {
                 l.onFileDeSelected(f);
             });
         });
@@ -69,8 +66,7 @@ public class FileManager {
 
     }
 
-    public static void selectAllFiles(){
-
+    public static void selectAllFiles() {
 
 
         selectedFiles.clear();
@@ -81,19 +77,16 @@ public class FileManager {
         }
 
 
-        selectedFiles.forEach(f->{
-            listeners.forEach(l->{
+        selectedFiles.forEach(f -> {
+            listeners.forEach(l -> {
                 l.onFileSelected(f);
             });
         });
     }
 
-    public static List<String> getSelectedFiles(){
+    public static List<String> getSelectedFiles() {
         return selectedFiles;
     }
-
-
-
 
 
     public static void addListener(FileManagerListener l) {
@@ -111,8 +104,8 @@ public class FileManager {
         return Environment.getExternalStorageDirectory() + "/StudyBuddy";
     }
 
-    public static String getConfigDirPath(){
-        return getRootDirPath()+"/"+"Config";
+    public static String getConfigDirPath() {
+        return getRootDirPath() + "/" + "Config";
     }
 
     public static void createRootDir() {
@@ -123,14 +116,14 @@ public class FileManager {
         }
 
         dir = new File(getConfigDirPath());
-        if(!dir.exists()){
+        if (!dir.exists()) {
             dir.mkdirs();
         }
 
     }
 
 
-    public static void createExampleCorpus(Context context){
+    public static void createExampleCorpus(Context context) {
 
         String s = context.getResources().getString(R.string.default_challenge_file);
 
@@ -154,7 +147,6 @@ public class FileManager {
         overwriteTextFileInRootDir(title, body);
 
     }
-
 
 
     public static void overwriteTextFileInRootDir(String title, String newBody) throws IOException {
@@ -192,9 +184,9 @@ public class FileManager {
     }
 
 
-    public static String fileNameFromUri(Uri uri){
+    public static String fileNameFromUri(Uri uri) {
         String[] p = uri.getPath().split("/");
-        return p[p.length-1];
+        return p[p.length - 1];
     }
 
     //TODO
@@ -206,27 +198,27 @@ public class FileManager {
 
         int oldPosition = -1;
         try {
-            oldPosition = lsRootDir().indexOf(title.replace(".txt", "")+".txt");
+            oldPosition = lsRootDir().indexOf(title.replace(".txt", "") + ".txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        if(!f.delete()){
+        if (!f.delete()) {
             return;
         }
 
         files = files.stream().filter(of -> !of.getName().equals(f.getName())).collect(Collectors.toList());
-        unselectFile(title+".txt");
+        unselectFile(title + ".txt");
 
-        for(FileManagerListener l : listeners){
+        for (FileManagerListener l : listeners) {
             l.onFileDeleted(title, oldPosition);
         }
 
     }
 
-    public static void deleteAll(List<String> titles){
-        new ArrayList<String>(titles).forEach(t->{
-            deleteTextFileFromRootDir( t.replaceAll(".txt", ""));
+    public static void deleteAll(List<String> titles) {
+        new ArrayList<String>(titles).forEach(t -> {
+            deleteTextFileFromRootDir(t.replaceAll(".txt", ""));
         });
     }
 
@@ -251,16 +243,19 @@ public class FileManager {
     }
 
 
+    private static List<File> lsRootDirFiles() {
 
-    private static List<File> lsRootDirFiles(){
+        File[] files = new File(getRootDirPath()).listFiles();
 
-        return Arrays.stream(new File(getRootDirPath()).listFiles())
+        if (files == null) {
+            return Collections.emptyList();
+        }
+        return Arrays.stream(files)
                 .filter(File::isFile)
                 .collect(Collectors.toList());
     }
 
     /**
-     *
      * TODO
      * Lists filenames in the root directory, including their extension.
      *
@@ -274,8 +269,6 @@ public class FileManager {
                 .map(File::getName)
                 .collect(Collectors.toList());
     }
-
-
 
 
     /**
@@ -315,8 +308,7 @@ public class FileManager {
     }
 
 
-
-    public static void openTextFile(Activity activity, Uri pickerInitialUri){
+    public static void openTextFile(Activity activity, Uri pickerInitialUri) {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("text/plain");
@@ -324,19 +316,17 @@ public class FileManager {
     }
 
 
-    public static void setIntroSeen(){
+    public static void setIntroSeen() {
         try {
-            new File(getConfigDirPath()+"/"+"intro_seen.txt").createNewFile();
+            new File(getConfigDirPath() + "/" + "intro_seen.txt").createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static boolean isIntroSeen(){
-        return new File(getConfigDirPath()+"/"+"intro_seen.txt").exists();
+    public static boolean isIntroSeen() {
+        return new File(getConfigDirPath() + "/" + "intro_seen.txt").exists();
     }
-
-
 
 
 }
