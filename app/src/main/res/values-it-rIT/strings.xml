@@ -51,7 +51,7 @@
     <string name="you_forgot_these_points">Hai dimenticato i seguenti punti:</string>
     <string name="intro_example_question">Chiedimi cos\'è la velocità</string>
     <string name="intro_example_question_2">Dimmi la velocità della luce</string>
-    <string name="default_challenge_file">Definisci la velocità?\nLa velocità è la derivata della distanza rispetto al tempo.\n\nLa velocità della luce?\n299792458, o quasi 300 milioni, di metri al secondo.</string>
+    <string name="default_challenge_file">Definisci la velocità?\nLa velocità è la derivata della distanza rispetto al tempo.\n\nQuanto è veloce la luce?\n299792458, o quasi 300 milioni, di metri al secondo.</string>
 
     <string name="new_file_name">nuovo-file.txt</string>
     <string name="create_new_file">Crea Nuovo File</string>
