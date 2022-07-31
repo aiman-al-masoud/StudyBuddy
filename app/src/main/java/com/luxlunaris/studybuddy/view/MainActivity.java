@@ -160,17 +160,23 @@ public class MainActivity extends AppCompatActivity implements StudyBuddyListene
         Async.runTask(()->{
 
             try {
+
+
+                Log.d("MainActivity", "loadChallengesFromDisk: "+FileManager.lsRootDir());
+
                 FileManager.lsRootDir().stream().map(n->n.split("\\.")[0]).forEach(n->{
+
+                    Log.d("MainActivity", "loadChallengesFromDisk: "+n);
                     try {
                         String b = FileManager.readTextFileFromRootDir(n);
                         studyBuddy.setChallenges(n, b);
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 });
 
             }catch (IOException e){
-
+                e.printStackTrace();
             }
         });
     }
