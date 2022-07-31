@@ -69,6 +69,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         this.listener = listener;
         loudspeakerMode = true;
 
+
         NO_SUCH_FILE = context.getResources().getString(R.string.file_specified_doesnt_exist);
         NO_SUCH_KEYWORDS = context.getResources().getString(R.string.no_match_found_for_that_topic);
         NO_PREVIOUS_CMD = context.getResources().getString(R.string.no_previous_command_to_re_run);
