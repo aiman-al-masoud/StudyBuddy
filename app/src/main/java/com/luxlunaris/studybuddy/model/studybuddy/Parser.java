@@ -23,7 +23,6 @@ import java.util.Locale;
 
 public class Parser {
 
-//    public static List<String> TELL_ME_KWS;
     public static KeywordSet TELL_ME;
     public static final List<String> ASK_ME_KWS = Arrays.asList("ask", "me");
     public static final List<String> COME_AGAIN_KWS_1 = Arrays.asList("come", "again");
@@ -38,9 +37,7 @@ public class Parser {
     public static final String FROM = "from";
 
     public Parser(Context context){
-//        TELL_ME_KWS = Arrays.asList( context.getResources().getStringArray(R.array.tell_me_keywords));
         TELL_ME = new KeywordSet( context.getResources().getStringArray(R.array.tell_me_keywords));
-
     }
 
 
@@ -118,7 +115,6 @@ public class Parser {
         boolean b;
 
         // 1. tell me
-//        b = kws.containsAll(TELL_ME_KWS);
         b = TELL_ME.matches(kws) >= 0;
         if (b){
             return CommandTypes.TELL_ME;
