@@ -13,10 +13,12 @@ import com.luxlunaris.studybuddy.view.MainActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -232,15 +234,13 @@ public class FileManager {
         File f = new File(path);
 
         if (f.exists()) {
-            FileReader fr = new FileReader(f);
-            ByteArrayOutputStream os = new ByteArrayOutputStream();
 
-            int i;
-            while ((i = fr.read()) != -1) {
-                os.write(i);
-            }
+            FileInputStream fis = new FileInputStream(f);
+            byte[] data = new byte[(int) f.length()];
+            fis.read(data);
+            fis.close();
 
-            return os.toString();
+            return new String(data, StandardCharsets.UTF_8);
         }
 
         throw new IOException();
