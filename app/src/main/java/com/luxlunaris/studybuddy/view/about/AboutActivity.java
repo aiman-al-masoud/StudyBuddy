@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.view.help.HelpActivity;
 import com.luxlunaris.studybuddy.view.intro.IntroActivity;
+import com.luxlunaris.studybuddy.view.license.LicenseActivity;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class AboutActivity extends AppCompatActivity {
         aboutCorpora.setVisibility(View.GONE);
 
         license.setOnClickListener(e->{
-
+            startActivity(new Intent(this, LicenseActivity.class));
         });
 
         seeIntro.setOnClickListener(e->{
