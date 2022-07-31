@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import com.luxlunaris.studybuddy.R;
@@ -27,6 +28,7 @@ public class AboutActivity extends AppCompatActivity {
         commandsHelp  = findViewById(R.id.commandsHelpButton);
         aboutCorpora = findViewById(R.id.aboutCorporaButton);
 
+        aboutCorpora.setVisibility(View.GONE);
 
         license.setOnClickListener(e->{
 
