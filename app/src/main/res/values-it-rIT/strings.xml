@@ -51,7 +51,7 @@
     <string name="you_forgot_these_points">Hai dimenticato i seguenti punti:</string>
     <string name="intro_example_question" translatable="false">Chiedimi dell\'accelerazione</string>
     <string name="intro_example_question_2">"Dimmi della velocit\u00e0 "</string>
-    <string name="default_challenge_file">Definisci la velocit\u00e0?\nLa velocit\u00e0 \u00e8 la derivata della distanza rispetto al tempo.\n\nDefinisci l\'accelerazione?L\'accelerazione \u00e8 la derivata della velocit\u00e0 rispetto al tempo.</string>
+    <string name="default_challenge_file">Definisci la velocità?\nLa velocità è la derivata della distanza rispetto al tempo.\n\nDefinisci l\'accelerazione?L\'accelerazione è la derivata della velocità rispetto al tempo.</string>
 
     <string name="new_file_name">nuovo-file.txt</string>
     <string name="create_new_file">Crea Nuovo File</string>
