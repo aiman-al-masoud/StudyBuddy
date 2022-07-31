@@ -32,8 +32,10 @@
 
     <TextView
         android:id="@+id/textView19"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="347dp"
+        android:layout_height="116dp"
+        android:autoLink="all"
+        android:linksClickable="true"
         android:text="@string/study_buddy_is_free_software_licensed_under_gplv3_you_can_get_the_source_code_from_this_link"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
