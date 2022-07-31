@@ -46,7 +46,7 @@ public class FileManagerActivity extends AppCompatActivity {
 
 
         addFileFab.setOnLongClickListener(e->{
-            Toast.makeText(this, "Click to create new file.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.click_to_create_new_file, Toast.LENGTH_SHORT).show();
             return true;
         });
 
@@ -56,13 +56,13 @@ public class FileManagerActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
         final EditText input = new EditText(this);
-        input.setText("new-file.txt");
+        input.setText(R.string.new_file_name);
         input.requestFocus();
-        builder.setTitle("Create New File");
+        builder.setTitle(R.string.create_new_file);
 
         builder.setView(input);
 
-        builder.setPositiveButton("Ok", (d, w)->{
+        builder.setPositiveButton(R.string.ok, (d, w)->{
             Log.d("FileManagerActivity", "askNewFileName: "+input.getText().toString());
 
             try {
@@ -72,7 +72,7 @@ public class FileManagerActivity extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("Cancel", (d, w)->{
+        builder.setNegativeButton(R.string.cancel, (d, w)->{
             d.cancel();
         });
 

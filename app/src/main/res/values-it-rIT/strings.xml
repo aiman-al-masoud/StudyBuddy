@@ -10,7 +10,7 @@
     <string name="corpora">Corpora</string>
     <string name="undo">Annulla</string>
     <string name="save">Salva</string>
-    <string name="delete">Cancella</string>
+    <string name="delete">Elimina</string>
     <string name="import_file">Importa File</string>
     <string name="syntax">Sintassi</string>
     <string name="get_started">Cominciare</string>
@@ -52,6 +52,13 @@
     <string name="intro_example_question" translatable="false">Chiedimi dell\'accelerazione</string>
     <string name="intro_example_question_2">"Dimmi della velocità "</string>
     <string name="default_challenge_file">Definisci la velocità?\nLa velocità è la derivata della distanza rispetto al tempo.\n\nDefinisci l\'accelerazione?L\'accelerazione è la derivata della velocità rispetto al tempo.</string>
+
+    <string name="new_file_name">nuovo-file.txt</string>
+    <string name="create_new_file">Crea Nuovo File</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Annulla</string>
+    <string name="click_to_create_new_file">Clicca per creare un nuovo file.</string>
+
 
 
 

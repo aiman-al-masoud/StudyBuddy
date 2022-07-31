@@ -48,6 +48,20 @@
     <string name="yes_thats_right">Yes, that\'s right!</string>
     <string name="flawless">Flawless!</string>
     <string name="you_forgot_these_points">You forgot the following points:\n</string>
+    <string name="new_file_name">new-file.txt</string>
+    <string name="create_new_file">Create New File</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="click_to_create_new_file">Click to create new file.</string>
+
+
+
+
+
+
+
+
+
 
 
     <!--  DEFAULT CHALLENGES  -->
@@ -59,6 +73,7 @@
         Define speed?
         Speed is the rate of change of distance with respect to time.\n\n
         Define acceleration? Acceleration is the rate of change of speed with respect to time.</string>
+
     <!-- END DEFAULT CHALLENGES  -->
 
     <!--KEYWORDS FOR THE PARSER-->
