@@ -32,18 +32,6 @@ public class Parser {
     public static KeywordSet RANDOM;
 
 
-    //    public static final List<String> COME_AGAIN_KWS_1 = Arrays.asList("come", "again");
-//    public static final List<String> COME_AGAIN_KWS_2 = Arrays.asList("repeat");
-//    public static final List<String> ANOTHER_KWS_1 = Arrays.asList("another", "time");
-//    public static final List<String> ANOTHER_KWS_2 = Arrays.asList("one", "more");
-//    public static final List<String> EXIT_KWS_1 = Arrays.asList("exit");
-//    public static final List<String> HELP_KWS_1 = Arrays.asList("help");
-//    public static final List<String> BINARY_1 = Arrays.asList("yes");
-//    public static final List<String> BINARY_2 = Arrays.asList("no");//
-//    public static final String RANDOM = "random";
-//    public static final String FROM = "from";
-//    public static final String YES = "yes";
-
     public Parser(Context context) {
         TELL_ME = new KeywordSet(context.getResources().getStringArray(R.array.tell_me_keywords));
         ASK_ME = new KeywordSet(context.getResources().getStringArray(R.array.ask_me_keywords));
@@ -69,33 +57,25 @@ public class Parser {
             case TELL_ME: {
                 kws.removeAll(TELL_ME.getSubset(TELL_ME.matches(kws)));
 
-                String fromFile = AskMeCommand.ANY_FILE;
                 List<String> keywords = kws;
-
-                fromFile = findFromFile(userInput);
 
                 if (RANDOM.matches(keywords) >= 0) {
                     keywords = AskMeCommand.RANDOM;
                 }
 
-                return new TellMeCommand(keywords, fromFile);
+                return new TellMeCommand(keywords, findFromFile(userInput));
             }
             case ASK_ME:
 
-//                kws.removeAll(ASK_ME_KWS);
                 kws.removeAll(ASK_ME.getSubset(ASK_ME.matches(kws)));
 
-
-                String fromFile = AskMeCommand.ANY_FILE;
                 List<String> keywords = kws;
-
-               fromFile = findFromFile(userInput);
 
                 if (RANDOM.matches(keywords) >= 0) {
                     keywords = AskMeCommand.RANDOM;
                 }
 
-                return new AskMeCommand(keywords, fromFile);
+                return new AskMeCommand(keywords, findFromFile(userInput));
 
             case COME_AGAIN:
 
@@ -113,7 +93,6 @@ public class Parser {
                 return new ExitCommand();
             case BINARY:
 
-//                boolean yes = userInput.contains(YES);
                 boolean yes = YES.matches(kws) >= 0;
                 return new BinaryCommand(yes);
 
@@ -135,21 +114,18 @@ public class Parser {
         }
 
         // 2. ask me
-//        b = kws.containsAll(ASK_ME_KWS);
         b = ASK_ME.matches(kws) >= 0;
         if (b) {
             return CommandTypes.ASK_ME;
         }
 
         // 3. come again
-//        b = kws.containsAll(COME_AGAIN_KWS_1) || kws.containsAll(COME_AGAIN_KWS_2);
         b = COME_AGAIN.matches(kws) >= 0;
         if (b) {
             return CommandTypes.COME_AGAIN;
         }
 
         // 4. another
-//        b = kws.containsAll(ANOTHER_KWS_1) | kws.containsAll(ANOTHER_KWS_2);
         b = ANOTHER.matches(kws) >= 0;
 
         if (b) {
@@ -158,7 +134,6 @@ public class Parser {
 
 
         // 5. exit
-//        b = kws.containsAll(EXIT_KWS_1);
         b = EXIT.matches(kws) >= 0;
 
         if (b) {
@@ -166,14 +141,12 @@ public class Parser {
         }
 
         // binary
-//        b = kws.containsAll(BINARY_1) || kws.containsAll(BINARY_2);
         b = YES.matches(kws) >= 0 | NO.matches(kws) >= 0;
         if (b) {
             return CommandTypes.BINARY;
         }
 
         // 6. help
-//        b = kws.containsAll(HELP_KWS_1);
         b = HELP.matches(kws) >= 0;
         if (b) {
             return CommandTypes.HELP;
