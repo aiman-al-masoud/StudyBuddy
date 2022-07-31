@@ -26,7 +26,7 @@ public class Help {
             case ASK_ME:
                 return new Help("Ask Me", "Use it to trigger a question from Study Buddy.", "ask me [keywords|random] from [filename]");
             case TELL_ME:
-                return new Help("Tell Me", "Use it to ask Study Buddy to talk about a topic.", "tell me [keywords]");
+                return new Help("Tell Me", "Use it to ask Study Buddy to talk about a topic.", "tell me [keywords|random] from [filename]");
             case COME_AGAIN:
                 return new Help("Come Again", "Prompts study buddy to repeat the question.", "come again [slowly]");
             case ANOTHER_TIME:
