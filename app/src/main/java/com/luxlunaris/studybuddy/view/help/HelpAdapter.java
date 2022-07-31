@@ -5,16 +5,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.luxlunaris.studybuddy.R;
-import com.luxlunaris.studybuddy.model.Help;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.luxlunaris.studybuddy.model.utils.Help;
 
 
 public class HelpAdapter extends RecyclerView.Adapter<HelpHolder> {

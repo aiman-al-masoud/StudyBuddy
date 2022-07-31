@@ -1,4 +1,4 @@
-package com.luxlunaris.studybuddy.model;
+package com.luxlunaris.studybuddy.model.utils;
 
 import com.luxlunaris.studybuddy.model.studybuddy.commands.CommandTypes;
 

@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.luxlunaris.studybuddy.R;
-import com.luxlunaris.studybuddy.model.Help;
-import com.luxlunaris.studybuddy.view.chatui.RowAdapter;
 
 public class HelpActivity extends AppCompatActivity {
 
