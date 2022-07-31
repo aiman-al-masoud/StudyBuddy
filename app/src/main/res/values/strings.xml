@@ -9,7 +9,7 @@
 
     <string name="intro_example_question_2">
         Tell me about speed.
-    </string>>
+    </string>
 
     <string name="default_challenge_file">
         Define speed?\nSpeed is the rate of change of distance
@@ -17,6 +17,14 @@
         Define acceleration?\nAcceleration is the rate of change of speed\n
         with respect to time.
     </string>
+
+
+    <string-array name="tell_me_keywords" >
+        <item>tell me</item>
+    </string-array>
+
+
+
 
 
 </resources>

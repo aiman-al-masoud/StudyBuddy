@@ -59,7 +59,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
         cb = new ChallengeBuilder();
         cm = new ChallengeManager();
         mainHandler = new Handler();
-        parser = new Parser();
+        parser = new Parser(context);
         keyboardMode = false;
         this.listener = listener;
         loudspeakerMode = true;
