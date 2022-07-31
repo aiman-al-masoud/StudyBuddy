@@ -58,7 +58,7 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
     public StudyBuddy(Context context, StudyBuddyListener listener){
         this.context = context;
         currentMode = StudyBuddyModes.AWAIT_COMMAND;
-        examiner = new Examiner();
+        examiner = new Examiner(context);
         scribe = Scribe.getScribe(context, this);
         speaker = Speaker.getSpeaker(context, this);
         cb = new ChallengeBuilder();

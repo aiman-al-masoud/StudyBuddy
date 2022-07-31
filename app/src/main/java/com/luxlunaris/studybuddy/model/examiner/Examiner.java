@@ -1,6 +1,9 @@
 package com.luxlunaris.studybuddy.model.examiner;
 
+import android.content.Context;
 import android.os.Build;
+
+import com.luxlunaris.studybuddy.R;
 import com.luxlunaris.studybuddy.model.challenge.Challenge;
 import com.luxlunaris.studybuddy.model.challenge.classes.MultiAnswerChallenge;
 import com.luxlunaris.studybuddy.model.challenge.classes.SingleAnswerChallenge;
@@ -9,6 +12,7 @@ import com.luxlunaris.studybuddy.model.utils.Keywords;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import com.luxlunaris.studybuddy.R;
 
 public class Examiner {
 
@@ -16,6 +20,11 @@ public class Examiner {
     public final int MEDIOCRE_ANSWER = 50;
     public final int BAD_ANSWER = 40;
 
+    private Context context;
+
+    public Examiner(Context context){
+        this.context =  context;
+    }
 
     public Verdict getVerdict(Challenge challenge, String userInput) {
 
@@ -40,7 +49,7 @@ public class Examiner {
         int percentageKeywords = (int) (100 * rememberedKeywords / (double) correctKeywords.size());
 
         if (percentageKeywords <= BAD_ANSWER) {
-            String s = "The correct answer is: ";
+            String s = context.getString(R.string.the_correct_answer_is);
             s += sac.answer;
             v = new Verdict(true, s);
             return v;
@@ -48,19 +57,19 @@ public class Examiner {
 
         if (percentageKeywords <= MEDIOCRE_ANSWER) {
             String mk = missedKeywords.stream().reduce((k1, k2) -> k1 + ", " + k2).get();
-            String s = "You got close, but you missed a lot of information. Try recalling these keywords: " + mk;
+            String s = context.getResources().getString(R.string.you_missed_a_lot) + mk;
             v = new Verdict(true, s);
             return v;
         }
 
         if (percentageKeywords <= GOOD_ANSWER) {
             String mk = missedKeywords.stream().reduce((k1, k2) -> k1 + ", " + k2).get();
-            String s = "Fair enough, but you missed these keywords:" + mk;
+            String s =  context.getResources().getString(R.string.fair_enough) + mk;
             v = new Verdict(false, s);
             return v;
         }
 
-        return new Verdict(false, "True! You guessed it!");
+        return new Verdict(false, context.getResources().getString(R.string.yes_thats_right));
     }
 
     private Verdict evaluateMultiAnswerChallenge(String userInput, MultiAnswerChallenge mac) {
@@ -76,11 +85,11 @@ public class Examiner {
         }).collect(Collectors.toList());
 
         if(missedPoints.size()==0){
-            return new Verdict(false, "Flawless!");
+            return new Verdict(false, context.getString(R.string.flawless));
         }
 
         StringBuilder sb = new StringBuilder();
-        sb.append("You forgot the following points:\n");
+        sb.append(context.getResources().getString(R.string.you_forgot_these_points));
         missedPoints.forEach(e->{
             sb.append(e);
             sb.append(".\n");

@@ -68,6 +68,13 @@
     <string name="no_such_command">I didn\'t get you."</string>
     <string name="answer_wrong">Your answer is wrong.</string>
     <string name="wish_to_try_again">Wish to try again? Yes or no?</string>
+    <string name="the_correct_answer_is">The correct answer is:</string>
+    <string name="you_missed_a_lot">You got close, but you missed a lot of information. Try recalling these keywords:</string>
+    <string name="fair_enough" >Fair enough, but you missed these keywords:</string>
+    <string name="yes_thats_right">Yes, that\'s right!</string>
+    <string name="flawless">Flawless!</string>
+    <string name="you_forgot_these_points">You forgot the following points:\n</string>
+
 
     <!--KEYWORDS FOR THE PARSER-->
     <string-array name="tell_me_keywords">
