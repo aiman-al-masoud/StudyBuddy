@@ -19,65 +19,60 @@
     </string>
 
 
-    <string-array name="tell_me_keywords" >
+    <!--KEYWORDS FOR THE PARSER-->
+    <string-array name="tell_me_keywords">
         <item>tell me</item>
     </string-array>
 
-    <string-array name="ask_me_keywords" >
+    <string-array name="ask_me_keywords">
         <item>ask me</item>
     </string-array>
 
 
-    <string-array name="come_again_keywords" >
+    <string-array name="come_again_keywords">
         <item>come again</item>
         <item>repeat</item>
     </string-array>
 
 
-    <string-array name="another_time_keywords" >
+    <string-array name="another_time_keywords">
         <item>another time</item>
         <item>one more</item>
     </string-array>
 
 
-    <string-array name="exit_keywords" >
+    <string-array name="exit_keywords">
         <item>exit</item>
         <item>get me out</item>
     </string-array>
 
-    <string-array name="help_keywords" >
+    <string-array name="help_keywords">
         <item>help</item>
     </string-array>
 
-    <string-array name="yes_keywords" >
+    <string-array name="yes_keywords">
         <item>yes</item>
     </string-array>
 
-    <string-array name="no_keywords" >
+    <string-array name="no_keywords">
         <item>no</item>
     </string-array>
 
-    <string-array name="random_keywords" >
+    <string-array name="random_keywords">
         <item>random</item>
     </string-array>
 
-    <string-array name="from_keywords" >
+    <string-array name="from_keywords">
         <item>from</item>
     </string-array>
 
-    <string-array name="slow_keywords" >
+    <string-array name="slow_keywords">
         <item>slow</item>
         <item>slower</item>
         <item>slowly</item>
     </string-array>
 
-
-
-
-
-
-
-
+    <!--END KEYWORDS-->
 
 
 </resources>
