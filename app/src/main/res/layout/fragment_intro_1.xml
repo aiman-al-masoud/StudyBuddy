@@ -20,7 +20,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="240dp"
-        android:layout_height="77dp"
+        android:layout_height="93dp"
         android:layout_marginTop="28dp"
         android:text="@string/extend_your_study_buddy_s_knowledge_through_easy_to_use_text_files"
         app:layout_constraintEnd_toEndOf="parent"
