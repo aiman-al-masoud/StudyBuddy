@@ -69,14 +69,14 @@
 
 
     <!--  DEFAULT CHALLENGES  -->
-    <string name="intro_example_question">"Ask me about acceleration."</string>>
+    <string name="intro_example_question">Ask me what is speed.</string>>
 
-    <string name="intro_example_question_2">Tell me about speed.</string>
+    <string name="intro_example_question_2">Tell me a joke.</string>
 
     <string name="default_challenge_file">
-        Define speed?
-        Speed is the rate of change of distance with respect to time.\n\n
-        Define acceleration? Acceleration is the rate of change of speed with respect to time.</string>
+        Define speed?\nSpeed is the rate of change of distance with respect to time.\n\n
+        Joke: what do you call a chicken who crosses the road, rolls in the mud, and crosses the road again?\nA dirty double crosser.
+    </string>
 
     <!-- END DEFAULT CHALLENGES  -->
 
