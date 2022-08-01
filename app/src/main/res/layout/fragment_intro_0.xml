@@ -8,8 +8,8 @@
     <TextView
         android:id="@+id/introTextView"
         android:layout_width="293dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="92dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="52dp"
         android:text="@string/study_buddy_is_a_chatbot_designed_to_help_you_rehearse_your_own_study_material"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,8 +17,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="178dp"
-        android:layout_height="153dp"
+        android:layout_width="269dp"
+        android:layout_height="210dp"
         android:layout_marginTop="176dp"
         android:src="@mipmap/ic_launcher_foreground"
         app:layout_constraintEnd_toEndOf="parent"
