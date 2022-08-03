@@ -1,4 +1,5 @@
 # Study Buddy
+
 A chatbot designed to bring some fun to your study sessions.
 
 
@@ -10,3 +11,4 @@ A chatbot designed to bring some fun to your study sessions.
 </div>
 
 
+Available soon on the Play Store!
