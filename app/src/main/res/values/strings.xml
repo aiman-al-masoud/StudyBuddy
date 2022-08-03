@@ -201,6 +201,19 @@
         <item>Doesn\'t do anything.</item>
         <item>N/A</item>
     </string-array>
+
+
+    <string-array name="doc_i_dont_know">
+        <item>I don\'t know</item>
+        <item>If given as a reply to an answer, Study Buddy tells you the correct answer right away.</item>
+        <item>I don\'t know | No idea | You tell me</item>
+    </string-array>
+
+    <string-array name="doc_what_time">
+        <item>What Time</item>
+        <item>Speaks out the current time of the day.</item>
+        <item>What Time | Tell Time</item>
+    </string-array>
     <!-- END COMMAND DOCUMENTATION -->
 
 </resources>

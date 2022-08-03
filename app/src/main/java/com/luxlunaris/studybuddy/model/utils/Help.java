@@ -41,6 +41,10 @@ public class Help {
                 return new Help(context.getResources().getStringArray(R.array.doc_undefined));
             case HELP:
                 return new Help(context.getResources().getStringArray(R.array.doc_help));
+            case I_DONT_KNOW:
+                return new Help(context.getResources().getStringArray(R.array.doc_i_dont_know));
+            case WHAT_TIME:
+                return new Help(context.getResources().getStringArray(R.array.doc_what_time));
 
         }
 

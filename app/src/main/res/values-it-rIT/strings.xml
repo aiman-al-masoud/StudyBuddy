@@ -200,6 +200,19 @@
         <item>Non fa nulla.</item>
         <item>N/A</item>
     </string-array>
+
+
+    <string-array name="doc_i_dont_know">
+        <item>Non lo so</item>
+        <item>Se si dà come risposta ad una domanda, Study Buddy ci fornirà subito la giusta risposta.</item>
+        <item>Non lo so | Non ne ho idea | Dimmelo tu</item>
+    </string-array>
+
+    <string-array name="doc_what_time">
+        <item>Orario</item>
+        <item>Dice l\'orario.</item>
+        <item>Orario | Che ore</item>
+    </string-array>
     <!-- END COMMAND DOCUMENTATION -->
 
 
