@@ -1,6 +1,6 @@
 # Study Buddy
 
-**Available soon on the Play Store!**
+**Coming soon on the Play Store!**
 
 ## A chatbot designed to bring some fun to your study sessions.
 
