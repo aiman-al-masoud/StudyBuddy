@@ -52,11 +52,12 @@ public class Help {
     }
 
     public static int numberOfCommands(){
-        return CommandTypes.values().length;
+        return CommandTypes.values().length-1;
     }
 
     public static List<Help> getDocumentations(Context context){
         return Arrays.stream(CommandTypes.values())
+                .filter(v->v!=CommandTypes.UNDEFINED)
                 .map(c->Help.getDocumentationFor(context, c))
                 .collect(Collectors.toList());
     }
