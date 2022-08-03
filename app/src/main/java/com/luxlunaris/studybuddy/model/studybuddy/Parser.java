@@ -11,6 +11,7 @@ import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.BinaryCommand
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.ComeAgainCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.ExitCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.HelpCommand;
+import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.IDontKnowCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.TellMeCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.UndefinedCommand;
 import com.luxlunaris.studybuddy.model.utils.Keywords;
@@ -31,6 +32,7 @@ public class Parser {
     public static KeywordSet FROM;
     public static KeywordSet RANDOM;
     public static KeywordSet SLOW;
+    public static KeywordSet I_DONT_KNOW;
 
 
 
@@ -46,7 +48,7 @@ public class Parser {
         FROM = new KeywordSet(context.getResources().getStringArray(R.array.from_keywords));
         RANDOM = new KeywordSet(context.getResources().getStringArray(R.array.random_keywords));
         SLOW = new KeywordSet(context.getResources().getStringArray(R.array.slow_keywords));
-
+        I_DONT_KNOW = new KeywordSet(context.getResources().getStringArray(R.array.i_dont_know_keywords));
     }
 
 
@@ -100,6 +102,8 @@ public class Parser {
                 boolean yes = YES.matches(kws) >= 0;
                 return new BinaryCommand(yes);
 
+            case I_DONT_KNOW:
+                return new IDontKnowCommand();
             default:
                 return new UndefinedCommand();
         }
@@ -154,6 +158,13 @@ public class Parser {
         b = HELP.matches(kws) >= 0;
         if (b) {
             return CommandTypes.HELP;
+        }
+
+
+        // I don't know
+        b = I_DONT_KNOW.matches(kws) >=0;
+        if(b){
+            return CommandTypes.I_DONT_KNOW;
         }
 
         return CommandTypes.UNDEFINED;

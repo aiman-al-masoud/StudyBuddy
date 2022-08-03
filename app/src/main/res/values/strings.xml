@@ -132,6 +132,13 @@
         <item>slower</item>
         <item>slowly</item>
     </string-array>
+
+    <string-array name="i_dont_know_keywords">
+        <item>I don\'t know</item>
+        <item>no idea</item>
+        <item>you tell me</item>
+    </string-array>
+
     <!--END KEYWORDS-->
 
 

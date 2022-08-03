@@ -128,6 +128,16 @@
         <item>più piano</item>
         <item>adagio</item>
     </string-array>
+
+
+
+    <string-array name="i_dont_know_keywords">
+        <item>non lo so</item>
+        <item>non ne ho idea</item>
+        <item>pallida idea</item>
+        <item>dimmelo tu</item>
+        <item>dimmi tu</item>
+    </string-array>
     <!--END KEYWORDS-->
 
 

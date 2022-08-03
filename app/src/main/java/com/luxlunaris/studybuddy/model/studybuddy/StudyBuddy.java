@@ -235,8 +235,15 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
             return;
         }
 
-
         currentVerdict = examiner.getVerdict(currentChallenge, userInput);
+
+
+        if(cmd.getType()==CommandTypes.I_DONT_KNOW){
+            output(currentVerdict.text);
+            currentMode = StudyBuddyModes.AWAIT_COMMAND;
+            return;
+        }
+
 
         if(currentVerdict.isFail){
             currentMode = StudyBuddyModes.AWAIT_CONFIRM_TRY_AGAIN;
