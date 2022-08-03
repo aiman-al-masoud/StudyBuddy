@@ -2,4 +2,10 @@
 A chatbot designed to bring some fun to your study sessions.
 
 
-<img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png"/>
+<div style="flex-direction: row;">
+  <img src="images/ask-me.jpeg" height="400">
+  <img src="images/tell-me.jpeg" height="400">
+  <img src="images/editor.jpeg" height="400">
+</div>
+
+
