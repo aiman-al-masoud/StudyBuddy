@@ -14,6 +14,7 @@ import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.HelpCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.IDontKnowCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.TellMeCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.UndefinedCommand;
+import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.WhatTimeCommand;
 import com.luxlunaris.studybuddy.model.utils.Keywords;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class Parser {
     public static KeywordSet RANDOM;
     public static KeywordSet SLOW;
     public static KeywordSet I_DONT_KNOW;
+    public static KeywordSet WHAT_TIME;
 
 
 
@@ -49,6 +51,7 @@ public class Parser {
         RANDOM = new KeywordSet(context.getResources().getStringArray(R.array.random_keywords));
         SLOW = new KeywordSet(context.getResources().getStringArray(R.array.slow_keywords));
         I_DONT_KNOW = new KeywordSet(context.getResources().getStringArray(R.array.i_dont_know_keywords));
+        WHAT_TIME = new KeywordSet(context.getResources().getStringArray(R.array.what_time_keywords));
     }
 
 
@@ -104,6 +107,10 @@ public class Parser {
 
             case I_DONT_KNOW:
                 return new IDontKnowCommand();
+
+            case WHAT_TIME:
+                return new WhatTimeCommand();
+
             default:
                 return new UndefinedCommand();
         }
@@ -165,6 +172,12 @@ public class Parser {
         b = I_DONT_KNOW.matches(kws) >=0;
         if(b){
             return CommandTypes.I_DONT_KNOW;
+        }
+
+        // time
+        b = WHAT_TIME.matches(kws) >=0;
+        if(b){
+            return CommandTypes.WHAT_TIME;
         }
 
         return CommandTypes.UNDEFINED;

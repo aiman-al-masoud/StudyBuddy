@@ -139,6 +139,12 @@
         <item>you tell me</item>
     </string-array>
 
+    <string-array name="what_time_keywords">
+        <item>what time</item>
+        <item>tell time</item>
+    </string-array>
+
+
     <!--END KEYWORDS-->
 
 

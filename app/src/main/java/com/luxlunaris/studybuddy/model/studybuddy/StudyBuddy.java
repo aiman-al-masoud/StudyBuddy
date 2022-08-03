@@ -26,6 +26,8 @@ import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.BinaryCommand
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.ComeAgainCommand;
 import com.luxlunaris.studybuddy.model.studybuddy.commands.classes.TellMeCommand;
 
+import java.util.Date;
+
 public class StudyBuddy implements ScribeListener, SpeakerListener {
 
 
@@ -217,6 +219,11 @@ public class StudyBuddy implements ScribeListener, SpeakerListener {
                     output(NO_PREVIOUS_CMD);
                 }
 
+                return;
+
+            case WHAT_TIME:
+                Date d = new Date();
+                output(d.getHours()+" : "+(d.getMinutes()<10? "0"+d.getMinutes():d.getMinutes() ));
                 return;
 
             case UNDEFINED: // command not found
