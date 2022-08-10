@@ -1,6 +1,9 @@
 # Study Buddy
 
-**Coming soon on the Play Store!**
+<a href="https://play.google.com/store/apps/details?id=com.luxlunaris.studybuddy"><img src="https://lh3.googleusercontent.com/cjsqrWQKJQp9RFO7-hJ9AfpKzbUb_Y84vXfjlP0iRHBvladwAfXih984olktDhPnFqyZ0nu9A5jvFwOEQPXzv7hr3ce3QVsLN8kQ2Ao=s0"></img>
+ </a>
+
+<a href="https://play.google.com/store/apps/details?id=com.luxlunaris.studybuddy">Get it on Google Play!</a>
 
 ## A chatbot designed to bring some fun to your study sessions.
 
